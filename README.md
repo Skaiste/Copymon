@@ -45,8 +45,8 @@ An awesome android game-to-be in distant future
 
 > In New Game
 > * Name input
-> In Play With Friend
 
+> In Play With Friend
 > * Everything.
 
 > etc.
