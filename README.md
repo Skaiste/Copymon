@@ -1,2 +1,2 @@
 # Copymon
-awesome android game to be in distant future
+awesome android game-to-be in distant future
