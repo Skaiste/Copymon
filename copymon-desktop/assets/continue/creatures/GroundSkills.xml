@@ -1,0 +1,4 @@
+<GroundSkills>
+	<Bulldoze name="Bulldoze" describtion="The user stomps down on the ground and attacks everything in the area." power="60"/>
+	<Earthquake name="Earthquake" describtion="The user sets off an earthquake that strikes every creature around it." power="100"/>
+</GroundSkills>

@@ -1,0 +1,11 @@
+<GrassSkills>
+  	<VineWhip name="Vine Whip" describtion="The target is struck with slender, whiplike vines to inflict damage." power="45" />
+  	<RazorLeaf name="Razor Leaf" describtion="Sharp-edged leaves are launched to slash at the opposing team." power="55" />
+  	<LeafTornado name="Leaf Tornado" describtion="The user attacks its target by encircling it in sharp leaves." power="65" />
+  	<BulletSeed name="Bullet Seed" describtion="The user forcefully shoots seeds at the target. Two to five seeds are shot in rapid succession." power="25" />
+  	<SeedBomb name="Seed Bomb" describtion="The user slams a barrage of hard-shelled seeds down on the target from above." power="80" />
+  	<SolarBeam name="Solar Beam" describtion="The creature gathers sun power and creates a devastating beam" power="120" />
+  	<MagicalLeaf name="Magical Leaf" describtion="The user scatters curious leaves that chase the target." power="60" />
+  	<GrassPledge name="Grass Pledge" describtion="A column of grass hits opposing creature." power="80" />
+  	<LeafStorm name="Leaf Storm" describtion="The user whips up a storm of leaves around the target." power="130" />
+</GrassSkills>

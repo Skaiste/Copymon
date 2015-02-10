@@ -1,0 +1,185 @@
+<creatures>
+<Weediesaur type="Grass" evolutionNo="3" abilityNo="14" describtion="Hippopotamo creature which might not seem to be tough opponent but he can surely stand his ground on strong feets if needed.">
+	<starting hp="40" ap="50" defence="60" agility="60"/>
+	<maximum hp="370" ap="365" defence="302" agility="250"/>
+	<evolution1 lvl="0" name="Weediesaur"/>
+	<evolution2 lvl="36" name="Leafasaur"/>
+	<evolution3 lvl="73" name="Pettalsaur"/>
+	<ability1 name="VineWhip" type="Grass"/>
+	<ability2 name="Tackle" type="Normal"/>
+	<ability3 name="RazorLeaf" type="Grass"/>
+	<ability4 name="Constrict" type="Normal"/>
+	<ability5 name="LeafTornado" type="Grass"/>
+	<ability6 name="Stomp" type="Normal"/>
+	<ability7 name="BulletSeed" type="Grass"/>
+	<ability8 name="Headbutt" type="Normal"/>
+	<ability9 name="PoisonPowder" type="Poison"/>
+	<ability10 name="Slam" type="Normal"/>
+	<ability11 name="SeedBomb" type="Grass"/>
+	<ability12 name="TakeDown" type="Normal"/>
+	<ability13 name="SkullBash" type="Normal"/>
+	<ability14 name="SolarBeam" type="Grass"/>
+</Weediesaur>
+<Flameander type="Fire" evolutionNo="3" abilityNo="14" describtion="Fire creature which temper might be as hot as his flames.">
+	<starting hp="50" ap="70" defence="20" agility="70"/>
+	<maximum hp="360" ap="270" defence="287" agility="270"/>
+	<evolution1 lvl="0" name="Flameander"/>
+	<evolution2 lvl="32" name="Flamelian"/>
+	<evolution3 lvl="67" name="Flamezard"/>
+	<ability1 name="Ember" type="Fire"/>
+	<ability2 name="Scratch" type="Normal"/>
+	<ability3 name="Tackle" type="Normal"/>
+	<ability4 name="FlameCharge" type="Fire"/>
+	<ability5 name="Cut" type="Normal"/>
+	<ability6 name="Incinerate" type="Fire"/>
+	<ability7 name="CrushClaw" type="Normal"/>
+	<ability8 name="FlameBurst" type="Fire"/>
+	<ability9 name="TakeDown" type="Normal"/>
+	<ability10 name="Flamethrower" type="Fire"/>
+	<ability11 name="SkullBash" type="Normal"/>
+	<ability12 name="Inferno" type="Fire"/>
+	<ability13 name="FieryDance" type="Fire"/>
+	<ability14 name="BlueFlare" type="Fire"/>
+</Flameander>
+<Drizzle type="Water" evolutionNo="3" abilityNo="14" describtion="Turtle creature with a strong shell. This creature can slip out of the stickiest situations.">
+	<starting hp="50" ap="60" defence="30" agility="70"/>
+	<maximum hp="330" ap="260" defence="327" agility="270"/>
+	<evolution1 lvl="0" name="Drizzle"/>
+	<evolution2 lvl="29" name="Squirtortle"/>
+	<evolution3 lvl="70" name="Burstoise"/>
+	<ability1 name="Tackle" type="Normal"/>
+	<ability2 name="WaterGun" type="Water"/>
+	<ability3 name="WaterPulse" type="Water"/>
+	<ability4 name="Bulldoze" type="Ground"/>
+	<ability5 name="BubbleBeam" type="Water"/>
+	<ability6 name="Headbutt" type="Normal"/>
+	<ability7 name="Waterfall" type="Water"/>
+	<ability8 name="AquaTail" type="Water"/>
+	<ability9 name="BodySlam" type="Normal"/>
+	<ability10 name="TakeDown" type="Normal"/>
+	<ability11 name="Earthquake" type="Ground"/>
+	<ability12 name="HydroPump" type="Water"/>
+	<ability13 name="SkullBash" type="Normal"/>
+	<ability14 name="HydroCannon" type="Water"/>
+</Drizzle>
+<Capillar type="Bug" evolutionNo="3" abilityNo="14" describtion="Serpentine creature which might initially seem to be weak but waiting pays off fast when he gets powerfull abilities and evolves.">
+	<starting hp="25" ap="30" defence="35" agility="80"/>
+	<maximum hp="350" ap="287" defence="240" agility="310"/>
+	<evolution1 lvl="0" name="Capillar"/>
+	<evolution2 lvl="18" name="Shellpod"/>
+	<evolution3 lvl="26" name="Magofly"/>
+	<ability1 name="FellStinger" type="Bug"/>
+	<ability2 name="Tackle" type="Normal"/>
+	<ability3 name="StruggleBug" type="Bug"/>
+	<ability4 name="Swift" type="Normal"/>
+	<ability5 name="MagicalLeaf" type="Grass"/>
+	<ability6 name="BugBite" type="Bug"/>
+	<ability7 name="Headbutt" type="Normal"/>
+	<ability8 name="GrassPledge" type="Grass"/>
+	<ability9 name="BugBuzz" type="Bug"/>
+	<ability10 name="OblivionWing" type="Flying"/>
+	<ability11 name="AttackOrder" type="Bug"/>
+	<ability12 name="Hurricane" type="Flying"/>
+	<ability13 name="Megahorn" type="Bug"/>
+	<ability14 name="LeafStorm" type="Grass"/>
+</Capillar>
+<Eagley type="Flying" evolutionNo="3" abilityNo="14" describtion="TBA">
+	<starting hp="TBA" ap="TBA" defence="TBA" agility="TBA"/>
+	<maximum hp="TBA" ap="TBA" defence="TBA" agility="TBA"/>
+	<evolution1 lvl="0" name="Eagley"/>
+	<evolution2 lvl="TBA" name="Eagleotto"/>
+	<evolution3 lvl="TBA" name="Eagleot"/>
+	<ability1 name="TBA" type="TBA"/>
+	<ability2 name="TBA" type="TBA"/>
+	<ability3 name="TBA" type="TBA"/>
+	<ability4 name="TBA" type="TBA"/>
+	<ability5 name="TBA" type="TBA"/>
+	<ability6 name="TBA" type="TBA"/>
+	<ability7 name="TBA" type="TBA"/>
+	<ability8 name="TBA" type="TBA"/>
+	<!-- and so on -->
+</Eagley>
+<Sparkiechu type="Electric" evolutionNo="3" abilityNo="14" describtion="Mouse creature which cute looks might be deceiving as his powerfull electric attacks can shock to faint even the strongest ones.">
+	<starting hp="35" ap="55" defence="30" agility="90"/>
+	<maximum hp="324" ap="306" defence="229" agility="328"/>
+	<evolution1 lvl="0" name="Sparkiechu"/>
+	<evolution2 lvl="24" name="Voltichu"/>
+	<evolution3 lvl="63" name="Thunderchu"/>
+	<ability1 name="ThunderShock" type="Electric"/>
+	<ability2 name="Tackle" type="Normal"/>
+	<ability3 name="QuickAttack" type="Normal"/>
+	<ability4 name="ShockWave" type="Electric"/>
+	<ability5 name="Covet" type="Normal"/>
+	<ability6 name="Earwhip" type="Electric"/>
+	<ability7 name="ThunderPunch" type="Electric"/>
+	<ability8 name="EarOrTailSlap" type="Normal"/>
+	<ability9 name="Discharge" type="Electric"/>
+	<ability10 name="TakeDown" type="Normal"/>
+	<ability11 name="Thunderbolt" type="Electric"/>
+	<ability12 name="ElectroBall" type="Electric"/>
+	<ability13 name="Judgment" type="Normal"/>
+	<ability14 name="Thunder" type="Electric"/>
+</Sparkiechu>
+<Lumos type="Psychic" evolutionNo="3" abilityNo="14" describtion="TBA">
+	<starting hp="TBA" ap="TBA" defence="TBA" agility="TBA"/>
+	<maximum hp="TBA" ap="TBA" defence="TBA" agility="TBA"/>
+	<evolution1 lvl="0" name="Lumos"/>
+	<evolution2 lvl="TBA" name="Imperio"/>
+	<evolution3 lvl="TBA" name="Expelliarmus"/>
+	<ability1 name="TBA" type="TBA"/>
+	<ability2 name="TBA" type="TBA"/>
+	<ability3 name="TBA" type="TBA"/>
+	<ability4 name="TBA" type="TBA"/>
+	<ability5 name="TBA" type="TBA"/>
+	<ability6 name="TBA" type="TBA"/>
+	<ability7 name="TBA" type="TBA"/>
+	<ability8 name="TBA" type="TBA"/>
+	<!-- and so on -->
+</Lumos>
+<Stonic type="Stone" evolutionNo="3" abilityNo="14" describtion="TBA">
+	<starting hp="TBA" ap="TBA" defence="TBA" agility="TBA"/>
+	<maximum hp="TBA" ap="TBA" defence="TBA" agility="TBA"/>
+	<evolution1 lvl="0" name="Stonic"/>
+	<evolution2 lvl="TBA" name="Steelic"/>
+	<ability1 name="TBA" type="TBA"/>
+	<ability2 name="TBA" type="TBA"/>
+	<ability3 name="TBA" type="TBA"/>
+	<ability4 name="TBA" type="TBA"/>
+	<ability5 name="TBA" type="TBA"/>
+	<ability6 name="TBA" type="TBA"/>
+	<ability7 name="TBA" type="TBA"/>
+	<ability8 name="TBA" type="TBA"/>
+	<!-- and so on -->
+</Stonic>
+<Ghostly type="Ghost" evolutionNo="3" abilityNo="14" describtion="TBA">
+	<starting hp="TBA" ap="TBA" defence="TBA" agility="TBA"/>
+	<maximum hp="TBA" ap="TBA" defence="TBA" agility="TBA"/>
+	<evolution1 lvl="0" name="Ghostly"/>
+	<evolution2 lvl="TBA" name="Spooker"/>
+	<evolution3 lvl="TBA" name="Shador"/>
+	<ability1 name="TBA" type="TBA"/>
+	<ability2 name="TBA" type="TBA"/>
+	<ability3 name="TBA" type="TBA"/>
+	<ability4 name="TBA" type="TBA"/>
+	<ability5 name="TBA" type="TBA"/>
+	<ability6 name="TBA" type="TBA"/>
+	<ability7 name="TBA" type="TBA"/>
+	<ability8 name="TBA" type="TBA"/>
+	<!-- and so on -->
+</Ghostly>
+<Chimpey type="Fighting" evolutionNo="2" abilityNo="14" describtion="TBA">
+	<starting hp="TBA" ap="TBA" defence="TBA" agility="TBA"/>
+	<maximum hp="TBA" ap="TBA" defence="TBA" agility="TBA"/>
+	<evolution1 lvl="0" name="Chimpey"/>
+	<evolution2 lvl="TBA" name="Primerilla"/>
+	<ability1 name="TBA" type="TBA"/>
+	<ability2 name="TBA" type="TBA"/>
+	<ability3 name="TBA" type="TBA"/>
+	<ability4 name="TBA" type="TBA"/>
+	<ability5 name="TBA" type="TBA"/>
+	<ability6 name="TBA" type="TBA"/>
+	<ability7 name="TBA" type="TBA"/>
+	<ability8 name="TBA" type="TBA"/>
+	<!-- and so on -->
+</Chimpey>
+</creatures>

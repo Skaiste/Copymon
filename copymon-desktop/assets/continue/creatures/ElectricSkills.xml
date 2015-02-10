@@ -1,0 +1,10 @@
+<ElectricSkills>
+  	<ThunderShock name="Thunder Shock" describtion="A jolt of electricity is hurled at the target to inflict damage." power="40" />
+  	<ShockWave name="Shock Wave" describtion="The user strikes the target with a quick jolt of electricity." power="60" />
+  	<Earwhip name="Earwhip" describtion="The user electrifies the target with its ears to inflict damage." power="70" />
+  	<ThunderPunch name="Thunder Punch" describtion="The target is punched with an electrified fist." power="75" />
+  	<Discharge name="Discharge" describtion="A flare of electricity is loosed to strike the area around the user." power="80" />
+  	<Thunderbolt name="Thunderbolt" describtion="A strong electric blast is loosed at the target." power="90" />
+  	<ElectroBall name="Electro Ball" describtion="A wicked thunderbolt is dropped on the target to inflict damage." power="110" />
+  	<Thunder name="Thunder" describtion="The user charges at its target, surrounding itself with a great amount of electricity." power="130" />
+</ElectricSkills>

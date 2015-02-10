@@ -1,0 +1,576 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="left-up" width="94" height="30" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="map1" tilewidth="32" tileheight="32">
+  <image source="map1.png" width="1500" height="1500"/>
+  <tile id="46">
+   <properties>
+    <property name="blocked" value=""/>
+   </properties>
+  </tile>
+  <tile id="47">
+   <properties>
+    <property name="blocked" value=""/>
+   </properties>
+  </tile>
+  <tile id="48">
+   <properties>
+    <property name="blocked" value=""/>
+   </properties>
+  </tile>
+  <tile id="49">
+   <properties>
+    <property name="blocked" value=""/>
+   </properties>
+  </tile>
+  <tile id="50">
+   <properties>
+    <property name="blocked" value=""/>
+   </properties>
+  </tile>
+  <tile id="92">
+   <properties>
+    <property name="blocked" value=""/>
+   </properties>
+  </tile>
+  <tile id="93">
+   <properties>
+    <property name="blocked" value=""/>
+   </properties>
+  </tile>
+  <tile id="94">
+   <properties>
+    <property name="blocked" value=""/>
+   </properties>
+  </tile>
+  <tile id="95">
+   <properties>
+    <property name="blocked" value=""/>
+   </properties>
+  </tile>
+  <tile id="96">
+   <properties>
+    <property name="blocked" value=""/>
+   </properties>
+  </tile>
+  <tile id="97">
+   <properties>
+    <property name="blocked" value=""/>
+   </properties>
+  </tile>
+  <tile id="138">
+   <properties>
+    <property name="blocked" value=""/>
+   </properties>
+  </tile>
+  <tile id="139">
+   <properties>
+    <property name="blocked" value=""/>
+   </properties>
+  </tile>
+  <tile id="140">
+   <properties>
+    <property name="blocked" value=""/>
+   </properties>
+  </tile>
+  <tile id="141">
+   <properties>
+    <property name="blocked" value=""/>
+   </properties>
+  </tile>
+  <tile id="142">
+   <properties>
+    <property name="blocked" value=""/>
+   </properties>
+  </tile>
+  <tile id="143">
+   <properties>
+    <property name="blocked" value=""/>
+   </properties>
+  </tile>
+  <tile id="146">
+   <properties>
+    <property name="home" value=""/>
+   </properties>
+  </tile>
+  <tile id="147">
+   <properties>
+    <property name="home" value=""/>
+   </properties>
+  </tile>
+  <tile id="184">
+   <properties>
+    <property name="blocked" value=""/>
+   </properties>
+  </tile>
+  <tile id="185">
+   <properties>
+    <property name="blocked" value=""/>
+   </properties>
+  </tile>
+  <tile id="186">
+   <properties>
+    <property name="blocked" value=""/>
+   </properties>
+  </tile>
+  <tile id="187">
+   <properties>
+    <property name="blocked" value=""/>
+   </properties>
+  </tile>
+  <tile id="188">
+   <properties>
+    <property name="blocked" value=""/>
+   </properties>
+  </tile>
+  <tile id="189">
+   <properties>
+    <property name="blocked" value=""/>
+   </properties>
+  </tile>
+  <tile id="192">
+   <properties>
+    <property name="home" value=""/>
+   </properties>
+  </tile>
+  <tile id="193">
+   <properties>
+    <property name="home" value=""/>
+   </properties>
+  </tile>
+  <tile id="230">
+   <properties>
+    <property name="blocked" value=""/>
+   </properties>
+  </tile>
+  <tile id="231">
+   <properties>
+    <property name="blocked" value=""/>
+   </properties>
+  </tile>
+  <tile id="232">
+   <properties>
+    <property name="blocked" value=""/>
+   </properties>
+  </tile>
+  <tile id="233">
+   <properties>
+    <property name="blocked" value=""/>
+   </properties>
+  </tile>
+  <tile id="234">
+   <properties>
+    <property name="blocked" value=""/>
+   </properties>
+  </tile>
+  <tile id="235">
+   <properties>
+    <property name="blocked" value=""/>
+   </properties>
+  </tile>
+  <tile id="276">
+   <properties>
+    <property name="blocked" value=""/>
+   </properties>
+  </tile>
+  <tile id="277">
+   <properties>
+    <property name="blocked" value=""/>
+   </properties>
+  </tile>
+  <tile id="278">
+   <properties>
+    <property name="blocked" value=""/>
+   </properties>
+  </tile>
+  <tile id="322">
+   <properties>
+    <property name="blocked" value=""/>
+   </properties>
+  </tile>
+  <tile id="323">
+   <properties>
+    <property name="blocked" value=""/>
+   </properties>
+  </tile>
+  <tile id="324">
+   <properties>
+    <property name="blocked" value=""/>
+   </properties>
+  </tile>
+  <tile id="368">
+   <properties>
+    <property name="blocked" value=""/>
+   </properties>
+  </tile>
+  <tile id="369">
+   <properties>
+    <property name="blocked" value=""/>
+   </properties>
+  </tile>
+  <tile id="370">
+   <properties>
+    <property name="blocked" value=""/>
+   </properties>
+  </tile>
+  <tile id="375">
+   <properties>
+    <property name="lab" value=""/>
+   </properties>
+  </tile>
+  <tile id="600">
+   <properties>
+    <property name="map" value=""/>
+   </properties>
+  </tile>
+  <tile id="601">
+   <properties>
+    <property name="map" value=""/>
+   </properties>
+  </tile>
+  <tile id="603">
+   <properties>
+    <property name="blocked" value=""/>
+   </properties>
+  </tile>
+  <tile id="646">
+   <properties>
+    <property name="map" value=""/>
+   </properties>
+  </tile>
+  <tile id="647">
+   <properties>
+    <property name="map" value=""/>
+   </properties>
+  </tile>
+  <tile id="649">
+   <properties>
+    <property name="blocked" value=""/>
+   </properties>
+  </tile>
+  <tile id="653">
+   <properties>
+    <property name="health" value=""/>
+   </properties>
+  </tile>
+  <tile id="654">
+   <properties>
+    <property name="health" value=""/>
+   </properties>
+  </tile>
+  <tile id="690">
+   <properties>
+    <property name="blocked" value=""/>
+   </properties>
+  </tile>
+  <tile id="691">
+   <properties>
+    <property name="blocked" value=""/>
+   </properties>
+  </tile>
+  <tile id="692">
+   <properties>
+    <property name="blocked" value=""/>
+   </properties>
+  </tile>
+  <tile id="693">
+   <properties>
+    <property name="blocked" value=""/>
+   </properties>
+  </tile>
+  <tile id="699">
+   <properties>
+    <property name="health" value=""/>
+   </properties>
+  </tile>
+  <tile id="700">
+   <properties>
+    <property name="health" value=""/>
+   </properties>
+  </tile>
+  <tile id="736">
+   <properties>
+    <property name="blocked" value=""/>
+   </properties>
+  </tile>
+  <tile id="737">
+   <properties>
+    <property name="blocked" value=""/>
+   </properties>
+  </tile>
+  <tile id="739">
+   <properties>
+    <property name="blocked" value=""/>
+   </properties>
+  </tile>
+  <tile id="741">
+   <properties>
+    <property name="blocked" value=""/>
+   </properties>
+  </tile>
+  <tile id="782">
+   <properties>
+    <property name="blocked" value=""/>
+   </properties>
+  </tile>
+  <tile id="783">
+   <properties>
+    <property name="blocked" value=""/>
+   </properties>
+  </tile>
+  <tile id="784">
+   <properties>
+    <property name="blocked" value=""/>
+   </properties>
+  </tile>
+  <tile id="785">
+   <properties>
+    <property name="blocked" value=""/>
+   </properties>
+  </tile>
+  <tile id="829">
+   <properties>
+    <property name="blocked" value=""/>
+   </properties>
+  </tile>
+  <tile id="831">
+   <properties>
+    <property name="blocked" value=""/>
+   </properties>
+  </tile>
+  <tile id="833">
+   <properties>
+    <property name="blocked" value=""/>
+   </properties>
+  </tile>
+  <tile id="920">
+   <properties>
+    <property name="map1" value=""/>
+   </properties>
+  </tile>
+  <tile id="921">
+   <properties>
+    <property name="map1" value=""/>
+   </properties>
+  </tile>
+  <tile id="923">
+   <properties>
+    <property name="map2" value=""/>
+   </properties>
+  </tile>
+  <tile id="924">
+   <properties>
+    <property name="map2" value=""/>
+   </properties>
+  </tile>
+  <tile id="925">
+   <properties>
+    <property name="map3" value=""/>
+   </properties>
+  </tile>
+  <tile id="926">
+   <properties>
+    <property name="map3" value=""/>
+   </properties>
+  </tile>
+  <tile id="927">
+   <properties>
+    <property name="map4" value=""/>
+   </properties>
+  </tile>
+  <tile id="928">
+   <properties>
+    <property name="map4" value=""/>
+   </properties>
+  </tile>
+  <tile id="929">
+   <properties>
+    <property name="map5" value=""/>
+   </properties>
+  </tile>
+  <tile id="930">
+   <properties>
+    <property name="map5" value=""/>
+   </properties>
+  </tile>
+  <tile id="931">
+   <properties>
+    <property name="map6" value=""/>
+   </properties>
+  </tile>
+  <tile id="932">
+   <properties>
+    <property name="map6" value=""/>
+   </properties>
+  </tile>
+  <tile id="966">
+   <properties>
+    <property name="map1" value=""/>
+   </properties>
+  </tile>
+  <tile id="967">
+   <properties>
+    <property name="map1" value=""/>
+   </properties>
+  </tile>
+  <tile id="969">
+   <properties>
+    <property name="map2" value=""/>
+   </properties>
+  </tile>
+  <tile id="970">
+   <properties>
+    <property name="map2" value=""/>
+   </properties>
+  </tile>
+  <tile id="971">
+   <properties>
+    <property name="map3" value=""/>
+   </properties>
+  </tile>
+  <tile id="972">
+   <properties>
+    <property name="map3" value=""/>
+   </properties>
+  </tile>
+  <tile id="973">
+   <properties>
+    <property name="map4" value=""/>
+   </properties>
+  </tile>
+  <tile id="974">
+   <properties>
+    <property name="map4" value=""/>
+   </properties>
+  </tile>
+  <tile id="975">
+   <properties>
+    <property name="map5" value=""/>
+   </properties>
+  </tile>
+  <tile id="976">
+   <properties>
+    <property name="map5" value=""/>
+   </properties>
+  </tile>
+  <tile id="977">
+   <properties>
+    <property name="map6" value=""/>
+   </properties>
+  </tile>
+  <tile id="978">
+   <properties>
+    <property name="map6" value=""/>
+   </properties>
+  </tile>
+  <tile id="1012">
+   <properties>
+    <property name="map1" value=""/>
+   </properties>
+  </tile>
+  <tile id="1013">
+   <properties>
+    <property name="map1" value=""/>
+   </properties>
+  </tile>
+  <tile id="1015">
+   <properties>
+    <property name="map2" value=""/>
+   </properties>
+  </tile>
+  <tile id="1016">
+   <properties>
+    <property name="map2" value=""/>
+   </properties>
+  </tile>
+  <tile id="1017">
+   <properties>
+    <property name="map3" value=""/>
+   </properties>
+  </tile>
+  <tile id="1018">
+   <properties>
+    <property name="map3" value=""/>
+   </properties>
+  </tile>
+  <tile id="1019">
+   <properties>
+    <property name="map4" value=""/>
+   </properties>
+  </tile>
+  <tile id="1020">
+   <properties>
+    <property name="map4" value=""/>
+   </properties>
+  </tile>
+  <tile id="1021">
+   <properties>
+    <property name="map5" value=""/>
+   </properties>
+  </tile>
+  <tile id="1022">
+   <properties>
+    <property name="map5" value=""/>
+   </properties>
+  </tile>
+  <tile id="1023">
+   <properties>
+    <property name="map6" value=""/>
+   </properties>
+  </tile>
+  <tile id="1024">
+   <properties>
+    <property name="map6" value=""/>
+   </properties>
+  </tile>
+ </tileset>
+ <layer name="map" width="94" height="30">
+  <data encoding="base64" compression="zlib">
+   eJzt2Vdw1EYYwHHdHb2F0BmKDSShvMQ2vRcbMnRCCy+40ElCwIYMdYb2BD7TTO8voSchT2AbApgaSPISegoPHsIZhtA7D/lrThoLze6dzqfznRkx8xvptNpvdz8vK82qyK0oRQ6Hw+GwXU1FUWrhA9TGh0r0+3SfPvyHB3iIR3gcA/2yU3fG0wM90Qu9LYzvO5ei7MFe7MN+HMBBHHKF36cmxGiKZmiOOMTbEDdaFtP3JViKZViO6eT5S3yFrzHDQt7/oN5lXMFVXMN13MBNSX5WcH0lsuFFjnZfLta7S85VAykbhMEYgqEYFiTvuYZYxpjG8mjl/Xv6/gN+xGH8hE3keTO2YCu2Wci7C254UAEVUQmVUUVS5whtHUUe8lGg5fEUCrHN4z9XzaVsHuZjARZikct/j84Y21i30BTTWG6uV1b+pO9/4W/8g1s4S57P4Twu4BcLef8UCUhEEtqjAzqik6TObdr6F3fgQ7GW9wQlNiUqwf9ZzXtVVEN11EBNPKH+UzzDc7ywEG88UpGGdGRgAiZikqROXdRDfTRAQ+16qhKbkiz8XazmvTO6oCu6oTtaMO9aohU+wseCdVRfM/U1Mhte5GAVVmMN1mKdpG5f9EMyUtBfK/Mqfj7D0cgrue4LUM8rqSe7JjoPFEeVYzHv6to2meMUTMU0TMdw8jwCn2MkRrneraPS10x9jczjmI8CHMNx/IwTOGlqU687E7OQiSzMdvvLorHeRloef5N8FBiU5nckRTtHduZZl1GG62FpRTtndhgfA3l08l4+RDtnoTCvJ+Z1ZZUifzeQPbtl5YHus/K+EKgNXznLe7B5nVbOxhPLjHNcNq/1c6vvlu+zOuSgLuqhPhqUMieiOW73vG5KvGZojjjEB4hv17gipQ/96Yt+SEZKiP3T57n5nVCd68U2j3UQ8QZjCIZiWID44Y6rNET7qbJ7v6E/MzELmcgKsX+ieR6JnKvmEXM+FmAhFmltiPZwwx2XrjL1qqAqqqE6akhiifZTZXG3E2MHdmIXdofQvzzTWh7q3kCo9hB3L/ZhPw5o7Yj2cMMZl1FH6nVCZ3RBV3STxBLtp27g+kZswmZs0e69SIxL+BW/4Xfc4boPxbiLewFyrj877c61qL+XaeMKruIarmttivZwReMyxrcyRtVE6k3CZEzBVEyTjFW0n3oaZ3AW53Beu/clMV7hNd7grfoc8vAcQkM0QmPBfny2NrcjsZ4USfrrJp8eVEBFVNL+H4v2cEXjMsYPNsbt/N6BtdRbh1ysxwZslIxZtJ/6CI/xBE/xzO3f//yEvrdGG7RFOyTTXgr6YwA+K6PvIMZvYaL+JtC3RCShPTq4/PeK9nBF4ypyl3xfE43R+K3tIr8v4QQ5PolTKMRpnFHE34ZE+6lx3BePFmiJVtq3pdH0ZwzG4guMQyZlWZiNOfjWU/LecixC89v8LUzU31T6loZ0ZGCCy3+vaA9XNC5931c9isZo/Nb2kuMrT/D9ynD3UoP91p+f6aZyK+dW2rG63yuKKbpuR1m+Ev39IYfD8f77HyNssj0=
+  </data>
+ </layer>
+ <layer name="home1" width="94" height="30" visible="0">
+  <data encoding="base64" compression="zlib">
+   eJzt1b0RwjAMQGFfPAA/+5A9aGlhDwYCsk84KmAI7DsKQ5HDFicl8SteL32F1DfO9USkWvfOeo65dkr6dreezcrBqtrMx+Beo7m1e63mlu41m1u5125u4Y65vjvm+u6Yf3bGfJb2mOvbY65vj3m+/UUY5vldQwcv6zaCPaYW7nbuGy8L9zL3vZeFe5l76/NKb8zD4V7qXnrX78H8ibuqezTf4S5yj79xm/gP/dDUHHeZe/yNx+a3H5qa417eMliuhK29/R5TKpov/hT2+ubY25ljP9wLZiL8lA==
+  </data>
+ </layer>
+ <layer name="home2" width="94" height="30" visible="0">
+  <data encoding="base64" compression="zlib">
+   eJzt1cEJwkAQBdCdEGtMCknsQOtQknoSYkUuuLCCx4iCvgfLDHNa/mEmJQAAAAAAAOAXXeNRh6izS9Q579Pmdyj9WvIdcz2Wfok6B9ija1Lqm2//4v+ccubnkvv8tM8nu/1jblFv6yZ3AHhxB63ZC10=
+  </data>
+ </layer>
+ <layer name="home3" width="94" height="30" visible="0">
+  <data encoding="base64" compression="zlib">
+   eJztw7EJAEAIBLBzi3f/RW3tH6wSSAIAAAAAAADAlVdJrwAAAPBrAPdbAGg=
+  </data>
+ </layer>
+ <layer name="lab1" width="94" height="30" visible="0">
+  <data encoding="base64" compression="zlib">
+   eJzt1bsRwkAMRVHNugA+hdAPAxHNkNILnwx6MUMhmMCBE8a78khr6wa3AJ1Ar00iLRERLa5rBT0qcIjmHtHc2z2quad7ZHMv9+jmHu6Y27tjbu+O+bAb5ou0x9zeHnN7e8zz7e/KMM/v3XVQ9qngjrmFu5+7KMO9zH2nDPcy96cM/8YxM9zL3C+d+0v47x7uJ4U97jr33n7snu4TuzqVe28/Zk/PiV0tbd2IbJRtG/875tTPfDVR2NubY+9njv3/vt2z6u4=
+  </data>
+ </layer>
+ <layer name="lab2" width="94" height="30" visible="0">
+  <data encoding="base64" compression="zlib">
+   eJzt1UEKwjAQBdCkl9SDtL2BXqMVvE5T8EQOmKIidCFKobwH4c8igfA3kxIAAAAAAACwV5f8yCFyrPM1ss3vd8b8+ZbvzbXPKbLU+RbZxenz807RO/BjhyalY7P1L/Zt2Zmv+/MUnZ/1/lfF/gSAVXdgHhAh
+  </data>
+ </layer>
+ <layer name="lab3" width="94" height="30" visible="0">
+  <data encoding="base64" compression="zlib">
+   eJztzqENAEAIwEAY49l/UCT+DYK7pL4RAAAAAAAAAPx6OVVu3wAAAHBRAyfmAGo=
+  </data>
+ </layer>
+ <layer name="health1" width="94" height="30" visible="0">
+  <data encoding="base64" compression="zlib">
+   eJzt1bsRwjAMgGEfHoBXlqNlGQYCsk+4QAEMgV1wpMFR4Ycu+ou/sht9hTSsnBuIiGhxnZXWK7Cx5r50c43uFsy1uVsx1+RuyVyLuzVzDe4WzVu7WzWPXTA3Y495fXvM69tjnra/FgjzdLdQ5/M3KphNc7i3c78XCPd5973PH+7z7o8MTXfMy+Eucc+515/B/I17VfdofsRd7C69lYfE29ccd7m79Fae/vydmuMuaxPctgXa+fazaS2arwuGfX1z7NuZY//rA2IDxKQ=
+  </data>
+ </layer>
+ <layer name="health2" width="94" height="30" visible="0">
+  <data encoding="base64" compression="zlib">
+   eJzt1k0KwjAQhuGkC+/iT3feQW/QHsT2BvYcFT2Potdp1X7ggDWrWkoX4X1g+CaBQJhFiHMAAAAAAAAAAAAAYlB7507+u76oP9j6bNlYtsqn9W/lq3cO/7lqdrfe/B7qC1Wputv+MvnkSrm2PlVuknnvCiA+md6RPHhLFkFiekfNvArmvg0S4+z8b+35owAAMEgHKgoQqQ==
+  </data>
+ </layer>
+ <layer name="health3" width="94" height="30" visible="0">
+  <data encoding="base64" compression="zlib">
+   eJztw6ERADAIBLBni7L/olhsFSa5SwIAAAAAAADApVdJrwAAAPBjAO9PAGg=
+  </data>
+ </layer>
+</map>

@@ -1,0 +1,18 @@
+<NormalSkills>
+  	<Tackle name="Tackle" describtion="Charges the target and slams it with full-body." power="50" />
+  	<Constrict name="Constrict" describtion="The target is attacked with long, creeping tentacles or vines." power="45" />
+  	<Stomp name="Stomp" describtion="The target is stomped with a big foot. It may also make the target flinch." power="65" />
+  	<Headbutt name="Headbutt" describtion="The user sticks out its head and attacks by charging straight into the target. It may also make the target flinch." power="70" />
+  	<Slam name="Slam" describtion="The target is slammed with a long tail, vines, etc., to inflict damage." power="80" />
+  	<TakeDown name="Take Down" describtion="A reckless, full-body charge attack for slamming into the foe." power="90" />
+  	<SkullBash name="Skull Bash" describtion="The user head-butts the foe at full steam." power="105" />
+  	<Scratch name="Scratch" describtion="Hard, pointed, and sharp claws rake the target to inflict damage." power="40" />
+  	<Cut name="Cut" describtion="The target is cut with a scythe or a claw." power="55" />
+  	<CrushClaw name="CrushClaw" describtion="The user slashes the target with hard and sharp claws." power="75" />
+  	<Swift name="Swift" describtion="Star-shaped rays are shot at the opposing team." power="60" />
+  	<QuickAttack name="Quick Attack" describtion="The user lunges at the target at a speed that makes it almost invisible. It is sure to strike first." power="40" />
+  	<Covet name="Covet" describtion="The user endearingly approaches the target, then smacks it." power="60" />
+  	<EarOrTailSlap name="Ear/Tail Slap" describtion="The user attacks by striking the target with its hard tail or big ears. It hits the creature two to five times in a row." power="25" />
+  	<Judgment name="Judgment" describtion="The user releases countless shots of light at the target." power="100" />
+  	<BodySlam name="Body Slam" describtion="The user drops onto the target with its full body weight." power="85" />
+</NormalSkills>

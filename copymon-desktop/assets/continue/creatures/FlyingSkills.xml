@@ -1,0 +1,4 @@
+<FlyingSkills>
+  	<OblivionWing name="Oblivion Wing" describtion="The user confuses its target with the pattern on his wings and smashes it with them." power="90" />
+  	<Hurricane name="Hurricane" describtion="The user attacks by wrapping its opponent in a fierce wind that flies up into the sky." power="110" />
+</FlyingSkills>

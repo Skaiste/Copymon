@@ -1,0 +1,10 @@
+<FireSkills>
+  	<Ember name="Ember" describtion="The target is attacked with small flames." power="40" />
+  	<FlameCharge name="Flame Charge" describtion="The user cloaks itself with flame and attacks." power="50" />
+  	<Incinerate name="Incinerate" describtion="The user attacks the target with fire breath." power="60" />
+  	<FlameBurst name="Flame Burst" describtion="The user attacks the target with a bursting flame." power="70" />
+  	<Flamethrower name="Flamethrower" describtion="The target is scorched with an intense blast of fire." power="90" />
+  	<Inferno name="Inferno" describtion="The user attacks by engulfing the target in an intense fire." power="100" />
+  	<FieryDance name="Fiery Dance" describtion="Cloaked in flames, the user dances and flaps its wings." power="115" />
+  	<BlueFlare name="Blue Flare" describtion="The user attacks by engulfing the target in an intense, yet beautiful, blue flame." power="130" />
+</FireSkills>

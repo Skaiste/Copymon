@@ -1,0 +1,160 @@
+<creatures>
+<Weediesaur type="Grass" evolutionNo="3" abilityNo="14" describtion="It uses the nutrients from its seed for the energy it needs to grow.">
+	<starting hp="1" ap="1" defence="1" agility="1"/>
+	<maximum hp="1" ap="1" defence="1" agility="1"/>
+	<evolution1 lvl="0" name="Weediesaur"/>
+	<evolution2 lvl="35" name="Leafasaur"/>
+	<evolution3 lvl="74" name="Pettalsaur"/>
+	<ability1 name="TBA" type="TBA"/>
+	<ability2 name="TBA" type="TBA"/>
+	<ability3 name="TBA" type="TBA"/>
+	<ability4 name="TBA" type="TBA"/>
+	<ability5 name="TBA" type="TBA"/>
+	<ability6 name="TBA" type="TBA"/>
+	<ability7 name="TBA" type="TBA"/>
+	<ability8 name="TBA" type="TBA"/>
+	<!-- and so on -->
+</Weediesaur>
+<Flameander type="Fire" evolutionNo="3" abilityNo="14" describtion="TBA">
+	<starting hp="1" ap="1" defence="1" agility="1"/>
+	<maximum hp="1" ap="1" defence="1" agility="1"/>
+	<evolution1 lvl="0" name="Flameander"/>
+	<evolution2 lvl="35" name="Flamelian"/>
+	<evolution3 lvl="74" name="Flamezard"/>
+	<ability1 name="TBA" type="TBA"/>
+	<ability2 name="TBA" type="TBA"/>
+	<ability3 name="TBA" type="TBA"/>
+	<ability4 name="TBA" type="TBA"/>
+	<ability5 name="TBA" type="TBA"/>
+	<ability6 name="TBA" type="TBA"/>
+	<ability7 name="TBA" type="TBA"/>
+	<ability8 name="TBA" type="TBA"/>
+	<!-- and so on -->
+</Flameander>
+<Drizzle type="Water" evolutionNo="3" abilityNo="14" describtion="TBA">
+	<starting hp="1" ap="1" defence="1" agility="1"/>
+	<maximum hp="1" ap="1" defence="1" agility="1"/>
+	<evolution1 lvl="0" name="Drizzle"/>
+	<evolution2 lvl="35" name="Squirtortle"/>
+	<evolution3 lvl="74" name="Burstoise"/>
+	<ability1 name="TBA" type="TBA"/>
+	<ability2 name="TBA" type="TBA"/>
+	<ability3 name="TBA" type="TBA"/>
+	<ability4 name="TBA" type="TBA"/>
+	<ability5 name="TBA" type="TBA"/>
+	<ability6 name="TBA" type="TBA"/>
+	<ability7 name="TBA" type="TBA"/>
+	<ability8 name="TBA" type="TBA"/>
+	<!-- and so on -->
+</Drizzle>
+<Capillar type="Bug" evolutionNo="3" abilityNo="14" describtion="TBA">
+	<starting hp="1" ap="1" defence="1" agility="1"/>
+	<maximum hp="1" ap="1" defence="1" agility="1"/>
+	<evolution1 lvl="0" name="Capillar"/>
+	<evolution2 lvl="35" name="Shellpod"/>
+	<evolution3 lvl="74" name="Magofly"/>
+	<ability1 name="TBA" type="TBA"/>
+	<ability2 name="TBA" type="TBA"/>
+	<ability3 name="TBA" type="TBA"/>
+	<ability4 name="TBA" type="TBA"/>
+	<ability5 name="TBA" type="TBA"/>
+	<ability6 name="TBA" type="TBA"/>
+	<ability7 name="TBA" type="TBA"/>
+	<ability8 name="TBA" type="TBA"/>
+	<!-- and so on -->
+</Capillar>
+<Eagley type="Flying" evolutionNo="3" abilityNo="14" describtion="TBA">
+	<starting hp="1" ap="1" defence="1" agility="1"/>
+	<maximum hp="1" ap="1" defence="1" agility="1"/>
+	<evolution1 lvl="0" name="Eagley"/>
+	<evolution2 lvl="35" name="Eagleotto"/>
+	<evolution3 lvl="74" name="Eagleot"/>
+	<ability1 name="TBA" type="TBA"/>
+	<ability2 name="TBA" type="TBA"/>
+	<ability3 name="TBA" type="TBA"/>
+	<ability4 name="TBA" type="TBA"/>
+	<ability5 name="TBA" type="TBA"/>
+	<ability6 name="TBA" type="TBA"/>
+	<ability7 name="TBA" type="TBA"/>
+	<ability8 name="TBA" type="TBA"/>
+	<!-- and so on -->
+</Eagley>
+<Sparkiechu type="Electric" evolutionNo="3" abilityNo="14" describtion="TBA">
+	<starting hp="1" ap="1" defence="1" agility="1"/>
+	<maximum hp="1" ap="1" defence="1" agility="1"/>
+	<evolution1 lvl="0" name="Sparkiechu"/>
+	<evolution2 lvl="34" name="Voltichu"/>
+	<evolution3 lvl="74" name="Thunderchu"/>
+	<ability1 name="TBA" type="TBA"/>
+	<ability2 name="TBA" type="TBA"/>
+	<ability3 name="TBA" type="TBA"/>
+	<ability4 name="TBA" type="TBA"/>
+	<ability5 name="TBA" type="TBA"/>
+	<ability6 name="TBA" type="TBA"/>
+	<ability7 name="TBA" type="TBA"/>
+	<ability8 name="TBA" type="TBA"/>
+	<!-- and so on -->
+</Sparkiechu>
+<Lumos type="Psychic" evolutionNo="3" abilityNo="14" describtion="TBA">
+	<starting hp="1" ap="1" defence="1" agility="1"/>
+	<maximum hp="1" ap="1" defence="1" agility="1"/>
+	<evolution1 lvl="0" name="Lumos"/>
+	<evolution2 lvl="35" name="Imperio"/>
+	<evolution3 lvl="74" name="Expelliarmus"/>
+	<ability1 name="TBA" type="TBA"/>
+	<ability2 name="TBA" type="TBA"/>
+	<ability3 name="TBA" type="TBA"/>
+	<ability4 name="TBA" type="TBA"/>
+	<ability5 name="TBA" type="TBA"/>
+	<ability6 name="TBA" type="TBA"/>
+	<ability7 name="TBA" type="TBA"/>
+	<ability8 name="TBA" type="TBA"/>
+	<!-- and so on -->
+</Lumos>
+<Stonic type="Stone" evolutionNo="3" abilityNo="14" describtion="TBA">
+	<starting hp="1" ap="1" defence="1" agility="1"/>
+	<maximum hp="1" ap="1" defence="1" agility="1"/>
+	<evolution1 lvl="0" name="Stonic"/>
+	<evolution2 lvl="58" name="Steelic"/>
+	<ability1 name="TBA" type="TBA"/>
+	<ability2 name="TBA" type="TBA"/>
+	<ability3 name="TBA" type="TBA"/>
+	<ability4 name="TBA" type="TBA"/>
+	<ability5 name="TBA" type="TBA"/>
+	<ability6 name="TBA" type="TBA"/>
+	<ability7 name="TBA" type="TBA"/>
+	<ability8 name="TBA" type="TBA"/>
+	<!-- and so on -->
+</Stonic>
+<Ghostly type="Ghost" evolutionNo="3" abilityNo="14" describtion="TBA">
+	<starting hp="1" ap="1" defence="1" agility="1"/>
+	<maximum hp="1" ap="1" defence="1" agility="1"/>
+	<evolution1 lvl="0" name="Ghostly"/>
+	<evolution2 lvl="35" name="Spooker"/>
+	<evolution3 lvl="74" name="Shador"/>
+	<ability1 name="TBA" type="TBA"/>
+	<ability2 name="TBA" type="TBA"/>
+	<ability3 name="TBA" type="TBA"/>
+	<ability4 name="TBA" type="TBA"/>
+	<ability5 name="TBA" type="TBA"/>
+	<ability6 name="TBA" type="TBA"/>
+	<ability7 name="TBA" type="TBA"/>
+	<ability8 name="TBA" type="TBA"/>
+	<!-- and so on -->
+</Ghostly>
+<Chimpey type="Fighting" evolutionNo="2" abilityNo="14" describtion="TBA">
+	<starting hp="1" ap="1" defence="1" agility="1"/>
+	<maximum hp="1" ap="1" defence="1" agility="1"/>
+	<evolution1 lvl="0" name="Chimpey"/>
+	<evolution2 lvl="69" name="Primerilla"/>
+	<ability1 name="TBA" type="TBA"/>
+	<ability2 name="TBA" type="TBA"/>
+	<ability3 name="TBA" type="TBA"/>
+	<ability4 name="TBA" type="TBA"/>
+	<ability5 name="TBA" type="TBA"/>
+	<ability6 name="TBA" type="TBA"/>
+	<ability7 name="TBA" type="TBA"/>
+	<ability8 name="TBA" type="TBA"/>
+	<!-- and so on -->
+</Chimpey>
+</creatures>

@@ -1,0 +1,8 @@
+<BugSkills>
+  	<FellStinger name="Fell Stinger" describtion="User stings the target." power="30" />
+  	<StruggleBug name="Struggle Bug" describtion="The user attacks the opposing creature." power="50" />
+  	<BugBite name="Bug Bite" describtion="The user bites the target." power="60" />
+  	<BugBuzz name="Bug Buzz" describtion="The user vibrates its wings to generate a damaging sound wave." power="80" />
+  	<AttackOrder name="Attack Order" describtion="The user calls out its underlings to pummel the target." power="100" />
+  	<Megahorn name="Megahorn" describtion="Using its tough and impressive horn, the user rams into the target." power="120" />
+</BugSkills>

@@ -1,0 +1,9 @@
+<WaterSkills>
+	<WaterGun name="Water Gun" describtion="The target is blasted with a forceful shot of water." power="40"/>
+	<WaterPulse name="Water Pulse" describtion="The user attacks the target with a pulsing blast of water." power="60"/>
+	<BubbleBeam name="Bubble Beam" describtion="A spray of bubbles is forcefully ejected at the opposing team." power="65"/>
+	<Waterfall name="Waterfall" describtion="The user charges at the target on a huge waterfall." power="80"/>
+	<AquaTail name="Aqua Tail" describtion="The user attacks by swinging its tail as if it were a vicious wave in a raging storm." power="90"/>
+	<HydroPump name="Hydro Pump" describtion="The target is blasted by a huge volume of water launched under great pressure." power="110"/>
+	<HydroCannon name="Hydro Cannon" describtion="The target is hit with a watery blast. The user must rest on the next turn, however." power="150"/>
+</WaterSkills>

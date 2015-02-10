@@ -1,0 +1,32 @@
+<creatureList>
+    <Grass n="1">
+      <1 name="Weediesaur"/>
+    </Grass>
+    <Bug n="1">
+      <1 name="Capillar"/>
+    </Bug>
+    <Fire n="1">
+      <1 name="Flameander"/>
+    </Fire>
+    <Water n="1">
+      <1 name="Drizzle"/>
+    </Water>
+    <Flying n="1">
+      <1 name="Eagley"/>
+    </Flying>
+    <Electric n="1">
+      <1 name="Sparkiechu"/>
+    </Electric>
+    <Psychic n="1">
+      <1 name="Lumos"/>
+    </Psychic>
+    <Stone n="1">
+      <1 name="Stonic"/>
+    </Stone>
+    <Ghost n="1">
+      <1 name="Ghostly"/>
+    </Ghost>
+    <Fighting n="1">
+      <1 name="Chimpey"/>
+    </Fighting>
+</creatureList>
