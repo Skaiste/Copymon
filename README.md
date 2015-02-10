@@ -3,7 +3,7 @@ An awesome android game-to-be in distant future
 
 
 
-##Plan:
+##Game plan:
 ![a plan](http://s18.postimg.org/vobzp1wa1/copyyy_New_Page.png)
 
 
