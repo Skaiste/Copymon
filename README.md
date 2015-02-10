@@ -4,7 +4,7 @@ An awesome android game-to-be in distant future
 
 
 ##Plan:
-![](http://postimg.org/image/btpy2xh2d/)
+![a plan](http://s18.postimg.org/vobzp1wa1/copyyy_New_Page.png)
 
 
 
