@@ -1,5 +1,5 @@
 # Copymon
-An awesome android game-to-be in distant future
+An awesome android game-to-be in distant future developed using LibGDX library and Java.
 
 
 
