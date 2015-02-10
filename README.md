@@ -22,13 +22,14 @@ An awesome android game-to-be in distant future
 > In Play With Friend
 > * Nothing. It will be a part of a plan in distant future.
  
+ ----------
  
 > Things that are almost done
 > --------------------  
 > In Continue
 > * Creature Inventory
-> * 
  
+ ----------
 
 > Things to do
 > --------------------  
@@ -37,7 +38,9 @@ An awesome android game-to-be in distant future
 > * Healing centre
 > * Maps
 > * Storyline
+> * Fighting
 > In New Game
 > * Name input
 > In Play With Friend
 > * Everything.
+> etc.
