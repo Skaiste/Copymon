@@ -93,7 +93,7 @@ public class SwitchCorS {
 		else
 			background = new Sprite(new Texture("continue/inventory/changeCreatures.gif"));
 		
-		// 		ARROWS		TODO: add left and right arrows
+		// 		ARROWS
 		inactiveUp = new Sprite(new Texture("continue/inventory/arrowUp.gif"));
 		inactiveDown = new Sprite(new Texture("continue/inventory/arrowDown.gif"));
 		activeUp = new Sprite(new Texture("continue/inventory/arrowUp.gif"));
