@@ -4,7 +4,7 @@ An awesome android game-to-be in distant future developed using LibGDX library a
 The demo can be downloaded [here](https://drive.google.com/file/d/0B65kpqnvXRSiQkdtSkMzbWZUUFU/view?usp=sharing).
 
 ##Game plan:
-Green -> done, Yellow -> almost done, Orange -> In progress, Red - to be done
+Green - Done, Yellow - Almost done, Orange - In progress, Red - To do in future
 ![a plan](http://s7.postimg.org/yahjgb8uz/copyyy_New_Page_1.png)
 
 
