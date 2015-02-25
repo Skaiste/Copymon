@@ -1,10 +1,11 @@
 # Copymon
 An awesome android game-to-be in distant future developed using LibGDX library and Java.
 
-
+The demo can be downloaded [here](https://drive.google.com/file/d/0B65kpqnvXRSiQkdtSkMzbWZUUFU/view?usp=sharing).
 
 ##Game plan:
-![a plan](http://s18.postimg.org/vobzp1wa1/copyyy_New_Page.png)
+Green - Done, Yellow - Almost done, Orange - In progress, Red - To do in future
+![a plan](http://s7.postimg.org/yahjgb8uz/copyyy_New_Page_1.png)
 
 
 
