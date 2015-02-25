@@ -82,7 +82,7 @@ public class Continue {
 		
 		// setting up the player
 		reader.readPositions();
-		player = new Player(map.getCollisionLayer(), reader.getPlayerX(), reader.getPlayerY(), reader.getGender());		
+		player = new Player(map.getCollisionLayer(), map.getComputerLayer(), reader.getPlayerX(), reader.getPlayerY(), reader.getGender());		
 		
 		// setting up the background
 		bg = new Sprite(new Texture("continue/background.gif"));

@@ -113,6 +113,35 @@ public class Map{
 		}
 		return null;
 	}
+	public TiledMapTileLayer getComputerLayer(){
+		if (mapN == 1)
+		{
+			if (place.equalsIgnoreCase("map"))
+			{
+				return null;
+			}
+			else if (place.equalsIgnoreCase("home"))
+			{
+				return (TiledMapTileLayer) map.getLayers().get("home2");
+			}
+			else if (place.equalsIgnoreCase("lab"))
+			{
+				return (TiledMapTileLayer) map.getLayers().get("lab2");
+			}
+			else if (place.equalsIgnoreCase("health"))
+			{
+				return (TiledMapTileLayer) map.getLayers().get("health2");
+			}
+		}
+		else if (mapN == 2)
+		{
+			if (place.equalsIgnoreCase("map"))
+			{
+				return null;
+			}
+		}
+		return null;
+	}
 	public void dispose() {
 		map.dispose();
 	}

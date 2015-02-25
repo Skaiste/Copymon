@@ -15,7 +15,7 @@ public class PlayingMenu {
 	
 	private static SpriteBatch batch;
 	private static ShapeRenderer bg;
-	private static Sprite inventory;
+	private static Sprite inventory, creaturesAtHome, switchCreatures;
 	
 	public static void render() {
 		menu = Continue.getPlayer().menu;
@@ -37,6 +37,11 @@ public class PlayingMenu {
 			
 			batch.begin();
 			inventory.draw(batch);
+			if (Continue.getPlayer().computerOn)
+			{
+				creaturesAtHome.draw(batch);
+				switchCreatures.draw(batch);
+			}
 			batch.end();
 			
 		}
@@ -51,19 +56,38 @@ public class PlayingMenu {
 		batch = new SpriteBatch();
 		
 		// inventory button
-		if (!Continue.getPlayer().inventory)
+		if (Continue.getPlayer().computerOn)
+		{
+			inventory = new Sprite(new Texture("continue/inventory.gif"));
+			creaturesAtHome = new Sprite(new Texture("continue/inventory.gif"));
+			switchCreatures = new Sprite(new Texture("continue/inventory.gif"));
+		}
+		else if (!Continue.getPlayer().inventory)
 			inventory = new Sprite(new Texture("continue/inventory.gif"));
 		else
 			inventory = new Sprite(new Texture("continue/switchSkills.gif"));
 		
 		inventory.setSize(Gdx.graphics.getWidth() / 4, Gdx.graphics.getHeight() / 9.6f);
 		inventory.setPosition(Gdx.graphics.getWidth() - inventory.getWidth(), 0);
+		if (Continue.getPlayer().computerOn)
+		{
+			creaturesAtHome.setSize(Gdx.graphics.getWidth() / 4, Gdx.graphics.getHeight() / 9.6f);
+			creaturesAtHome.setPosition(Gdx.graphics.getWidth() - inventory.getWidth(), inventory.getHeight());
+			
+			switchCreatures.setSize(Gdx.graphics.getWidth() / 4, Gdx.graphics.getHeight() / 9.6f);
+			switchCreatures.setPosition(Gdx.graphics.getWidth() - inventory.getWidth(), inventory.getHeight() + creaturesAtHome.getHeight());
+		}
 		
 	}
 	public static void dispose() {
 		bg.dispose();
 		batch.dispose();
 		inventory.getTexture().dispose();
+		if (Continue.getPlayer().computerOn)
+		{
+			creaturesAtHome.getTexture().dispose();
+			switchCreatures.getTexture().dispose();
+		}
 	}
 	
 	public static float getInventoryX(){

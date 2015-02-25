@@ -33,7 +33,7 @@ public class Player extends Sprite implements InputProcessor {
 	public float speed   = 120 * 2, gravity = 120 * 1.8f;
 	
 	// collision layer and key of blocked tile property
-	private static TiledMapTileLayer collisionLayer;
+	private static TiledMapTileLayer collisionLayer, computerLayer;
 	final private String blockedKey = "blocked";
 	// tile size
 	private float tileWidth, tileHeight;
@@ -62,7 +62,7 @@ public class Player extends Sprite implements InputProcessor {
 	
 	// inventory menu
 	public boolean menu = false;
-	public boolean inventory = false, switchSorC = false;
+	public boolean inventory = false, switchSorC = false, computerOn = false;
 	
 	// for fighting
 	// creature appearing chance, 1 out of appearChance
@@ -72,10 +72,11 @@ public class Player extends Sprite implements InputProcessor {
 	
 	// ************************************************************ //
 	
-	public Player(TiledMapTileLayer colLayer, float x, float y, String genderr) {
+	public Player(TiledMapTileLayer colLayer, TiledMapTileLayer compLayer, float x, float y, String genderr) {
 		super(new Texture(genderr + "right/1.gif"));
 		gender = genderr;
 		collisionLayer = colLayer;
+		computerLayer = compLayer;
 		tileHeight = collisionLayer.getTileHeight();
 		tileWidth  = collisionLayer.getTileWidth();
 		setPosition(x, y);
@@ -92,6 +93,7 @@ public class Player extends Sprite implements InputProcessor {
 		//	System.out.println(getX() + "/" + getY());
 		
 		collisionLayer = map.getCollisionLayer();
+		computerLayer = map.getComputerLayer();
 		
 		if (velocity.x < 0)
 			isLeft = true;
@@ -151,12 +153,14 @@ public class Player extends Sprite implements InputProcessor {
 		if ((speed < gravity) && (collidesBottom()))
 			speed = 120 * 2f;
 		
-		// portals & creature search
+		
+		// portals & creature search & computer
 		portals();
 		if (appearChance == 0)
 			creatureAppeared = false;
 		else if (velocity.x != 0)
 			searchForCreatures();
+		computer();
 		
 		
 		// if player gets stuck
@@ -250,7 +254,7 @@ public class Player extends Sprite implements InputProcessor {
 	private boolean collidesLeft()
 	{
 		for (float step = 0; step < getHeight(); step += tileHeight / 2) {
-			if (hasCellProp(getX(), getY() + step, blockedKey))
+			if (hasCellProp(getX(), getY() + step, blockedKey, collisionLayer))
 				return true;
 		}
 		return false;
@@ -258,7 +262,7 @@ public class Player extends Sprite implements InputProcessor {
 	private boolean collidesRight()
 	{
 		for (float step = 0; step < getHeight(); step += tileHeight / 2) {
-			if (hasCellProp(getX() + getWidth(), getY() + step, blockedKey))
+			if (hasCellProp(getX() + getWidth(), getY() + step, blockedKey, collisionLayer))
 				return true;
 		}
 		return false;
@@ -270,7 +274,7 @@ public class Player extends Sprite implements InputProcessor {
 			lastStep = getWidth() - tileWidth;
 		
 		for (float step = 0; step < lastStep; step += tileWidth / 2) {
-			if (hasCellProp(getX() + step, getY() + getHeight(), blockedKey))
+			if (hasCellProp(getX() + step, getY() + getHeight(), blockedKey, collisionLayer))
 				return true;
 		}
 		return false;
@@ -278,15 +282,15 @@ public class Player extends Sprite implements InputProcessor {
 	private boolean collidesBottom()
 	{
 		for (float step = 0; step < getWidth(); step += tileWidth / 2) {
-			if (hasCellProp(getX() + step, getY(), blockedKey))
+			if (hasCellProp(getX() + step, getY(), blockedKey, collisionLayer))
 				return true;
 		}
 		return false;
 	}
 	// checks if cell has a certain property
-	private boolean hasCellProp (float x, float y, String key) {
-		Cell cell = collisionLayer.getCell((int) (x / collisionLayer.getTileWidth()),
-										   (int) (y / collisionLayer.getTileHeight()));
+	private boolean hasCellProp (float x, float y, String key, TiledMapTileLayer layer) {
+		Cell cell = layer.getCell((int) (x / layer.getTileWidth()),
+										   (int) (y / layer.getTileHeight()));
 		return cell != null && cell.getTile() != null && cell.getTile().getProperties().containsKey(key);
 	}
 	
@@ -299,7 +303,7 @@ public class Player extends Sprite implements InputProcessor {
 	private void home() {
 		if (map.place.equals("map"))
 		{
-			if (hasCellProp(getX(), getY(), "home"))
+			if (hasCellProp(getX(), getY(), "home", collisionLayer))
 			{
 				delay(enteringDelayTime);
 				map.place = "home";
@@ -309,7 +313,7 @@ public class Player extends Sprite implements InputProcessor {
 		}
 		else if (map.place.equals("home"))
 		{
-			if (hasCellProp(getX(), getY(), "map"))
+			if (hasCellProp(getX(), getY(), "map", collisionLayer))
 			{
 				delay(enteringDelayTime);
 				map.place = "map";
@@ -324,7 +328,7 @@ public class Player extends Sprite implements InputProcessor {
 		{
 			if (map.place.equals("map"))
 			{
-				if (hasCellProp(getX(), getY(), "lab"))
+				if (hasCellProp(getX(), getY(), "lab", collisionLayer))
 				{
 					delay(enteringDelayTime);
 					map.place = "lab";
@@ -334,7 +338,7 @@ public class Player extends Sprite implements InputProcessor {
 			}
 			else if (map.place.equals("lab"))
 			{
-				if (hasCellProp(getX(), getY(), "map"))
+				if (hasCellProp(getX(), getY(), "map", collisionLayer))
 				{
 					delay(enteringDelayTime);
 					map.place = "map";
@@ -349,7 +353,7 @@ public class Player extends Sprite implements InputProcessor {
 		{
 			if (map.place.equals("map"))
 			{
-				if (hasCellProp(getX(), getY(), "health"))
+				if (hasCellProp(getX(), getY(), "health", collisionLayer))
 				{
 					delay(enteringDelayTime);
 					map.place = "health";
@@ -359,7 +363,7 @@ public class Player extends Sprite implements InputProcessor {
 			}
 			else if (map.place.equals("health"))
 			{
-				if (hasCellProp(getX(), getY(), "map"))
+				if (hasCellProp(getX(), getY(), "map", collisionLayer))
 				{
 					delay(enteringDelayTime);
 					map.place = "map";
@@ -374,7 +378,7 @@ public class Player extends Sprite implements InputProcessor {
 	private void portalToMap() {
 		if (map.mapN == 1)
 		{
-			if (hasCellProp(getX(), getY(), "map2"))
+			if (hasCellProp(getX(), getY(), "map2", collisionLayer))
 			{
 				System.out.println("lets go to map 2!!!");
 				delay(enteringDelayTime);
@@ -386,7 +390,7 @@ public class Player extends Sprite implements InputProcessor {
 		}
 		else if (map.mapN == 2)
 		{
-			if (hasCellProp(getX(), getY(), "map1"))
+			if (hasCellProp(getX(), getY(), "map1", collisionLayer))
 			{
 				System.out.println("lets go to map 1!!!");
 				delay(enteringDelayTime);
@@ -401,17 +405,11 @@ public class Player extends Sprite implements InputProcessor {
 	private void searchForCreatures() {
 		if (appearChance == 0)
 			creatureAppeared = false;
-		else if (hasCellProp(getX(), getY(), "grass") && chanceRandom(appearChance)){
+		else if (hasCellProp(getX(), getY(), "grass", collisionLayer) && chanceRandom(appearChance)){
 			//checking for grass and bug creatures
 			velocity.setZero();
 			String whichType = "Grass";
-			//switch ((int)(Math.random() * 2 + 1)){
-			//case 1:
-			//	whichType = "Grass";
-			//	break;
-			//case 2:
-			//	whichType = "Bug";
-			//}
+			
 			int whichCreature = (int) (Math.random() * ReadFromXml.readInt("continue/creatures/creatureList.xml", whichType, "n") + 1);
 			String creatureName = "";
 			if (whichCreature > 0)
@@ -430,17 +428,11 @@ public class Player extends Sprite implements InputProcessor {
 			
 			creatureAppeared = true;
 		}
-		else if (hasCellProp(getX(), getY(), "bug") && chanceRandom(appearChance)){
+		else if (hasCellProp(getX(), getY(), "bug", collisionLayer) && chanceRandom(appearChance)){
 			//checking for grass and bug creatures
 			velocity.setZero();
 			String whichType = "Bug";
-			//switch ((int)(Math.random() * 2 + 1)){
-			//case 1:
-			//	whichType = "Grass";
-			//	break;
-			//case 2:
-			//	whichType = "Bug";
-			//}
+			
 			int whichCreature = (int) (Math.random() * ReadFromXml.readInt("continue/creatures/creatureList.xml", whichType, "n") + 1);
 			String creatureName = "";
 			if (whichCreature > 0)
@@ -459,17 +451,11 @@ public class Player extends Sprite implements InputProcessor {
 			
 			creatureAppeared = true;
 		}
-		else if (hasCellProp(getX(), getY() - tileHeight, "water") && chanceRandom(appearChance)){
+		else if (hasCellProp(getX(), getY() - tileHeight, "water", collisionLayer) && chanceRandom(appearChance)){
 			//checking for grass and bug creatures
 			velocity.setZero();
 			String whichType = "Water";
-			//switch ((int)(Math.random() * 2 + 1)){
-			//case 1:
-			//	whichType = "Grass";
-			//	break;
-			//case 2:
-			//	whichType = "Bug";
-			//}
+
 			int whichCreature = (int) (Math.random() * ReadFromXml.readInt("continue/creatures/creatureList.xml", whichType, "n") + 1);
 			String creatureName = "";
 			if (whichCreature > 0)
@@ -487,6 +473,18 @@ public class Player extends Sprite implements InputProcessor {
 			CreatureHere.setCreature(c);
 			
 			creatureAppeared = true;
+		}
+	}
+	
+	private void computer(){
+		if (computerLayer != null)
+		{
+			if (hasCellProp(getX(), getY() + computerLayer.getTileHeight(), "computer", computerLayer))
+			{
+				computerOn = true;
+			}
+			else if (computerOn)
+				computerOn = false;
 		}
 	}
 	
