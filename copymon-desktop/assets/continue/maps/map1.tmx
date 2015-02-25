@@ -212,6 +212,11 @@
     <property name="blocked" value=""/>
    </properties>
   </tile>
+  <tile id="371">
+   <properties>
+    <property name="computer" value=""/>
+   </properties>
+  </tile>
   <tile id="375">
    <properties>
     <property name="lab" value=""/>
