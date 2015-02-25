@@ -42,8 +42,7 @@ public class PlayingMenu {
 				creaturesAtHome.draw(batch);
 				switchCreatures.draw(batch);
 			}
-			batch.end();
-			
+			batch.end();			
 		}
 		else if (!menu && !once){
 			dispose();

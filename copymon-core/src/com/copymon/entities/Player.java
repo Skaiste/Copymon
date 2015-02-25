@@ -477,6 +477,7 @@ public class Player extends Sprite implements InputProcessor {
 	}
 	
 	private void computer(){
+		
 		if (computerLayer != null)
 		{
 			if (hasCellProp(getX(), getY() + computerLayer.getTileHeight(), "computer", computerLayer))

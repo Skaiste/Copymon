@@ -114,6 +114,7 @@ public class Map{
 		return null;
 	}
 	public TiledMapTileLayer getComputerLayer(){
+		
 		if (mapN == 1)
 		{
 			if (place.equalsIgnoreCase("map"))

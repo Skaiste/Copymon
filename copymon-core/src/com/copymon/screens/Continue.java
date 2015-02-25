@@ -22,6 +22,7 @@ public class Continue {
 	
 	public static void render(float delta)
 	{
+		
 		// updating the movement of camera when player moves
 		camera.updateBg();
 		renderer.setView(camera.getCamera());
