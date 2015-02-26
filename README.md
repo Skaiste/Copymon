@@ -12,6 +12,7 @@ Green - Done, Yellow - Almost done, Orange - In progress, Red - To do in future
 > Things that are done
 > --------------------  
 > In Continue
+> * Computer functionality
 > * Player movement
 > * Creature template
 
@@ -38,7 +39,8 @@ Green - Done, Yellow - Almost done, Orange - In progress, Red - To do in future
 > Things to do
 > --------------------  
 > In Continue
-> * Computer functionality
+> * Creatures left at home
+> * Switching creatures
 > * Healing centre
 > * Maps
 > * Storyline
