@@ -583,8 +583,10 @@ public class Player extends Sprite implements InputProcessor {
 				(screenY >= Play.getCamera().getHeight() - (PlayingMenu.getInventoryY() + PlayingMenu.getInventoryHeight())) &&
 				(screenY <= Play.getCamera().getHeight() - PlayingMenu.getInventoryY()))
 			{
-					if (!inventory)
+					if (!inventory){
 						inventory = true;
+						Inventory.setItActive(true);
+					}
 					else{
 						switchSorC = true;
 						SwitchCorS.setIsSkills(true);

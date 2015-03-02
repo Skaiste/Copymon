@@ -37,7 +37,7 @@ public class PlayingMenu {
 			
 			batch.begin();
 			inventory.draw(batch);
-			if (Continue.getPlayer().computerOn)
+			if (Continue.getPlayer().computerOn && !Continue.getPlayer().inventory)
 			{
 				creaturesAtHome.draw(batch);
 				switchCreatures.draw(batch);
@@ -55,7 +55,7 @@ public class PlayingMenu {
 		batch = new SpriteBatch();
 		
 		// inventory button
-		if (Continue.getPlayer().computerOn)
+		if (Continue.getPlayer().computerOn && !Continue.getPlayer().inventory)
 		{
 			inventory = new Sprite(new Texture("continue/inventory.gif"));
 			creaturesAtHome = new Sprite(new Texture("continue/creaturesAtHome.gif"));
@@ -68,7 +68,7 @@ public class PlayingMenu {
 		
 		inventory.setSize(Gdx.graphics.getWidth() / 4, Gdx.graphics.getHeight() / 9.6f);
 		inventory.setPosition(Gdx.graphics.getWidth() - inventory.getWidth(), 0);
-		if (Continue.getPlayer().computerOn)
+		if (Continue.getPlayer().computerOn && !Continue.getPlayer().inventory)
 		{
 			creaturesAtHome.setSize(Gdx.graphics.getWidth() / 4, Gdx.graphics.getHeight() / 9.6f);
 			creaturesAtHome.setPosition(Gdx.graphics.getWidth() - inventory.getWidth(), inventory.getHeight());
@@ -82,7 +82,7 @@ public class PlayingMenu {
 		bg.dispose();
 		batch.dispose();
 		inventory.getTexture().dispose();
-		if (Continue.getPlayer().computerOn)
+		if (Continue.getPlayer().computerOn && !Continue.getPlayer().inventory)
 		{
 			creaturesAtHome.getTexture().dispose();
 			switchCreatures.getTexture().dispose();

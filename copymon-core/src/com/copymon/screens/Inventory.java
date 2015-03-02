@@ -136,34 +136,36 @@ public class Inventory {
 		}
 		
 		// 			DESCRIPTION PART
-		creatureImage.draw(batch);
-		for (int i = 0; i < creatureDescription.size(); i++)
+		if ((selectedCreature + creatureLayer * nDisplayedCreatures < creatures().size()))
 		{
-			creatureDescription.get(i).draw(batch, creatureDescr.get(i), Gdx.graphics.getWidth() / 2.711864407f, Gdx.graphics.getHeight() / 2.5f - (Gdx.graphics.getHeight() / 22.85714288f) * i);
-		}
-		creatureAp.draw(batch, "Power: " + creatures().get(selectedCreature).getAp(), Gdx.graphics.getWidth() / 2.711864407f, Gdx.graphics.getHeight() / 5.517241379f);
-		creatureDef.draw(batch, "Defence: " + creatures().get(selectedCreature).getDefence(), Gdx.graphics.getWidth() / 2.711864407f, Gdx.graphics.getHeight() / 7.272727273f);
-		creatureAg.draw(batch, "Agility: " + creatures().get(selectedCreature).getAgility(), Gdx.graphics.getWidth() / 2.711864407f, Gdx.graphics.getHeight() / 10.66666667f);
-
-		//			SKILL PART
-		for (int i = 0; i < nDisplayedSkills; i++)
-		{
-			int currentSkill = i + skillLayer * nDisplayedSkills;
-			if (currentSkill < creatures().get(selectedCreature).getActiveSkillN())
+			creatureImage.draw(batch);
+			for (int i = 0; i < creatureDescription.size(); i++)
 			{
-				skillBg.get(i).draw(batch);
-				
-				skillName.get(i).setScale(1.20f);
-				skillName.get(i).draw(batch, creatures().get(selectedCreature).getActiveSkillByIndex(currentSkill).getDisplayName(), skillBg.get(i).getX() + Gdx.graphics.getWidth() / 133.3333333f, skillBg.get(i).getY() + Gdx.graphics.getHeight() / 4.285714286f);
-				skillType.get(i).draw(batch, "Type: " + creatures().get(selectedCreature).getActiveSkillByIndex(currentSkill).getType(), skillBg.get(i).getX() + Gdx.graphics.getWidth() / 133.3333333f, skillBg.get(i).getY() + Gdx.graphics.getHeight() / 5.274725275f);
-				for (int j = 0; j < skillDescr.get(i).size(); j++)
+				creatureDescription.get(i).draw(batch, creatureDescr.get(i), Gdx.graphics.getWidth() / 2.711864407f, Gdx.graphics.getHeight() / 2.5f - (Gdx.graphics.getHeight() / 22.85714288f) * i);
+			}
+			creatureAp.draw(batch, "Power: " + creatures().get(selectedCreature).getAp(), Gdx.graphics.getWidth() / 2.711864407f, Gdx.graphics.getHeight() / 5.517241379f);
+			creatureDef.draw(batch, "Defence: " + creatures().get(selectedCreature).getDefence(), Gdx.graphics.getWidth() / 2.711864407f, Gdx.graphics.getHeight() / 7.272727273f);
+			creatureAg.draw(batch, "Agility: " + creatures().get(selectedCreature).getAgility(), Gdx.graphics.getWidth() / 2.711864407f, Gdx.graphics.getHeight() / 10.66666667f);
+	
+			//			SKILL PART
+			for (int i = 0; i < nDisplayedSkills; i++)
+			{
+				int currentSkill = i + skillLayer * nDisplayedSkills;
+				if (currentSkill < creatures().get(selectedCreature).getActiveSkillN())
 				{
-					skillDescr.get(i).get(j).draw(batch, skillDescrText.get(i).get(j), skillBg.get(i).getX() + Gdx.graphics.getWidth() / 133.3333333f, skillBg.get(i).getY() + Gdx.graphics.getHeight() / 6.486486486f - (Gdx.graphics.getHeight() / 28.23529412f) * j);
+					skillBg.get(i).draw(batch);
+					
+					skillName.get(i).setScale(1.20f);
+					skillName.get(i).draw(batch, creatures().get(selectedCreature).getActiveSkillByIndex(currentSkill).getDisplayName(), skillBg.get(i).getX() + Gdx.graphics.getWidth() / 133.3333333f, skillBg.get(i).getY() + Gdx.graphics.getHeight() / 4.285714286f);
+					skillType.get(i).draw(batch, "Type: " + creatures().get(selectedCreature).getActiveSkillByIndex(currentSkill).getType(), skillBg.get(i).getX() + Gdx.graphics.getWidth() / 133.3333333f, skillBg.get(i).getY() + Gdx.graphics.getHeight() / 5.274725275f);
+					for (int j = 0; j < skillDescr.get(i).size(); j++)
+					{
+						skillDescr.get(i).get(j).draw(batch, skillDescrText.get(i).get(j), skillBg.get(i).getX() + Gdx.graphics.getWidth() / 133.3333333f, skillBg.get(i).getY() + Gdx.graphics.getHeight() / 6.486486486f - (Gdx.graphics.getHeight() / 28.23529412f) * j);
+					}
+					skillAp.get(i).draw(batch, "Power: " + creatures().get(selectedCreature).getActiveSkillByIndex(currentSkill).getPower(), skillBg.get(i).getX() + Gdx.graphics.getWidth() / 133.3333333f, skillBg.get(i).getY() + Gdx.graphics.getHeight() / 20.86956522f);
 				}
-				skillAp.get(i).draw(batch, "Power: " + creatures().get(selectedCreature).getActiveSkillByIndex(currentSkill).getPower(), skillBg.get(i).getX() + Gdx.graphics.getWidth() / 133.3333333f, skillBg.get(i).getY() + Gdx.graphics.getHeight() / 20.86956522f);
 			}
 		}
-		
 		batch.end();
 	}
 	public static void mainShow() {
@@ -348,13 +350,13 @@ public class Inventory {
 			return false;
 	}
 	public static boolean isSkillUpVisible(){
-		if ((creatures().get(selectedCreature).getActiveSkillN() != 0) && (skillLayer != 0))
+		if ((selectedCreature + creatureLayer * nDisplayedCreatures < creatures().size()) && (creatures().get(selectedCreature).getActiveSkillN() != 0) && (skillLayer != 0))
 			return true;
 		else
 			return false;
 	}
 	public static boolean isSkillDownVisible(){
-		if (creatures().get(selectedCreature).getActiveSkillN() > nDisplayedSkills * (skillLayer + 1))
+		if ((selectedCreature + creatureLayer * nDisplayedCreatures < creatures().size()) && (creatures().get(selectedCreature).getActiveSkillN() > nDisplayedSkills * (skillLayer + 1)))
 			return true;
 		else
 			return false;
@@ -392,7 +394,7 @@ public class Inventory {
 				crHpBar.get(i).setPosition(creatureBg.get(i).getX() + Gdx.graphics.getWidth() / 133.3333333f, creatureBg.get(i).getY() + Gdx.graphics.getHeight() / 12.30769231f);
 				int currentHp = creatures().get(currentCreature).getHealth();
 				int fullHp = creatures().get(currentCreature).getHp();
-				crHpBar.get(i).setSize(Gdx.graphics.getWidth() / 3.827751196f, Gdx.graphics.getHeight() / 24 * (1/1)); 	// currentExp / fullExp
+				crHpBar.get(i).setSize(Gdx.graphics.getWidth() / 3.827751196f, Gdx.graphics.getHeight() / 24 * ((currentHp == 0) ? (0) : (currentHp / fullHp))); 	// currentExp / fullExp
 				
 				// Experience bar
 				crExpBar.add(new Sprite(new Texture("continue/inventory/ExpBar.gif")));
@@ -477,105 +479,114 @@ public class Inventory {
 		crExpPer.clear();
 	}
 	private static void createDescriptionPart(){
-		creatureDescription = new ArrayList <BitmapFont>();
-		creatureAp = new BitmapFont(Gdx.files.internal("terminal.fnt"), Gdx.files.internal("terminal2.png"), false);
-		creatureDef = new BitmapFont(Gdx.files.internal("terminal.fnt"), Gdx.files.internal("terminal2.png"), false);
-		creatureAg = new BitmapFont(Gdx.files.internal("terminal.fnt"), Gdx.files.internal("terminal2.png"), false);
-		creatureImage = new Sprite(new Texture("continue/creatures/images/" + creatures().get(selectedCreature).getName() + "/inventory.gif"));
-		creatureImage.setCenter(Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 1.714285714f);
-		
-		creatureDescr = NewGame.splittingDescribtion(creatures().get(selectedCreature).getDescribtion(), creatureAp, Gdx.graphics.getWidth() / 3.827751196f);
-		for (int i = 0; i < creatureDescr.size(); i++)
+		if (selectedCreature + creatureLayer * nDisplayedCreatures < creatures().size())
 		{
-			creatureDescription.add(new BitmapFont(Gdx.files.internal("terminal.fnt"), Gdx.files.internal("terminal2.png"), false));
+			creatureDescription = new ArrayList <BitmapFont>();
+			creatureAp = new BitmapFont(Gdx.files.internal("terminal.fnt"), Gdx.files.internal("terminal2.png"), false);
+			creatureDef = new BitmapFont(Gdx.files.internal("terminal.fnt"), Gdx.files.internal("terminal2.png"), false);
+			creatureAg = new BitmapFont(Gdx.files.internal("terminal.fnt"), Gdx.files.internal("terminal2.png"), false);
+			creatureImage = new Sprite(new Texture("continue/creatures/images/" + creatures().get(selectedCreature).getName() + "/inventory.gif"));
+			creatureImage.setCenter(Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 1.714285714f);
+			creatureDescr = NewGame.splittingDescribtion(creatures().get(selectedCreature).getDescribtion(), creatureAp, Gdx.graphics.getWidth() / 3.827751196f);
+			for (int i = 0; i < creatureDescr.size(); i++)
+			{
+				creatureDescription.add(new BitmapFont(Gdx.files.internal("terminal.fnt"), Gdx.files.internal("terminal2.png"), false));
+			}
 		}
 	}
 	private static void disposeDescriptionPart(){
-		// creature power
-		creatureAp.dispose();
-		
-		// creature defence
-		creatureDef.dispose();
-		
-		// creature agility
-		creatureAg.dispose();
-		
-		// creature image
-		creatureImage.getTexture().dispose();
-		
-		// creature description text
-		creatureDescr.clear();
-
-		// creature description bitmap font
-		for (int i = 0; i < creatureDescription.size(); i++)
-			creatureDescription.get(i).dispose();
-		
+		if ((selectedCreature + creatureLayer * nDisplayedCreatures < creatures().size()))
+		{
+			// creature power
+			creatureAp.dispose();
+			
+			// creature defence
+			creatureDef.dispose();
+			
+			// creature agility
+			creatureAg.dispose();
+			
+			// creature image
+			creatureImage.getTexture().dispose();
+			
+			// creature description text
+			creatureDescr.clear();
+	
+			// creature description bitmap font
+			for (int i = 0; i < creatureDescription.size(); i++)
+				creatureDescription.get(i).dispose();
+		}
 	}
 	private static void createSkillPart(){
-		
-		skillBg = new ArrayList <Sprite>();
-		skillName = new ArrayList <BitmapFont>();
-		skillType = new ArrayList <BitmapFont>();
-		skillDescr = new ArrayList <ArrayList <BitmapFont>>();
-		skillDescrText = new ArrayList <ArrayList <String>>();
-		skillAp = new ArrayList <BitmapFont>();
-		for (int i = 0; i < nDisplayedSkills; i++)
+		if (selectedCreature + creatureLayer * nDisplayedCreatures < creatures().size())
 		{
-			int currentSkill = i + skillLayer * nDisplayedSkills;
-			if (currentSkill < creatures().get(selectedCreature).getActiveSkillN())
+			skillBg = new ArrayList <Sprite>();
+			skillName = new ArrayList <BitmapFont>();
+			skillType = new ArrayList <BitmapFont>();
+			skillDescr = new ArrayList <ArrayList <BitmapFont>>();
+			skillDescrText = new ArrayList <ArrayList <String>>();
+			skillAp = new ArrayList <BitmapFont>();
+			for (int i = 0; i < nDisplayedSkills; i++)
 			{
-				skillBg.add(new Sprite(new Texture("continue/inventory/creatureBg.gif")));
-				if (i == 0)
-					skillBg.get(i).setPosition(Gdx.graphics.getWidth() / 1.449275362f, Gdx.graphics.getHeight() / 2.727272727f);
-				else
-					skillBg.get(i).setPosition(Gdx.graphics.getWidth() / 1.449275362f, skillBg.get(i-1).getY() - Gdx.graphics.getHeight() / 3.902439024f);
-				skillBg.get(i).setSize(Gdx.graphics.getWidth() / 3.603603604f, Gdx.graphics.getHeight() / 4.173913043f);
-				
-				skillName.add(new BitmapFont(Gdx.files.internal("terminal.fnt"), Gdx.files.internal("terminal2.png"), false));
-				skillType.add(new BitmapFont(Gdx.files.internal("terminal.fnt"), Gdx.files.internal("terminal2.png"), false));
-				skillDescrText.add(NewGame.splittingDescribtion(creatures().get(selectedCreature).getActiveSkillByIndex(currentSkill).getDescribtion(), skillName.get(i), Gdx.graphics.getWidth() / 4.210526316f));
-				skillDescr.add(new ArrayList <BitmapFont>());
-				for (int j = 0; j < skillDescrText.get(i).size(); j++)
+				int currentSkill = i + skillLayer * nDisplayedSkills;
+				if (currentSkill < creatures().get(selectedCreature).getActiveSkillN())
 				{
-					skillDescr.get(i).add(new BitmapFont(Gdx.files.internal("terminal.fnt"), Gdx.files.internal("terminal2.png"), false));
+					skillBg.add(new Sprite(new Texture("continue/inventory/creatureBg.gif")));
+					if (i == 0)
+						skillBg.get(i).setPosition(Gdx.graphics.getWidth() / 1.449275362f, Gdx.graphics.getHeight() / 2.727272727f);
+					else
+						skillBg.get(i).setPosition(Gdx.graphics.getWidth() / 1.449275362f, skillBg.get(i-1).getY() - Gdx.graphics.getHeight() / 3.902439024f);
+					skillBg.get(i).setSize(Gdx.graphics.getWidth() / 3.603603604f, Gdx.graphics.getHeight() / 4.173913043f);
+					
+					skillName.add(new BitmapFont(Gdx.files.internal("terminal.fnt"), Gdx.files.internal("terminal2.png"), false));
+					skillType.add(new BitmapFont(Gdx.files.internal("terminal.fnt"), Gdx.files.internal("terminal2.png"), false));
+					skillDescrText.add(NewGame.splittingDescribtion(creatures().get(selectedCreature).getActiveSkillByIndex(currentSkill).getDescribtion(), skillName.get(i), Gdx.graphics.getWidth() / 4.210526316f));
+					skillDescr.add(new ArrayList <BitmapFont>());
+					for (int j = 0; j < skillDescrText.get(i).size(); j++)
+					{
+						skillDescr.get(i).add(new BitmapFont(Gdx.files.internal("terminal.fnt"), Gdx.files.internal("terminal2.png"), false));
+					}
+					skillAp.add(new BitmapFont(Gdx.files.internal("terminal.fnt"), Gdx.files.internal("terminal2.png"), false));
 				}
-				skillAp.add(new BitmapFont(Gdx.files.internal("terminal.fnt"), Gdx.files.internal("terminal2.png"), false));
 			}
 		}
 	}
 	private static void disposeSkillPart(){
-		// background
-		for (int i = 0; i < skillBg.size(); i++)
-			skillBg.get(i).getTexture().dispose();
-		skillBg.clear();
-		
-		// name
-		for (int i = 0; i < skillName.size(); i++)
-			skillName.get(i).dispose();
-		skillName.clear();
-		
-		// type
-		for (int i = 0; i < skillType.size(); i++)
-			skillType.get(i).dispose();
-		skillType.clear();
-		
-		// description text
-		for (int i = 0; i < skillDescrText.size(); i++)
-			skillDescrText.get(i).clear();
-		skillDescrText.clear();
-		
-		// description bitmap font
-		for (int i = 0; i < skillDescr.size(); i++){
-			for (int j = 0; j < skillDescr.get(i).size(); j++)
-				skillDescr.get(i).get(j).dispose();
-			skillDescr.get(i).clear();
+		if ((selectedCreature + creatureLayer * nDisplayedCreatures < creatures().size()))
+		{
+			// background
+			for (int i = 0; i < skillBg.size(); i++)
+				skillBg.get(i).getTexture().dispose();
+			skillBg.clear();
+			
+			// name
+			for (int i = 0; i < skillName.size(); i++)
+				skillName.get(i).dispose();
+			skillName.clear();
+			
+			// type
+			for (int i = 0; i < skillType.size(); i++)
+				skillType.get(i).dispose();
+			skillType.clear();
+			
+			// description text
+			for (int i = 0; i < skillDescrText.size(); i++)
+				skillDescrText.get(i).clear();
+			skillDescrText.clear();
+			
+			// description bitmap font
+			for (int i = 0; i < skillDescr.size(); i++){
+				for (int j = 0; j < skillDescr.get(i).size(); j++)
+					skillDescr.get(i).get(j).dispose();
+				skillDescr.get(i).clear();
+			}
+			skillDescr.clear();
+			
+			// power
+			for (int i = 0; i < skillAp.size(); i++)
+				skillAp.get(i).dispose();
+			skillAp.clear();
 		}
-		skillDescr.clear();
-		
-		// power
-		for (int i = 0; i < skillAp.size(); i++)
-			skillAp.get(i).dispose();
-		skillAp.clear();
 	}
 
 	// positions and sizes of arrows
