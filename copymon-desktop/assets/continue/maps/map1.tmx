@@ -570,7 +570,7 @@
  </layer>
  <layer name="health2" width="94" height="30">
   <data encoding="base64" compression="zlib">
-   eJzt1N0JwlAMhuGcXnQXUe+6g26gg2g30DladB5F1xF/cpFiDBRRETnyPhCSEyiUXHwiAAAAAAAAAAAgF7NCZF78+i/y0iSRNt3fW50X9t5YP1k/a7/YfHXzSm++5u4v2ent9u7uR52XWrXWwfYDu+lQ+8jmsZuBnPh8Lnv2nTJ0sv19Pp+rnn2nCp1sxz+IeRL35Mt3xDyJe/LlM5P0WNP0/BsAACByAyvXGJ0=
+   eJzt1E0KwkAMhuFMF95FtLvewd5AD6LewJ6jouep6HXEnywCxmwGFZGR94GQTKBQsvhEAAAAAAAAAABAKeaVyKL69V+UpU8i2/R473Ve2ntn/Wz9ov1q883NG715x91fMujtDu7uJ51XWmuto+3HdtOJ9qnNtZuBkvh8HmX2sZPt7/P53GT2sZPt+AcxT+KefPmOmCdxT758Zpaeq035bwAAgMgdJewY1w==
   </data>
  </layer>
  <layer name="health3" width="94" height="30">
