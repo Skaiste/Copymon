@@ -5,13 +5,14 @@ The demo can be downloaded [here](https://drive.google.com/file/d/0B65kpqnvXRSiQ
 
 ##Game plan:
 Green - Done, Yellow - Almost done, Orange - In progress, Red - To do in future
-![a plan](http://s7.postimg.org/yahjgb8uz/copyyy_New_Page_1.png)
+![a plan](http://s4.postimg.org/xikr6dwul/copyyy_New_Page_2.png)
 
 
 
 > Things that are done
 > --------------------  
 > In Continue
+> * Creature Inventory
 > * Computer functionality
 > * Player movement
 > * Creature template
@@ -32,17 +33,15 @@ Green - Done, Yellow - Almost done, Orange - In progress, Red - To do in future
 > Things that are almost done
 > --------------------  
 > In Continue
-> * Creature Inventory
  
  ----------
 
 > Things to do
 > --------------------  
 > In Continue
-> * Creatures left at home
-> * Switching creatures
 > * Healing centre
 > * Maps
+> * NPC
 > * Storyline
 > * Fighting
 
