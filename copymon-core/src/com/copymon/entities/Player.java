@@ -510,16 +510,20 @@ public class Player extends Sprite implements InputProcessor {
 				switchSorC = false;
 			else if (inventory)
 				inventory = false;
+			else if (menu)
+				menu = false;
 			else
-			goBack = true;
+				goBack = true;
 			break;
 		case Keys.BACKSPACE:
 			if (switchSorC)
 				switchSorC = false;
 			else if (inventory)
 				inventory = false;
+			else if (menu)
+				menu = false;
 			else
-			goBack = true;
+				goBack = true;
 			break;
 		case Keys.MENU:
 			menu = true;
@@ -578,7 +582,7 @@ public class Player extends Sprite implements InputProcessor {
 				(screenX <= PlayingMenu.getInventoryX() + PlayingMenu.getInventoryWidth()) &&
 				(screenY >= Play.getCamera().getHeight() - (PlayingMenu.getInventoryY() + PlayingMenu.getInventoryHeight())) &&
 				(screenY <= Play.getCamera().getHeight() - PlayingMenu.getInventoryY()))
-				{
+			{
 					if (!inventory)
 						inventory = true;
 					else{
@@ -586,8 +590,29 @@ public class Player extends Sprite implements InputProcessor {
 						SwitchCorS.setIsSkills(true);
 						SwitchCorS.setCreature(Inventory.getSelectedCreature());
 					}
+			}
+			else if (computerOn)
+			{
+				// creatures left at home
+				if ((screenX >= PlayingMenu.getAtHomeX()) &&
+					(screenX <= PlayingMenu.getAtHomeX() + PlayingMenu.getAtHomeWidth()) &&
+					(screenY >= Play.getCamera().getHeight() - (PlayingMenu.getAtHomeY() + PlayingMenu.getAtHomeHeight())) &&
+					(screenY <= Play.getCamera().getHeight() - PlayingMenu.getAtHomeY()))
+				{
+					inventory = true;
+					Inventory.setItActive(false);
 				}
-				menu = false;
+				// switch creatures
+				else if ((screenX >= PlayingMenu.getSwitchX()) &&
+						(screenX <= PlayingMenu.getSwitchX() + PlayingMenu.getSwitchWidth()) &&
+						(screenY >= Play.getCamera().getHeight() - (PlayingMenu.getSwitchY() + PlayingMenu.getSwitchHeight())) &&
+						(screenY <= Play.getCamera().getHeight() - PlayingMenu.getSwitchY()))
+				{
+					switchSorC = true;
+					SwitchCorS.setIsSkills(false);
+				}
+			}
+			menu = false;
 		}
 		// Inventory
 		else if (inventory && !switchSorC) {

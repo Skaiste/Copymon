@@ -1,13 +1,14 @@
 <Player>
-	<activeCreatures n="2">
+	<activeCreatures n="1">
 		<1 name="Weediesaur" lvl="1" exp="0">
 			<activeSkills n="2" name1="VineWhip" type1="Grass" name2="Tackle" type2="Normal"/>
 			<inactiveSkills n="0"/>
 		</1>
-		<2 name="Drizzle" lvl="9" exp="0">
+	</activeCreatures>
+	<inactiveCreatures n="1">
+		<1 name="Drizzle" lvl="9" exp="0">
 			<activeSkills n="2" name1="Tackle" type1="Normal" name2="WaterGun" type2="Water"/>
 			<inactiveSkills n="1" name1="Tackle" type1="Normal"/>
-		</2>
-	</activeCreatures>
-	<inactiveCreatures n="0"/>
+		</1>
+	</inactiveCreatures>
 </Player>

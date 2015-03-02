@@ -83,6 +83,8 @@ public class SwitchCorS {
 	}
 	
 	private static void show(){
+		playerCreatures = Continue.getPlayerCreatures();
+		
 		// transparent background
 		bg = new ShapeRenderer();
 		batch = new SpriteBatch();
@@ -125,7 +127,7 @@ public class SwitchCorS {
 		createActiveList();
 	}
 	
-	private static void render(){
+	private static void render(){		
 		// painting transparent background
 		Gdx.graphics.getGL20().glEnable(GL20.GL_BLEND);
 		bg.begin(ShapeType.Filled);
@@ -163,7 +165,7 @@ public class SwitchCorS {
 				aSize = creature.getInactiveSkillN();
 			else
 				aSize = playerCreatures.getInactiveCreatureN();
-			if (currentUnit < aSize)
+			if ((currentUnit < aSize) && (currentUnit >= 0))
 			{
 				// background
 				inactiveBg.get(i).draw(batch);
@@ -217,7 +219,7 @@ public class SwitchCorS {
 				aSize = creature.getActiveSkillN();
 			else
 				aSize = playerCreatures.getActiveCreatureN();
-			if (currentUnit < aSize)
+			if ((currentUnit < aSize) && (currentUnit >= 0))
 			{
 				// background
 				activeBg.get(i).draw(batch);
@@ -363,38 +365,42 @@ public class SwitchCorS {
 	
 	// from active to inactive
 	public static void toLeft(){
-		if (isSkills && isLeft() && (activeSelectedUnit < creature.getActiveSkillN()))
-		{
+		// skills
+		if (isSkills && isLeft() && (activeSelectedUnit < creature.getActiveSkillN())){
 			creature.addSkillFromActiveToInactive(activeSelectedUnit);
-			
-			// if the active unit is alone in one layer
-			if ((isSkills && (creature.getActiveSkillN() / nDisplayedUnits == activeLayer) && (creature.getActiveSkillN() % nDisplayedUnits == 0)) ||
-					(!isSkills && (playerCreatures.getActiveCreatureN() / nDisplayedUnits == activeLayer) && (playerCreatures.getActiveCreatureN() % nDisplayedUnits == 0))){
-				activeLayer--;
-				activeSelectedUnit--;
-			}				
-			
-			updateInactiveList();
-			updateActiveList();
 		}
+		// creatures
+		else if (isLeft() && (activeSelectedUnit < playerCreatures.getActiveCreatureN())){
+			playerCreatures.fromActiveToInactive(activeSelectedUnit);
+		}
+
+		activeLayer = 0;
+		inactiveLayer = 0;
+		activeSelectedUnit = 0;
+		inactiveSelectedUnit = 0;
+			
+		updateInactiveList();
+		updateActiveList();
+		
 	}
 	// from inactive to active
 	public static void toRight(){
-		if (isSkills && isRight() && (inactiveSelectedUnit < creature.getInactiveSkillN()))
-		{
+		// skills
+		if (isSkills && isRight() && (inactiveSelectedUnit < creature.getInactiveSkillN())){
 			creature.addSkillFromInactiveToActive(inactiveSelectedUnit);
-			
-			// if the inactive unit is alone in one layer
-			System.out.println();
-			if ((isSkills && (creature.getInactiveSkillN() / nDisplayedUnits == inactiveLayer) && (creature.getInactiveSkillN() % nDisplayedUnits == 0)) ||
-				(!isSkills && (playerCreatures.getInactiveCreatureN() / nDisplayedUnits == inactiveLayer) && (playerCreatures.getInactiveCreatureN() % nDisplayedUnits == 0))){
-				inactiveLayer--;
-				inactiveSelectedUnit--;
-			}	
-			
-			updateInactiveList();
-			updateActiveList();
 		}
+		// creatures
+		else if (isRight() && (inactiveSelectedUnit < playerCreatures.getInactiveCreatureN())){
+			playerCreatures.fromInactiveToActive(inactiveSelectedUnit);
+		}
+		
+		activeLayer = 0;
+		inactiveLayer = 0;
+		activeSelectedUnit = 0;
+		inactiveSelectedUnit = 0;
+		
+		updateInactiveList();
+		updateActiveList();
 	}
 	
 	private static void updateInactiveList(){
@@ -438,7 +444,7 @@ public class SwitchCorS {
 			else
 				aSize = playerCreatures.getInactiveCreatureN();
 			
-			if (currentUnit < aSize)
+			if ((currentUnit < aSize) && (currentUnit >= 0))
 			{
 				// background for description
 				String bgPath = "continue/inventory/creatureBg.gif";
@@ -561,7 +567,7 @@ public class SwitchCorS {
 			else
 				aSize = playerCreatures.getActiveCreatureN();
 			
-			if (currentUnit < aSize)
+			if ((currentUnit < aSize) && (currentUnit >= 0))
 			{
 				// background for description
 				String bgPath = "continue/inventory/creatureBg.gif";

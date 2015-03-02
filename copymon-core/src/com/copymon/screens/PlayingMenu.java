@@ -58,8 +58,8 @@ public class PlayingMenu {
 		if (Continue.getPlayer().computerOn)
 		{
 			inventory = new Sprite(new Texture("continue/inventory.gif"));
-			creaturesAtHome = new Sprite(new Texture("continue/inventory.gif"));
-			switchCreatures = new Sprite(new Texture("continue/inventory.gif"));
+			creaturesAtHome = new Sprite(new Texture("continue/creaturesAtHome.gif"));
+			switchCreatures = new Sprite(new Texture("continue/switchCreatures.gif"));
 		}
 		else if (!Continue.getPlayer().inventory)
 			inventory = new Sprite(new Texture("continue/inventory.gif"));
@@ -100,5 +100,31 @@ public class PlayingMenu {
 	}
 	public static float getInventoryHeight(){
 		return inventory.getRegionHeight();
+	}
+
+	public static float getAtHomeX(){
+		return creaturesAtHome.getX();
+	}
+	public static float getAtHomeY(){
+		return creaturesAtHome.getY();
+	}
+	public static float getAtHomeWidth(){
+		return creaturesAtHome.getRegionWidth();
+	}
+	public static float getAtHomeHeight(){
+		return creaturesAtHome.getRegionHeight();
+	}
+
+	public static float getSwitchX(){
+		return switchCreatures.getX();
+	}
+	public static float getSwitchY(){
+		return switchCreatures.getY();
+	}
+	public static float getSwitchWidth(){
+		return switchCreatures.getRegionWidth();
+	}
+	public static float getSwitchHeight(){
+		return switchCreatures.getRegionHeight();
 	}
 }
