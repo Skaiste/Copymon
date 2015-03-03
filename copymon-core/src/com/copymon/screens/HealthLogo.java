@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
+import com.copymon.entities.Nurse;
 
 public class HealthLogo {
 	private static boolean show = false,
@@ -15,8 +16,11 @@ public class HealthLogo {
 	
 	private static Vector2 position = new Vector2(Gdx.graphics.getWidth() / 4.819277108433f, Gdx.graphics.getHeight() / 2.981366459627f); 
 	
-	private static final int counterMax = 7;
-	private static int counter = counterMax;
+	private static final int frameNumber = 7;
+	private static final int counterMax = 50;
+	private static int counterAnimation = 0;
+	private static int counterframe = 1;
+	
 	
 	public static void update() {
 		//System.out.println(Continue.getMap().place);
@@ -64,19 +68,27 @@ public class HealthLogo {
 	}
 	
 	private static void change(){
-		if (show && (counter % counterMax == 0))
+		if (show)
 		{
-			int number = counter / counterMax;
-			health.getTexture().dispose();
-			health.setTexture(new Texture("continue/health/" + number + ".png"));
+			health.setTexture(new Texture("continue/health/" + counterframe + ".png"));
 			
-			if (counter == counterMax * (counterMax + 1) - 1)
+			if (counterAnimation == counterMax)
 			{
-				counter = counterMax;
-				show = false;
+				counterAnimation = 0;
+				counterframe++;
 			}
 			else
-				counter++;
+				counterAnimation++;
+			
+			if (counterframe == frameNumber + 1){
+				show = false;
+				Nurse.goBack();
+				counterframe = 1;
+			}
 		}
+	}
+	
+	public static void startHealing(){
+		show = true;
 	}
 }

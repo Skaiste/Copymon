@@ -76,13 +76,20 @@ public class PlayerCreatures {
 		}
 		return succeed;
 	}
+	
+	public void healAllActive(){
+		for (int i = 0; i < getActiveCreatureN(); i++)
+		{
+			activeCreatures.get(i).setFullHp();
+		}
+	}
+	
 	public int getActiveCreatureN(){
 		return activeCreatures.size();
 	}
 	public int getInactiveCreatureN(){
 		return inactiveCreatures.size();
 	}
-
 	
 	public ArrayList<Creature> getActiveCreatures() {
 		return activeCreatures;

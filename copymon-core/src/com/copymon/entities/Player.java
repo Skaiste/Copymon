@@ -62,7 +62,7 @@ public class Player extends Sprite implements InputProcessor {
 	
 	// inventory menu
 	public boolean menu = false;
-	public boolean inventory = false, switchSorC = false, computerOn = false;
+	public boolean inventory = false, switchSorC = false, computerOn = false, canHeal = false;
 	
 	// for fighting
 	// creature appearing chance, 1 out of appearChance
@@ -123,7 +123,7 @@ public class Player extends Sprite implements InputProcessor {
 			collisionX = collidesRight();
 		
 		// react to x collision
-		if (collisionX)
+		if (collisionX || creatureAppeared || inventory || switchSorC || computerOn || Nurse.getWalking())
 		{
 			setX(oldX);
 			camera.setX(oldCameraX);
@@ -143,7 +143,7 @@ public class Player extends Sprite implements InputProcessor {
 		}
 		
 		// react to y collision
-		if (collisionY)
+		if (collisionY || creatureAppeared || inventory || switchSorC || computerOn || Nurse.getWalking())
 		{
 			setY(oldY);
 			camera.setY(oldCameraY);
@@ -161,6 +161,7 @@ public class Player extends Sprite implements InputProcessor {
 		else if (velocity.x != 0)
 			searchForCreatures();
 		computer();
+		healingCreatures();
 		
 		
 		// if player gets stuck
@@ -489,6 +490,13 @@ public class Player extends Sprite implements InputProcessor {
 		}
 	}
 	
+	private void healingCreatures(){
+		if (map.place.equals("health") && (getX() < 325) && (getY() < 130) && !Nurse.getWalking())
+			canHeal = true;
+		else
+			canHeal = false;
+	}
+	
 	@Override
 	public boolean keyDown(int keycode) {
 		switch (keycode)
@@ -614,6 +622,17 @@ public class Player extends Sprite implements InputProcessor {
 					SwitchCorS.setIsSkills(false);
 				}
 			}
+			else if (canHeal)
+			{
+				// creatures left at home
+				if ((screenX >= PlayingMenu.getHealX()) &&
+					(screenX <= PlayingMenu.getHealX() + PlayingMenu.getHealWidth()) &&
+					(screenY >= Play.getCamera().getHeight() - (PlayingMenu.getHealY() + PlayingMenu.getHealHeight())) &&
+					(screenY <= Play.getCamera().getHeight() - PlayingMenu.getHealY()))
+				{
+					Nurse.startWalking();
+				}
+			}
 			menu = false;
 		}
 		// Inventory
@@ -663,8 +682,8 @@ public class Player extends Sprite implements InputProcessor {
 			}
 		}
 		else if (switchSorC){
-			System.out.println("Touch: x: " + screenX + ", y: " + screenY);
-			System.out.println("Arrow: x: " + SwitchCorS.getActiveDownPos().x + "-" + (SwitchCorS.getActiveDownPos().x + SwitchCorS.getActiveDownSize().x) + ", y: " + (Play.getCamera().getHeight() - (SwitchCorS.getActiveDownPos().y + SwitchCorS.getActiveDownSize().y)) + "-" + (Play.getCamera().getHeight() - SwitchCorS.getActiveDownPos().y));
+			//System.out.println("Touch: x: " + screenX + ", y: " + screenY);
+			//System.out.println("Arrow: x: " + SwitchCorS.getActiveDownPos().x + "-" + (SwitchCorS.getActiveDownPos().x + SwitchCorS.getActiveDownSize().x) + ", y: " + (Play.getCamera().getHeight() - (SwitchCorS.getActiveDownPos().y + SwitchCorS.getActiveDownSize().y)) + "-" + (Play.getCamera().getHeight() - SwitchCorS.getActiveDownPos().y));
 			// inactive arrow up
 			if ((screenX >= SwitchCorS.getInactiveUpPos().x) &&
 				(screenX <= SwitchCorS.getInactiveUpPos().x + SwitchCorS.getInactiveUpSize().x) &&

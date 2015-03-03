@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.copymon.creatures.PlayerCreatures;
+import com.copymon.entities.Nurse;
 import com.copymon.entities.Player;
 import com.copymon.fileHandling.ReaderFromSave;
 import com.copymon.fileHandling.WriteToSave;
@@ -38,10 +39,16 @@ public class Continue {
 		
 		// rendering map
 		map.render(renderer);
+		
 		// drawing player
 		renderer.getSpriteBatch().begin();
 		player.draw(renderer.getSpriteBatch());
 		renderer.getSpriteBatch().end();
+
+		// draw healing logo and nurse when in health centre
+		HealthLogo.update();
+		Nurse.update();
+		
 		// rendering top layer of the map
 		map.renderTopLayer(renderer);
 		
@@ -60,8 +67,6 @@ public class Continue {
 		// Show controls on screen
 		ShowControls.update();
 		
-		// draw healing logo
-		HealthLogo.update();
 				
 		// exiting to the menu
 		if (player.goBack)

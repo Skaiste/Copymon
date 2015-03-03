@@ -15,7 +15,7 @@ public class PlayingMenu {
 	
 	private static SpriteBatch batch;
 	private static ShapeRenderer bg;
-	private static Sprite inventory, creaturesAtHome, switchCreatures;
+	private static Sprite inventory, creaturesAtHome, switchCreatures, healCreatures;
 	
 	public static void render() {
 		menu = Continue.getPlayer().menu;
@@ -42,6 +42,10 @@ public class PlayingMenu {
 				creaturesAtHome.draw(batch);
 				switchCreatures.draw(batch);
 			}
+			else if (Continue.getPlayer().canHeal && !Continue.getPlayer().inventory)
+			{
+				healCreatures.draw(batch);
+			}
 			batch.end();			
 		}
 		else if (!menu && !once){
@@ -61,6 +65,11 @@ public class PlayingMenu {
 			creaturesAtHome = new Sprite(new Texture("continue/creaturesAtHome.gif"));
 			switchCreatures = new Sprite(new Texture("continue/switchCreatures.gif"));
 		}
+		else if (Continue.getPlayer().canHeal && !Continue.getPlayer().inventory)
+		{
+			inventory = new Sprite(new Texture("continue/inventory.gif"));
+			healCreatures = new Sprite(new Texture("continue/healCreatures.gif"));			
+		}
 		else if (!Continue.getPlayer().inventory)
 			inventory = new Sprite(new Texture("continue/inventory.gif"));
 		else
@@ -76,7 +85,11 @@ public class PlayingMenu {
 			switchCreatures.setSize(Gdx.graphics.getWidth() / 4, Gdx.graphics.getHeight() / 9.6f);
 			switchCreatures.setPosition(Gdx.graphics.getWidth() - inventory.getWidth(), inventory.getHeight() + creaturesAtHome.getHeight());
 		}
-		
+		else if (Continue.getPlayer().canHeal && !Continue.getPlayer().inventory)
+		{
+			healCreatures.setSize(Gdx.graphics.getWidth() / 4, Gdx.graphics.getHeight() / 9.6f);
+			healCreatures.setPosition(Gdx.graphics.getWidth() - inventory.getWidth(), inventory.getHeight());			
+		}		
 	}
 	public static void dispose() {
 		bg.dispose();
@@ -86,6 +99,10 @@ public class PlayingMenu {
 		{
 			creaturesAtHome.getTexture().dispose();
 			switchCreatures.getTexture().dispose();
+		}
+		else if (Continue.getPlayer().canHeal && !Continue.getPlayer().inventory)
+		{
+			healCreatures.getTexture().dispose();
 		}
 	}
 	
@@ -126,5 +143,20 @@ public class PlayingMenu {
 	}
 	public static float getSwitchHeight(){
 		return switchCreatures.getRegionHeight();
+	}
+	
+
+
+	public static float getHealX(){
+		return healCreatures.getX();
+	}
+	public static float getHealY(){
+		return healCreatures.getY();
+	}
+	public static float getHealWidth(){
+		return healCreatures.getRegionWidth();
+	}
+	public static float getHealHeight(){
+		return healCreatures.getRegionHeight();
 	}
 }

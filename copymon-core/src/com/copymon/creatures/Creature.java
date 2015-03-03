@@ -260,4 +260,8 @@ public class Creature {
 			}
 		}
 	}
+	
+	public void setFullHp(){
+		health = getHp();
+	}
 }
