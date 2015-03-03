@@ -21,7 +21,7 @@ public class Nurse {
 	private static boolean walking = false;
 	private static boolean lookingRight = true;
 	// speed of the player animation
-	final private static int animationSpeed = 12;
+	final private static int animationSpeed = 6;
 	// counting for animation
 	private static int nurseAnimation = animationSpeed;
 	
@@ -122,10 +122,10 @@ public class Nurse {
 		if (walking)
 		{
 			if (lookingRight){
-				nurse.setTexture(new Texture(path + "right/" + ((nurseAnimation / animationSpeed) / 2 + 1) + ".gif"));
+				nurse.setTexture(new Texture(path + "right/" + (nurseAnimation / animationSpeed + 1) + ".gif"));
 			}
 			else if (!stops){
-				nurse.setTexture(new Texture(path + "left/" + ((nurseAnimation / animationSpeed) / 2 + 1) + ".gif"));
+				nurse.setTexture(new Texture(path + "left/" + (nurseAnimation / animationSpeed + 1) + ".gif"));
 			}
 			
 			if (nurseAnimation == animationSpeed * (animationSpeed) - 1)
