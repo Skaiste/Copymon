@@ -57,9 +57,11 @@ public class Continue {
 		// menu for inventory and stuff
 		PlayingMenu.render();
 		
-		
 		// Show controls on screen
 		ShowControls.update();
+		
+		// draw healing logo
+		HealthLogo.update();
 				
 		// exiting to the menu
 		if (player.goBack)
