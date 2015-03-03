@@ -12,6 +12,7 @@ Green - Done, Yellow - Almost done, Orange - In progress, Red - To do in future
 > Things that are done
 > --------------------  
 > In Continue
+> * Healing centre (add NPC - nurse)
 > * Creature Inventory
 > * Computer functionality
 > * Player movement
@@ -33,7 +34,7 @@ Green - Done, Yellow - Almost done, Orange - In progress, Red - To do in future
 > Things that are almost done
 > --------------------  
 > In Continue
-> * Healing centre (add NPC)
+> * nothing for now
  
  ----------
 
@@ -41,7 +42,7 @@ Green - Done, Yellow - Almost done, Orange - In progress, Red - To do in future
 > --------------------  
 > In Continue
 > * Maps
-> * NPC
+> * NPC (in all buildings and somewhere else, depending on quests)
 > * Storyline
 > * Fighting
 
