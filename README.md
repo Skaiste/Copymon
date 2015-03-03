@@ -33,13 +33,13 @@ Green - Done, Yellow - Almost done, Orange - In progress, Red - To do in future
 > Things that are almost done
 > --------------------  
 > In Continue
+> * Healing centre (add NPC)
  
  ----------
 
 > Things to do
 > --------------------  
 > In Continue
-> * Healing centre
 > * Maps
 > * NPC
 > * Storyline
