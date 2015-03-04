@@ -419,4 +419,43 @@ public class NewGame {
 		return lines;
 	}
 	
+	
+	// ******* Writing in field *******
+	// making the field react to keyboard and placing the cursor
+	private static void turnFieldOn(){
+		
+	}
+	// disables the keyboard and reaction to placing the cursor
+	private static void turnFieldOff(){
+		
+	}
+	
+	// setting the cursor position by the touched x coordinate
+	private static void setCursor(float touchX){
+		
+	}
+	// setting the cursor position to left
+	private static void moveCursorLeft(){
+		
+	}
+	// settng the cursor position to right
+	private static void moveCursorRight(){
+		
+	}
+	
+	// adding a character to the string at the cursor position
+	private static void addCharToString(char c){
+		
+	}
+	// deleting a character to the string at the cursor position
+	private static void deleteCharFromString(){
+		
+	}
+	
+	// returns a string that is displayed in the field
+	private static String displayTextInField(){
+		String theLine = "";
+		
+		return theLine;
+	}
 }
