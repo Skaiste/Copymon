@@ -123,7 +123,7 @@ public class Player extends Sprite implements InputProcessor {
 			collisionX = collidesRight();
 		
 		// react to x collision
-		if (collisionX || creatureAppeared || inventory || switchSorC || computerOn || Nurse.getWalking())
+		if (collisionX || creatureAppeared || inventory || switchSorC || Nurse.getWalking())
 		{
 			setX(oldX);
 			camera.setX(oldCameraX);
@@ -143,7 +143,7 @@ public class Player extends Sprite implements InputProcessor {
 		}
 		
 		// react to y collision
-		if (collisionY || creatureAppeared || inventory || switchSorC || computerOn || Nurse.getWalking())
+		if (collisionY || creatureAppeared || inventory || switchSorC || Nurse.getWalking())
 		{
 			setY(oldY);
 			camera.setY(oldCameraY);

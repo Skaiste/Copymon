@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Vector2;
 import com.copymon.creatures.Creature;
 import com.copymon.creatures.Skill;
 import com.copymon.fileHandling.WriteToSave;
@@ -28,6 +29,10 @@ public class NewGame {
 						  creatureImage;
 	private static BitmapFont creatureName1, creatureName2, creatureName3,
 							  name, type, descr1, descr2, descr3, descr4, descr5, hp, ap, def, agility;
+	
+	private static Vector2 fieldPos  = new Vector2(), 
+						   fieldSize = new Vector2();
+	
 	
 	//private static TextField writeName;
 	//private static String name;
@@ -127,6 +132,13 @@ public class NewGame {
 					(y <= Play.getCamera().getHeight() - genderBoy.getY()))
 				{
 					isBoy = true;
+				}
+				else if ((x >= genderGirl.getX()) &&
+						(x <= genderGirl.getX() + genderGirl.getRegionWidth()) &&
+						(y >= Play.getCamera().getHeight() - (genderGirl.getY() + genderGirl.getRegionHeight())) &&
+						(y <= Play.getCamera().getHeight() - genderGirl.getY()))
+				{
+					isBoy = false;
 				}
 				else if ((x >= genderGirl.getX()) &&
 						(x <= genderGirl.getX() + genderGirl.getRegionWidth()) &&
