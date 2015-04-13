@@ -2,6 +2,7 @@
 An awesome android game-to-be in distant future developed using LibGDX library and Java.
 
 The demo can be downloaded [here](https://drive.google.com/file/d/0B65kpqnvXRSiQkdtSkMzbWZUUFU/view?usp=sharing).
+If there are people so awesome that would pull this project, then [here](https://drive.google.com/open?id=0B65kpqnvXRSifllIbWtnc0tIbEJYZ185LU9lU2F5Wkl6cEI3di1QTk1GN1dsMm1ESEFuVmM&authuser=0) are the libraries that you may need. If you have troubles try to contact somebody who's in charge here.
 
 ##Game plan:
 Green - Done, Yellow - Almost done, Orange - In progress, Red - To do in future
