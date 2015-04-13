@@ -5,10 +5,10 @@
 	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.LIBRARIES"/>
 	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/copymon-core"/>
 	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.DEPENDENCIES"/>
-	<classpathentry kind="src" path="gen"/>
 	<classpathentry kind="src" path="assets"/>
 	<classpathentry exported="true" kind="lib" path="libraries/gdx-1.4.1.jar"/>
 	<classpathentry exported="true" kind="lib" path="libraries/gdx-backend-android-1.4.1.jar"/>
 	<classpathentry exported="true" kind="lib" path="libraries/gdx-box2d-1.4.1.jar"/>
+	<classpathentry kind="src" path="gen"/>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>
