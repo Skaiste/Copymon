@@ -5,11 +5,22 @@ import java.util.ArrayList;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.InputAdapter;
+import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.TextField;
+import com.badlogic.gdx.scenes.scene2d.ui.TextField.TextFieldListener;
+import com.badlogic.gdx.scenes.scene2d.ui.Window;
+import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.copymon.creatures.Creature;
 import com.copymon.creatures.Skill;
 import com.copymon.fileHandling.WriteToSave;
@@ -30,11 +41,23 @@ public class NewGame {
 	private static BitmapFont creatureName1, creatureName2, creatureName3,
 							  name, type, descr1, descr2, descr3, descr4, descr5, hp, ap, def, agility;
 	
-	private static Vector2 fieldPos  = new Vector2(), 
-						   fieldSize = new Vector2();
+	// name text field
+	private static Vector2 fieldPos  = new Vector2(Gdx.graphics.getWidth() / 2.051282051f  - Play.getCamera().getRealX(), Gdx.graphics.getHeight() / 2.008368201f  - Play.getCamera().getRealY()), 
+						   fieldSize = new Vector2(Gdx.graphics.getWidth() / 4.761904762f, Gdx.graphics.getHeight() / 20.86956522f);
+	private static int realCursor = 0, showCursor = 0;
+	private static String line = "";
+	private static float oneLetterWidth;
+	private static BitmapFont playerNameField;
+	private static boolean fieldActive = false;
+	private static ShapeRenderer cursorLook;
+	private static InputProcessor whenFieldDisabled;
+	
+
+	// testing input field
+	private static Skin skin;
+	private static TextField textfield;
 	
 	
-	//private static TextField writeName;
 	//private static String name;
 	private static String gender, crName;
 	private static boolean isBoy = true;
@@ -83,7 +106,20 @@ public class NewGame {
 		strokeGender.draw(batch);
 		nextButton.draw(batch);
 		
+		playerNameField.draw(batch, displayTextInField(), fieldPos.x, Gdx.graphics.getHeight() / 1.818181818f + 10);
+
+		cursorLook.begin(ShapeType.Filled);
+		cursorLook.setColor(Color.BLACK);
+		//if (fieldActive)
+			//cursorLook.rect(getCursorPos().x, Play.getCamera().getHeight() -  getCursorPos().y, 2, playerNameField.getBounds("l").height);
+		cursorLook.end();
+        
 		batch.end();
+
+		if (fieldActive){
+			textfield.setMessageText(line);
+			textfield.draw(batch, 1);
+		}
 	}
 	public static void show1() {
 		
@@ -106,26 +142,62 @@ public class NewGame {
 		genderGirl.setPosition(Gdx.graphics.getWidth() / 1.735357918f, Gdx.graphics.getHeight() / 7.5f);
 		nextButton.setPosition(Gdx.graphics.getWidth() / 1.176470588f, Gdx.graphics.getHeight() / 43.63636364f);
 		
+		// name text field
+		playerNameField = new BitmapFont(Gdx.files.internal("terminal.fnt"), Gdx.files.internal("terminal2.png"), false);
+		playerNameField.scale(1);
+		oneLetterWidth = playerNameField.getBounds("a").width;
+		cursorLook = new ShapeRenderer();
+		
 		Gdx.input.setInputProcessor(new InputAdapter () {
 			@Override
 			public boolean keyDown(int keycode) {
 				switch (keycode)
 				{
+				case Keys.LEFT:
+					if (fieldActive)
+					{
+						//moveCursorLeft();
+					}
+					break;
+				case Keys.RIGHT:
+					if (fieldActive)
+					{
+						//moveCursorRight();
+					}
+					break;
 				case Keys.BACK:
-					dispose();
-					Menu.setNewGame(false);
-					Menu.show(Play.getCamera());
+					if (!fieldActive){
+						dispose();
+						Menu.setNewGame(false);
+						Menu.show(Play.getCamera());
+					}
+					else{
+						;//turnFieldOff();
+					}
 					break;
 				case Keys.BACKSPACE:
-					dispose();
-					Menu.setNewGame(false);
-					Menu.show(Play.getCamera());
+					if (!fieldActive){
+						dispose();
+						Menu.setNewGame(false);
+						Menu.show(Play.getCamera());
+					}
+					else{
+						//deleteCharFromString();
+					}
+					break;
+				case Keys.ENTER:
+					if (fieldActive)
+						;//turnFieldOff();
+					break;
+				default:
 					break;
 				}
+				
 				return true;
 			}
 			
 			public boolean touchDown (int x, int y, int pointer, int button) {
+				System.out.println(fieldActive);
 				if ((x >= genderBoy.getX()) &&
 					(x <= genderBoy.getX() + genderBoy.getRegionWidth()) &&
 					(y >= Play.getCamera().getHeight() - (genderBoy.getY() + genderBoy.getRegionHeight())) &&
@@ -140,12 +212,18 @@ public class NewGame {
 				{
 					isBoy = false;
 				}
-				else if ((x >= genderGirl.getX()) &&
-						(x <= genderGirl.getX() + genderGirl.getRegionWidth()) &&
-						(y >= Play.getCamera().getHeight() - (genderGirl.getY() + genderGirl.getRegionHeight())) &&
-						(y <= Play.getCamera().getHeight() - genderGirl.getY()))
+				else if ((x >= fieldPos.x) &&
+						(x <= fieldPos.x + fieldSize.x) &&
+						(y >= Play.getCamera().getHeight() - (fieldPos.y + fieldSize.y)) &&
+						(y <= Play.getCamera().getHeight() - fieldPos.y))
 				{
-					isBoy = false;
+					if (fieldActive){
+						//setCursor(x);
+					}
+					else {
+						
+						turnFieldOn();
+					}
 				}
 				else if ((x >= nextButton.getX()) &&
 						(x <= nextButton.getX() + nextButton.getRegionWidth()) &&
@@ -161,9 +239,16 @@ public class NewGame {
 					creatureWindow = true;
 					show();
 				}
+				else if (fieldActive){
+					;//turnFieldOff();
+				}
+				
 				return true;
 			}
 		});
+		
+		whenFieldDisabled = Gdx.input.getInputProcessor();
+		
 	}	
 	public static void dispose1() {
 		bg.getTexture().dispose();
@@ -171,6 +256,8 @@ public class NewGame {
 		genderGirl.getTexture().dispose();
 		strokeGender.getTexture().dispose();
 		nextButton.getTexture().dispose();
+		
+
 	}
 	
 	
@@ -249,6 +336,7 @@ public class NewGame {
 		
 		batch.end();
 		
+
 	}
 	public static void show2() {
 		
@@ -377,6 +465,8 @@ public class NewGame {
 				return true;
 			}
 		});
+		
+			
 	}
 	public static void dispose2() {
 		
@@ -423,39 +513,136 @@ public class NewGame {
 	// ******* Writing in field *******
 	// making the field react to keyboard and placing the cursor
 	private static void turnFieldOn(){
+		System.out.println("turn field on");
+		// activate field reaction
+		fieldActive = true;
+		// turn keyboard on
+
+		// testing input field FIXME
 		
+		skin = new Skin();
+		
+		textfield = new TextField("", skin);
+		textfield.setMessageText(line);
+		textfield.setRightAligned(false);
+
+		textfield.setTextFieldListener(new TextFieldListener() {
+			public void keyTyped (TextField textField, char key) {
+				if (key == '\n') turnFieldOff(textField);
+				else if (key == '\b') deleteCharFromString();
+				else addCharToString(key);
+			}
+		});	
 	}
 	// disables the keyboard and reaction to placing the cursor
-	private static void turnFieldOff(){
-		
+	private static void turnFieldOff(TextField textField){
+		System.out.println("turn field off");
+		// deactivate field reaction
+		fieldActive = false;
+		// turn keyboard off
+		skin.dispose();
+		Gdx.input.setInputProcessor(whenFieldDisabled);
 	}
 	
-	// setting the cursor position by the touched x coordinate
-	private static void setCursor(float touchX){
-		
-	}
 	// setting the cursor position to left
 	private static void moveCursorLeft(){
-		
+		System.out.println("cursor to left");
+		if (realCursor > 0){
+			showCursor--;
+		}
 	}
 	// settng the cursor position to right
 	private static void moveCursorRight(){
-		
+		System.out.println("cursor to right");
+		if (showCursor < line.length() - 1){
+			showCursor++;
+		}
 	}
 	
 	// adding a character to the string at the cursor position
-	private static void addCharToString(char c){
-		
+	private static void addCharToString(char key){
+		System.out.println("add to string");
+		StringBuilder str = new StringBuilder("");
+		if ((line.length() > 0) && (realCursor > 0))
+		{
+			str.append(line.substring(0, realCursor));
+			str.append(key);
+			str.append(line.substring(realCursor));
+		}
+		else if (realCursor == line.length()){
+			str.append(line);
+			str.append(key);
+		}
+		else if (realCursor == 0){
+			str.append(key);
+			str.append(line);	
+		}
+		else {
+			str.append(key);
+		}
+		line = str.toString();
+		System.out.println(realCursor);
+		realCursor += 1;
+		System.out.println(line + "\n" + realCursor + " " + line.length());
 	}
 	// deleting a character to the string at the cursor position
 	private static void deleteCharFromString(){
-		
+		System.out.println("delete from string");
+		StringBuilder str = new StringBuilder("");
+		if (line.length() > 0)
+			str.append(line.substring(0, line.length() - 1));
+		/*
+		if ((line.length() > 0) && (realCursor == line.length())){
+			str.append(line.substring(0, realCursor - 1));
+			realCursor--;
+		}
+		else if (line.length() > 0)
+		{
+			str.append(line.substring(0, realCursor - 1));
+			str.append(line.substring(realCursor));
+			realCursor--;
+		}
+		*/
+		line = str.toString();
 	}
 	
 	// returns a string that is displayed in the field
 	private static String displayTextInField(){
 		String theLine = "";
+		int lettersFit = Math.round(fieldSize.x / oneLetterWidth);
 		
+		if (line.length() <= lettersFit)
+		{
+			theLine = line;
+			showCursor = realCursor;
+		}
+		else {
+			theLine = line.substring(0, lettersFit);
+			showCursor = realCursor;/*
+			if (realCursor < lettersFit / 2){
+				theLine = line.substring(0, lettersFit);
+				showCursor = realCursor;
+			}
+			else if (realCursor > line.length() - lettersFit / 2){
+				theLine = line.substring(line.length() - lettersFit);
+				showCursor = realCursor - lettersFit / 2;
+			}
+			else{
+				theLine = line.substring(realCursor - lettersFit / 2, realCursor + lettersFit / 2 + 1);
+				showCursor = lettersFit / 2;
+			}*/
+		}
+		//System.out.println(theLine);
 		return theLine;
+	}
+	
+	// returns cursor coordinates
+	private static Vector2 getCursorPos(){
+		Vector2 pos = new Vector2();
+		
+		pos.x = fieldPos.x + oneLetterWidth * showCursor;
+		pos.y = fieldPos.y;
+		
+		return pos;
 	}
 }
