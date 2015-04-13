@@ -11,7 +11,8 @@ public class Play implements Screen {
 	private boolean isContinue   = Menu.isContinue(),
 					isNewGame    = Menu.isNewGame(),
 					isWithFriend = Menu.isWithFriend(),
-					isOptions	 = Menu.isOptions();
+					isOptions	 = Menu.isOptions(),
+					isFighting	 = false;
 	
 	
 	@Override
