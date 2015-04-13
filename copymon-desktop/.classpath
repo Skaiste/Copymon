@@ -4,21 +4,21 @@
 	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/copymon-core"/>
 	<classpathentry kind="src" path="assets"/>
-	<classpathentry kind="lib" path="libraries/gdx-1.4.1.jar"/>
-	<classpathentry kind="lib" path="libraries/gdx-backend-lwjgl-1.4.1.jar"/>
-	<classpathentry kind="lib" path="libraries/gdx-box2d-platform-1.4.1-natives-desktop.jar"/>
-	<classpathentry kind="lib" path="libraries/gdx-platform-1.4.1-natives-desktop.jar"/>
-	<classpathentry kind="lib" path="libraries/jinput-2.0.5.jar"/>
-	<classpathentry kind="lib" path="libraries/jinput-platform-2.0.5-natives-linux.jar"/>
-	<classpathentry kind="lib" path="libraries/jinput-platform-2.0.5-natives-osx.jar"/>
-	<classpathentry kind="lib" path="libraries/jinput-platform-2.0.5-natives-windows.jar"/>
-	<classpathentry kind="lib" path="libraries/jlayer-1.0.1-gdx.jar"/>
-	<classpathentry kind="lib" path="libraries/jorbis-0.0.17.jar"/>
-	<classpathentry kind="lib" path="libraries/jutils-1.0.0.jar"/>
-	<classpathentry kind="lib" path="libraries/lwjgl_util-2.9.1.jar"/>
-	<classpathentry kind="lib" path="libraries/lwjgl-2.9.1.jar"/>
-	<classpathentry kind="lib" path="libraries/lwjgl-platform-2.9.1-natives-linux.jar"/>
-	<classpathentry kind="lib" path="libraries/lwjgl-platform-2.9.1-natives-osx.jar"/>
-	<classpathentry kind="lib" path="libraries/lwjgl-platform-2.9.1-natives-windows.jar"/>
+	<classpathentry exported="true" kind="lib" path="libraries/gdx-1.4.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="libraries/gdx-backend-lwjgl-1.4.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="libraries/gdx-box2d-platform-1.4.1-natives-desktop.jar"/>
+	<classpathentry exported="true" kind="lib" path="libraries/gdx-platform-1.4.1-natives-desktop.jar"/>
+	<classpathentry exported="true" kind="lib" path="libraries/jinput-2.0.5.jar"/>
+	<classpathentry exported="true" kind="lib" path="libraries/jinput-platform-2.0.5-natives-linux.jar"/>
+	<classpathentry exported="true" kind="lib" path="libraries/jinput-platform-2.0.5-natives-osx.jar"/>
+	<classpathentry exported="true" kind="lib" path="libraries/jinput-platform-2.0.5-natives-windows.jar"/>
+	<classpathentry exported="true" kind="lib" path="libraries/jlayer-1.0.1-gdx.jar"/>
+	<classpathentry exported="true" kind="lib" path="libraries/jorbis-0.0.17.jar"/>
+	<classpathentry exported="true" kind="lib" path="libraries/jutils-1.0.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="libraries/lwjgl_util-2.9.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="libraries/lwjgl-2.9.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="libraries/lwjgl-platform-2.9.1-natives-linux.jar"/>
+	<classpathentry exported="true" kind="lib" path="libraries/lwjgl-platform-2.9.1-natives-osx.jar"/>
+	<classpathentry exported="true" kind="lib" path="libraries/lwjgl-platform-2.9.1-natives-windows.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
