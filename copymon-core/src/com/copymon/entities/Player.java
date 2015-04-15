@@ -17,7 +17,7 @@ import com.copymon.fileHandling.ReadFromXml;
 import com.copymon.screens.Camera;
 import com.copymon.screens.Continue;
 import com.copymon.screens.CreatureHere;
-import com.copymon.screens.Fighting;
+import com.copymon.screens.FightingScreen;
 import com.copymon.screens.Inventory;
 import com.copymon.screens.Map;
 import com.copymon.screens.Menu;
@@ -582,7 +582,7 @@ public class Player extends Sprite implements InputProcessor {
 				// start attacking
 				System.out.println("ATTACK!!");
 				Continue.dispose();
-				Fighting.show();
+				FightingScreen.show();
 				Menu.setContinue(false);
 				Menu.setFighting(true);
 				/* take creature into inventory

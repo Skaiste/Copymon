@@ -33,7 +33,7 @@ public class Play implements Screen {
 		else if (isOptions)
 			Options.render();
 		else if (isFighting)
-			Fighting.render();
+			FightingScreen.render();
 		else
 			Menu.render();
 	}
@@ -59,7 +59,7 @@ public class Play implements Screen {
 		else if (isOptions)
 			Options.show();
 		else if (isFighting)
-			Fighting.show();
+			FightingScreen.show();
 		else 
 			Menu.show(camera);
 	}
@@ -86,7 +86,7 @@ public class Play implements Screen {
 		else if (isOptions)
 			Options.dispose();
 		else if (isFighting)
-			Fighting.dispose();
+			FightingScreen.dispose();
 		else 
 			Menu.dispose();
 		

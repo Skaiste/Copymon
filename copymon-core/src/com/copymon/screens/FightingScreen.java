@@ -13,7 +13,7 @@ import com.copymon.creatures.Creature;
 import com.copymon.creatures.PlayerCreatures;
 import com.copymon.creatures.Type;
 
-public class Fighting {
+public class FightingScreen {
 
 	// two screens in fighting that may go one after another:
 	//		1. Choosing creature at the start and if players creature is out of hp
@@ -39,6 +39,8 @@ public class Fighting {
 	private static PlayerCreatures playerCreatures;
 	
 	// ******************  Fighting screen  **************************
+	
+	
 	
 	public static void show(){
 		if (isChoosingScreen)
@@ -167,7 +169,7 @@ public class Fighting {
 					(y >= Play.getCamera().getHeight() - (runButton.getY() + runButton.getRegionHeight())) &&
 					(y <= Play.getCamera().getHeight() - runButton.getY()))
 				{
-					Fighting.dispose();
+					FightingScreen.dispose();
 					Continue.show();
 					Menu.setFighting(false);
 					Menu.setContinue(true);
@@ -180,7 +182,7 @@ public class Fighting {
 					(getSelectedCreature().getHp() != 0))
 				{
 
-					Fighting.dispose();
+					FightingScreen.dispose();
 					Continue.show();
 					Menu.setFighting(false);
 					Menu.setContinue(true);
