@@ -4,9 +4,6 @@ import com.copymon.fileHandling.ReadFromXml;
 
 public class Skill {
 
-	public enum Type {
-	    NORMAL, GRASS, FIRE, GHOST, ELECTRIC, ROCK, WATER, PSYCHIC, FLYING, FIGHTING, BUG, POISON, DARK, GROUND, STEEL 
-	}
 	
 	private String name;
 	private Type type;
@@ -16,6 +13,16 @@ public class Skill {
 	public Skill(String name, Type type) {
 		this.name = name;
 		this.type = type;
+	}
+	
+	public Skill(String name, String type) {
+		this.name = name;
+		this.type = convertStringToType(type);
+	}
+	
+	private Type convertStringToType(String t){
+		
+		return Type.ROCK;
 	}
 	
 	public String getName(){

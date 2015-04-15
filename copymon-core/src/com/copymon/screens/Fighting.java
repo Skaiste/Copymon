@@ -188,7 +188,7 @@ public class Fighting {
 		
 		// creature describtion
 		cImage.draw(batch);
-		cType.draw(batch, playerCreatures.getActiveCreature(selected).getType(), x, y)
+		//cType.draw(batch, playerCreatures.getActiveCreature(selected).getType(), x, y)
 		
 		batch.end();
 	}
