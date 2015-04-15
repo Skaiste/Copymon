@@ -31,7 +31,6 @@ public class Fighting {
 				return 100;
 			case BUG:
 				return 125;
-
 			case DARK:
 				return 100;
 
