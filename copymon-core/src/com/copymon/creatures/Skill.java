@@ -4,12 +4,16 @@ import com.copymon.fileHandling.ReadFromXml;
 
 public class Skill {
 
+	public enum Type {
+	    NORMAL, GRASS, FIRE, GHOST, ELECTRIC, STONE, WATER, PSYCHIC, FLYING, FIGHTING, BUG, POISON, DARK, GROUND, STEEL 
+	}
+	
 	private String name;
-	private String type;
+	private Type type;
 	final private String fileName1 = "continue/creatures/"; 
 	final private String fileName2 = "Skills.xml"; 
 	
-	public Skill(String name, String type) {
+	public Skill(String name, Type type) {
 		this.name = name;
 		this.type = type;
 	}
@@ -20,7 +24,7 @@ public class Skill {
 	public String getDisplayName(){
 		return ReadFromXml.readString(fileName1 + type + fileName2, name, "name");
 	}
-	public String getType(){
+	public Type getType(){
 		return type;
 	}
 	public String getDescribtion(){

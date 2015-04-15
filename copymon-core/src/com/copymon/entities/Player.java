@@ -17,8 +17,10 @@ import com.copymon.fileHandling.ReadFromXml;
 import com.copymon.screens.Camera;
 import com.copymon.screens.Continue;
 import com.copymon.screens.CreatureHere;
+import com.copymon.screens.Fighting;
 import com.copymon.screens.Inventory;
 import com.copymon.screens.Map;
+import com.copymon.screens.Menu;
 import com.copymon.screens.Play;
 import com.copymon.screens.PlayingMenu;
 import com.copymon.screens.SwitchCorS;
@@ -579,8 +581,14 @@ public class Player extends Sprite implements InputProcessor {
 			{
 				// start attacking
 				System.out.println("ATTACK!!");
+				Continue.dispose();
+				Fighting.show();
+				Menu.setContinue(false);
+				Menu.setFighting(true);
+				/* take creature into inventory
 				if (Continue.getPlayerCreatures().getActiveCreatures().size() < 6)
 					Continue.getPlayerCreatures().addActiveCreature(CreatureHere.getCreature());
+				*/
 				creatureAppeared = false;
 			}
 		}

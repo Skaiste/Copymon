@@ -19,6 +19,7 @@ public class Menu {
 						   isNewGame	  = false,
 						   isWithFriend	  = false,	
 						   isOptions	  = false,
+						   isFighting	  = false,
 						   gameHasStarted = Gdx.files.local("save.xml").exists(); //Gdx.app.getPreferences("Copymon Preferences").contains("gender");
 	
 	public static void render() {
@@ -170,5 +171,10 @@ public class Menu {
 	public static void setGameHasStarted(boolean gameHasStarted) {
 		Menu.gameHasStarted = gameHasStarted;
 	}
-	
+	public static boolean isFighting() {
+		return isFighting;
+	}
+	public static void setFighting(boolean isFighting) {
+		Menu.isFighting = isFighting;
+	}
 }

@@ -32,6 +32,8 @@ public class Play implements Screen {
 			;
 		else if (isOptions)
 			Options.render();
+		else if (isFighting)
+			Fighting.render();
 		else
 			Menu.render();
 	}
@@ -56,6 +58,8 @@ public class Play implements Screen {
 			;
 		else if (isOptions)
 			Options.show();
+		else if (isFighting)
+			Fighting.show();
 		else 
 			Menu.show(camera);
 	}
@@ -81,6 +85,8 @@ public class Play implements Screen {
 			;
 		else if (isOptions)
 			Options.dispose();
+		else if (isFighting)
+			Fighting.dispose();
 		else 
 			Menu.dispose();
 		
@@ -91,6 +97,7 @@ public class Play implements Screen {
 		isNewGame  	 = Menu.isNewGame();
 		isWithFriend = Menu.isWithFriend();
 		isOptions    = Menu.isOptions();
+		isFighting   = Menu.isFighting();
 	}
 
 	public static Camera getCamera() {
