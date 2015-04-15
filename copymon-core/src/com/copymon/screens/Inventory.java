@@ -157,7 +157,7 @@ public class Inventory {
 					
 					skillName.get(i).setScale(1.20f);
 					skillName.get(i).draw(batch, creatures().get(selectedCreature).getActiveSkillByIndex(currentSkill).getDisplayName(), skillBg.get(i).getX() + Gdx.graphics.getWidth() / 133.3333333f, skillBg.get(i).getY() + Gdx.graphics.getHeight() / 4.285714286f);
-					skillType.get(i).draw(batch, "Type: " + creatures().get(selectedCreature).getActiveSkillByIndex(currentSkill).getType(), skillBg.get(i).getX() + Gdx.graphics.getWidth() / 133.3333333f, skillBg.get(i).getY() + Gdx.graphics.getHeight() / 5.274725275f);
+					skillType.get(i).draw(batch, "Type: " + creatures().get(selectedCreature).getActiveSkillByIndex(currentSkill).getTypeInString(), skillBg.get(i).getX() + Gdx.graphics.getWidth() / 133.3333333f, skillBg.get(i).getY() + Gdx.graphics.getHeight() / 5.274725275f);
 					for (int j = 0; j < skillDescr.get(i).size(); j++)
 					{
 						skillDescr.get(i).get(j).draw(batch, skillDescrText.get(i).get(j), skillBg.get(i).getX() + Gdx.graphics.getWidth() / 133.3333333f, skillBg.get(i).getY() + Gdx.graphics.getHeight() / 6.486486486f - (Gdx.graphics.getHeight() / 28.23529412f) * j);

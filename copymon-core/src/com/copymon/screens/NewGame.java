@@ -324,7 +324,7 @@ public class NewGame {
 			descr2.draw(batch, d.get(4), Gdx.graphics.getWidth() / 2.461538462f, Gdx.graphics.getHeight() / 2.526315789f);
 		
 		// type
-		type.draw(batch, "Type: " + tmp.getType(), Gdx.graphics.getWidth() / 2.461538462f, Gdx.graphics.getHeight() / 2.840236686f);
+		type.draw(batch, "Type: " + tmp.getTypeInString(), Gdx.graphics.getWidth() / 2.461538462f, Gdx.graphics.getHeight() / 2.840236686f);
 		// health
 		hp.draw(batch, "Health: " + tmp.getHp(), Gdx.graphics.getWidth() / 2.461538462f, Gdx.graphics.getHeight() / 3.243243243f);
 		// ability power

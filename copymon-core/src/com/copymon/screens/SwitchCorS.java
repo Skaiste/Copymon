@@ -178,7 +178,7 @@ public class SwitchCorS {
 					// name
 					inactiveName.get(i).draw(batch, s.getDisplayName(), inactiveBg.get(i).getX() + Gdx.graphics.getWidth() / 133.3333333f, inactiveBg.get(i).getY() + Gdx.graphics.getHeight() / 4.285714286f);
 					// type
-					inactiveType.get(i).draw(batch, "Type: " + s.getType(), inactiveBg.get(i).getX() + Gdx.graphics.getWidth() / 133.3333333f, inactiveBg.get(i).getY() + Gdx.graphics.getHeight() / 5.274725275f);
+					inactiveType.get(i).draw(batch, "Type: " + s.getTypeInString(), inactiveBg.get(i).getX() + Gdx.graphics.getWidth() / 133.3333333f, inactiveBg.get(i).getY() + Gdx.graphics.getHeight() / 5.274725275f);
 					// description
 					for (int j = 0; j < inactiveSdescr.get(i).size(); j++)
 					{
@@ -197,7 +197,7 @@ public class SwitchCorS {
 					// level
 					inactiveClvl.get(i).draw(batch, "Level: " + c.getLvl(), inactiveBg.get(i).getX() + Gdx.graphics.getWidth() / 133.3333333f, inactiveBg.get(i).getY() + Gdx.graphics.getHeight() / 5.274725275f);
 					// type
-					inactiveType.get(i).draw(batch, "Type: " + c.getType(), inactiveBg.get(i).getX() + Gdx.graphics.getWidth() / 133.3333333f, inactiveBg.get(i).getY() + Gdx.graphics.getHeight() / 6.153846154f);
+					inactiveType.get(i).draw(batch, "Type: " + c.getTypeInString(), inactiveBg.get(i).getX() + Gdx.graphics.getWidth() / 133.3333333f, inactiveBg.get(i).getY() + Gdx.graphics.getHeight() / 6.153846154f);
 					// power
 					inactivePower.get(i).draw(batch, "Power: " + c.getAp(), inactiveBg.get(i).getX() + Gdx.graphics.getWidth() / 133.3333333f, inactiveBg.get(i).getY() + Gdx.graphics.getHeight() / 7.868852459f);
 					// defence
@@ -232,7 +232,7 @@ public class SwitchCorS {
 					// name
 					activeName.get(i).draw(batch, s.getDisplayName(), activeBg.get(i).getX() + Gdx.graphics.getWidth() / 133.3333333f, activeBg.get(i).getY() + Gdx.graphics.getHeight() / 4.285714286f);
 					// type
-					activeType.get(i).draw(batch, "Type: " + s.getType(), activeBg.get(i).getX() + Gdx.graphics.getWidth() / 133.3333333f, activeBg.get(i).getY() + Gdx.graphics.getHeight() / 5.274725275f);
+					activeType.get(i).draw(batch, "Type: " + s.getTypeInString(), activeBg.get(i).getX() + Gdx.graphics.getWidth() / 133.3333333f, activeBg.get(i).getY() + Gdx.graphics.getHeight() / 5.274725275f);
 					// description
 					for (int j = 0; j < activeSdescr.get(i).size(); j++)
 					{
@@ -251,7 +251,7 @@ public class SwitchCorS {
 					// level
 					activeClvl.get(i).draw(batch, "Level: " + c.getLvl(), activeBg.get(i).getX() + Gdx.graphics.getWidth() / 133.3333333f, activeBg.get(i).getY() + Gdx.graphics.getHeight() / 5.274725275f);
 					// type
-					activeType.get(i).draw(batch, "Type: " + c.getType(), activeBg.get(i).getX() + Gdx.graphics.getWidth() / 133.3333333f, activeBg.get(i).getY() + Gdx.graphics.getHeight() / 6.153846154f);
+					activeType.get(i).draw(batch, "Type: " + c.getTypeInString(), activeBg.get(i).getX() + Gdx.graphics.getWidth() / 133.3333333f, activeBg.get(i).getY() + Gdx.graphics.getHeight() / 6.153846154f);
 					// power
 					activePower.get(i).draw(batch, "Power: " + c.getAp(), activeBg.get(i).getX() + Gdx.graphics.getWidth() / 133.3333333f, activeBg.get(i).getY() + Gdx.graphics.getHeight() / 7.868852459f);
 					// defence
