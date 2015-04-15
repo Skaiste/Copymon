@@ -5,7 +5,7 @@ import com.copymon.fileHandling.ReadFromXml;
 public class Skill {
 
 	public enum Type {
-	    NORMAL, GRASS, FIRE, GHOST, ELECTRIC, STONE, WATER, PSYCHIC, FLYING, FIGHTING, BUG, POISON, DARK, GROUND, STEEL 
+	    NORMAL, GRASS, FIRE, GHOST, ELECTRIC, ROCK, WATER, PSYCHIC, FLYING, FIGHTING, BUG, POISON, DARK, GROUND, STEEL 
 	}
 	
 	private String name;
