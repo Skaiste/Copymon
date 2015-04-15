@@ -55,7 +55,9 @@ public class ReaderFromSave {
 			{
 				String cName = reader.getChildByName("activeCreatures").getChildByName(Integer.toString(i+1)).getAttribute("name");
 				int cLvl = reader.getChildByName("activeCreatures").getChildByName(Integer.toString(i+1)).getIntAttribute("lvl");
-				Creature c = new Creature(cName, cLvl, new ArrayList<Skill>(), new ArrayList<Skill>());
+				int cExp = reader.getChildByName("activeCreatures").getChildByName(Integer.toString(i+1)).getIntAttribute("exp");
+				int cHp = reader.getChildByName("activeCreatures").getChildByName(Integer.toString(i+1)).getIntAttribute("hp");
+				Creature c = new Creature(cName, cLvl, new ArrayList<Skill>(), new ArrayList<Skill>(), cExp, cHp);
 				// active skills
 				int skillN = reader.getChildByName("activeCreatures").getChildByName(Integer.toString(i+1)).getChildByName("activeSkills").getIntAttribute("n");
 				for (int j = 0; j < skillN; j++)
@@ -69,10 +71,6 @@ public class ReaderFromSave {
 				{
 					c.addSkillToInactive(j+1);
 				}
-
-				
-				int cExp = reader.getChildByName("activeCreatures").getChildByName(Integer.toString(i+1)).getIntAttribute("exp");
-				c.raiseExp(cExp);
 				
 				playerCreatures.addActiveCreature(c);
 			}
@@ -84,7 +82,9 @@ public class ReaderFromSave {
 			{
 				String cName = reader.getChildByName("inactiveCreatures").getChildByName(Integer.toString(i+1)).getAttribute("name");
 				int cLvl = reader.getChildByName("inactiveCreatures").getChildByName(Integer.toString(i+1)).getIntAttribute("lvl");
-				Creature c = new Creature(cName, cLvl, new ArrayList<Skill>(), new ArrayList<Skill>());
+				int cExp = reader.getChildByName("inactiveCreatures").getChildByName(Integer.toString(i+1)).getIntAttribute("exp");
+				int cHp = reader.getChildByName("inactiveCreatures").getChildByName(Integer.toString(i+1)).getIntAttribute("hp");
+				Creature c = new Creature(cName, cLvl, new ArrayList<Skill>(), new ArrayList<Skill>(), cExp, cHp);
 				// active skills
 				int skillN = reader.getChildByName("inactiveCreatures").getChildByName(Integer.toString(i+1)).getChildByName("activeSkills").getIntAttribute("n");
 				for (int j = 0; j < skillN; j++)
@@ -98,9 +98,6 @@ public class ReaderFromSave {
 				{
 					c.addSkillToInactive(j+1);
 				}
-				
-				int cExp = reader.getChildByName("inactiveCreatures").getChildByName(Integer.toString(i+1)).getIntAttribute("exp");
-				c.raiseExp(cExp);
 				
 				playerCreatures.addInactiveCreature(c);
 			}

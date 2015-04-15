@@ -4,12 +4,14 @@ import java.util.ArrayList;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputAdapter;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.copymon.creatures.Creature;
 import com.copymon.creatures.PlayerCreatures;
+import com.copymon.creatures.Type;
 
 public class Fighting {
 
@@ -19,7 +21,7 @@ public class Fighting {
 	
 	private static boolean isChoosingScreen = true; 		// states which of the screens should be on
 	
-	// Choosing creature screen
+	// **************  Choosing creature screen  ********************
 	// batch
 	private static SpriteBatch batch;
 	// background
@@ -36,7 +38,7 @@ public class Fighting {
 	// player creatures
 	private static PlayerCreatures playerCreatures;
 	
-	// Fighting screen
+	// ******************  Fighting screen  **************************
 	
 	public static void show(){
 		if (isChoosingScreen)
@@ -75,7 +77,7 @@ public class Fighting {
 			if (i == selected)
 				cBg.get(i).setTexture(new Texture("continue/fighting/selectedCreatureBg.gif"));
 			// set position
-			cBg.get(i).setPosition(Gdx.graphics.getWidth() / 25, Gdx.graphics.getHeight() / 1.558441558f + i * (Gdx.graphics.getHeight() / 8.571428571f));
+			cBg.get(i).setPosition(Gdx.graphics.getWidth() / 25, Gdx.graphics.getHeight() / 1.558441558f - i * (Gdx.graphics.getHeight() / 8.571428571f));
 			// set size
 			cBg.get(i).setSize(Gdx.graphics.getWidth() / 2.339181287f, Gdx.graphics.getHeight() / 9.6f);
 			
@@ -89,7 +91,8 @@ public class Fighting {
 		
 		// creature describtion
 		//		image
-		cImage = new Sprite(new Texture("continue/creatures/images/" + playerCreatures.getActiveCreature(selected).getName() + "/inventory.gif"));
+		cImage = new Sprite(new Texture("continue/creatures/images/" + getSelectedCreature().getName() + "/inventory.gif"));
+		cImage.setSize(cImage.getTexture().getWidth(), cImage.getTexture().getHeight());
 		cImage.setCenter(Gdx.graphics.getWidth() / 1.503759398f, Gdx.graphics.getHeight() / 1.849710983f);
 		//		hp bar
 		cHpBarBg = new Sprite(new Texture("continue/fighting/barBg.gif"));
@@ -99,20 +102,16 @@ public class Fighting {
 		cHpBar.setPosition(Gdx.graphics.getWidth() / 1.843317972f, Gdx.graphics.getHeight() / 3.609022556f);
 		//			size
 		cHpBarBg.setSize(Gdx.graphics.getWidth() / 2.469135802f, Gdx.graphics.getHeight() / 24);
-		int currentHp = getSelectedCreature().getHealth();
-		int fullHp = getSelectedCreature().getHp();
-		cHpBar.setSize(Gdx.graphics.getWidth() / 2.469135802f * ((currentHp == 0) ? (0) : (currentHp / fullHp)), Gdx.graphics.getHeight() / 24);
+		cHpBar.setSize(Gdx.graphics.getWidth() / 2.469135802f * getSelectedCreature().getHpPercentage() / 100, Gdx.graphics.getHeight() / 24);
 		//		exp bar
 		cExpBarBg = new Sprite(new Texture("continue/fighting/barBg.gif"));
 		cExpBar = new Sprite(new Texture("continue/fighting/ExpBar.gif"));
 		//			position
-		cExpBarBg.setPosition(Gdx.graphics.getWidth() / 1.843317972f, Gdx.graphics.getHeight() / 3.609022556f);
-		cExpBar.setPosition(Gdx.graphics.getWidth() / 1.843317972f, Gdx.graphics.getHeight() / 3.609022556f);
+		cExpBarBg.setPosition(Gdx.graphics.getWidth() / 1.843317972f, Gdx.graphics.getHeight() / 4.705882353f);
+		cExpBar.setPosition(Gdx.graphics.getWidth() / 1.843317972f, Gdx.graphics.getHeight() / 4.705882353f);
 		//			size
 		cExpBarBg.setSize(Gdx.graphics.getWidth() / 2.469135802f, Gdx.graphics.getHeight() / 24);
-		int currentExp = getSelectedCreature().getExp();
-		int fullExp = (int) Math.pow(getSelectedCreature().getLvl() * 3, 3);
-		cHpBar.setSize(Gdx.graphics.getWidth() / 2.469135802f * ((currentExp == 0) ? (0) : (currentExp / fullExp)), Gdx.graphics.getHeight() / 24);
+		cExpBar.setSize(Gdx.graphics.getWidth() / 2.469135802f * (getSelectedCreature().getExpPercentage() / 100), Gdx.graphics.getHeight() / 24);
 		// 		bar labels
 		cHpLabel = new BitmapFont(Gdx.files.internal("terminal.fnt"), Gdx.files.internal("terminal2.png"), false);
 		cHp = new BitmapFont(Gdx.files.internal("terminal.fnt"), Gdx.files.internal("terminal2.png"), false);
@@ -120,27 +119,58 @@ public class Fighting {
 		cExp = new BitmapFont(Gdx.files.internal("terminal.fnt"), Gdx.files.internal("terminal2.png"), false);
 		//		type
 		cType = new BitmapFont(Gdx.files.internal("terminal.fnt"), Gdx.files.internal("terminal2 - Copy.png"), false);
+		cType.setColor(setFontBgColor(getSelectedCreature().getType()));
+		cType.setScale(1.75f);
 		//		power
 		cPower = new BitmapFont(Gdx.files.internal("terminal.fnt"), Gdx.files.internal("terminal2.png"), false);
+		cPower.setScale(1.5f);
 		//		defence
 		cDefence = new BitmapFont(Gdx.files.internal("terminal.fnt"), Gdx.files.internal("terminal2.png"), false);
+		cDefence.setScale(1.5f);
 		//		agility
 		cAgility = new BitmapFont(Gdx.files.internal("terminal.fnt"), Gdx.files.internal("terminal2.png"), false);
+		cAgility.setScale(1.5f);
 		
 		// action buttons
 		runButton = new Sprite(new Texture("continue/fighting/runButton.gif"));
+		runButton.setPosition(Gdx.graphics.getWidth() / 1.449275362f, Gdx.graphics.getHeight() / 18.46153846f);
 		fightButton = new Sprite(new Texture("continue/fighting/fightButton.gif"));
+		fightButton.setPosition(Gdx.graphics.getWidth() / 1.219512195f, Gdx.graphics.getHeight() / 18.46153846f);
 		updateFightButton();
 		
 		Gdx.input.setInputProcessor(new InputAdapter () {
 			public boolean touchDown (int x, int y, int pointer, int button) {
+				// creature list
+				for (int i = 0; i < playerCreatures.getActiveCreatureN(); i++){
+					if ((x >= cBg.get(i).getX()) &&
+						(x <= cBg.get(i).getX() + cBg.get(i).getWidth()) &&
+						(y >= Play.getCamera().getHeight() - (cBg.get(i).getY() + cBg.get(i).getHeight())) &&
+						(y <= Play.getCamera().getHeight() - cBg.get(i).getY()))
+					{
+						int tmp = selected;
+						selected = i;
+						// update describtion (creature image, hp and exp bars and fight button)
+						cImage.setTexture(new Texture("continue/creatures/images/" + getSelectedCreature().getName() + "/inventory.gif"));
+						cImage.setSize(cImage.getTexture().getWidth(), cImage.getTexture().getHeight());
+						cImage.setCenter(Gdx.graphics.getWidth() / 1.503759398f, Gdx.graphics.getHeight() / 1.849710983f);
+						cBg.get(i).setTexture(new Texture("continue/fighting/selectedCreatureBg.gif"));
+						cBg.get(tmp).setTexture(new Texture("continue/fighting/creatureBg.gif"));
+						cHpBar.setSize(Gdx.graphics.getWidth() / 2.469135802f * getSelectedCreature().getHpPercentage() / 100, Gdx.graphics.getHeight() / 24);
+						cExpBar.setSize(Gdx.graphics.getWidth() / 2.469135802f * getSelectedCreature().getExpPercentage() / 100, Gdx.graphics.getHeight() / 24);
+						cType.setColor(setFontBgColor(getSelectedCreature().getType()));
+						updateFightButton();
+					}
+				}
 				// run button
 				if ((x >= runButton.getX()) &&
 					(x <= runButton.getX() + runButton.getRegionWidth()) &&
 					(y >= Play.getCamera().getHeight() - (runButton.getY() + runButton.getRegionHeight())) &&
 					(y <= Play.getCamera().getHeight() - runButton.getY()))
 				{
-					
+					Fighting.dispose();
+					Continue.show();
+					Menu.setFighting(false);
+					Menu.setContinue(true);
 				}
 				// fight button
 				else if ((x >= fightButton.getX()) &&
@@ -149,26 +179,17 @@ public class Fighting {
 					(y <= Play.getCamera().getHeight() - fightButton.getY()) &&
 					(getSelectedCreature().getHp() != 0))
 				{
-					startFighting();
-				}
-				for (int i = 0; i < playerCreatures.getActiveCreatureN(); i++){
-					if ((x >= cBg.get(i).getX()) &&
-						(x <= cBg.get(i).getX() + cBg.get(i).getRegionWidth()) &&
-						(y >= Play.getCamera().getHeight() - (cBg.get(i).getY() + cBg.get(i).getRegionHeight())) &&
-						(y <= Play.getCamera().getHeight() - cBg.get(i).getY()))
-					{
-						selected = i;
-						// update describtion (creature image, hp and exp bars and fight button)
-						cImage.setTexture(new Texture("continue/creatures/images/" + playerCreatures.getActiveCreature(selected).getName() + "/inventory.gif"));
-						cImage.setCenter(Gdx.graphics.getWidth() / 1.503759398f, Gdx.graphics.getHeight() / 1.849710983f);
-						int currentHp = getSelectedCreature().getHealth();
-						int fullHp = getSelectedCreature().getHp();
-						cHpBar.setSize(Gdx.graphics.getWidth() / 2.469135802f * ((currentHp == 0) ? (0) : (currentHp / fullHp)), Gdx.graphics.getHeight() / 24);
-						int currentExp = getSelectedCreature().getExp();
-						int fullExp = (int) Math.pow(getSelectedCreature().getLvl() * 3, 3);
-						cHpBar.setSize(Gdx.graphics.getWidth() / 2.469135802f * ((currentExp == 0) ? (0) : (currentExp / fullExp)), Gdx.graphics.getHeight() / 24);
-						updateFightButton();
-					}
+
+					Fighting.dispose();
+					Continue.show();
+					Menu.setFighting(false);
+					Menu.setContinue(true);
+					
+					// take creature into inventory
+					if (Continue.getPlayerCreatures().getActiveCreatures().size() < 6)
+						Continue.getPlayerCreatures().addActiveCreature(CreatureHere.getCreature());
+
+					//startFighting();
 				}
 				return true;				
 			}
@@ -188,7 +209,26 @@ public class Fighting {
 		
 		// creature describtion
 		cImage.draw(batch);
-		//cType.draw(batch, playerCreatures.getActiveCreature(selected).getTypeInString(), x, y)
+		cType.draw(batch, getSelectedCreature().getTypeInString(), Gdx.graphics.getWidth() / 1.25f, Gdx.graphics.getHeight() / 1.4f);
+		cPower.draw(batch, "Power: " + getSelectedCreature().getAp(), Gdx.graphics.getWidth() / 1.25f, Gdx.graphics.getHeight() / 1.563517915f);
+		cDefence.draw(batch, "Defence: " + getSelectedCreature().getDefence(), Gdx.graphics.getWidth() / 1.25f, Gdx.graphics.getHeight() / 1.77028451f);
+		cAgility.draw(batch, "Agility: " + getSelectedCreature().getAgility(), Gdx.graphics.getWidth() / 1.25f, Gdx.graphics.getHeight() / 2.04007286f);
+		
+		//		hp bar
+		cHpBarBg.draw(batch);
+		cHpBar.draw(batch);
+		cHpLabel.draw(batch, "Health:", cHpBarBg.getX() + cHpLabel.getBounds("A").width, cHpBarBg.getY() + cHpBarBg.getHeight());
+		cHp.draw(batch, getSelectedCreature().getHpPercentage() + "%", cHpBarBg.getX() + cHpBarBg.getWidth() / 2, cHpBarBg.getY() + cHpBarBg.getHeight());
+		
+		//		exp bar
+		cExpBarBg.draw(batch);
+		cExpBar.draw(batch);
+		cExpLabel.draw(batch, "Exp:", cExpBarBg.getX() + cExpLabel.getBounds("A").width, cExpBarBg.getY() + cExpBarBg.getHeight());
+		cExp.draw(batch, getSelectedCreature().getExpPercentage() + "%", cExpBarBg.getX() + cExpBarBg.getWidth() / 2, cExpBarBg.getY() + cExpBarBg.getHeight());
+		
+		// action button
+		runButton.draw(batch);
+		fightButton.draw(batch);
 		
 		batch.end();
 	}
@@ -225,6 +265,8 @@ public class Fighting {
 		// action buttons
 		runButton.getTexture().dispose();
 		fightButton.getTexture().dispose();
+		
+		Gdx.input.setInputProcessor(null);
 	}
 	
 	private static void showFighting(){
@@ -261,5 +303,42 @@ public class Fighting {
 	
 	private static Creature getSelectedCreature(){
 		return playerCreatures.getActiveCreature(selected);
+	}
+	
+	private static Color setFontBgColor(Type t){
+		switch (t){
+		case BUG:
+			return new Color(0.568627451f, 0.611764706f, 0.007843137f, 1);
+		case DARK:
+			return new Color(1, 1, 1, 1);
+		case ELECTRIC:
+			return new Color(1, 0.996078431f, 0.6f, 1);
+		case FIGHTING:
+			return new Color(0.776470588f, 0.270588235f, 0.066666667f, 1);
+		case FIRE:
+			return new Color(0.996078431f, 0.423529412f, 0.423529412f, 1);
+		case FLYING:
+			return new Color(0.91372549f, 0.639215686f, 0.847058824f, 1);
+		case GHOST:
+			return new Color(0.439215686f, 0.188235294f, 0.62745098f, 1);
+		case GRASS:
+			return new Color(0.662745098f, 0.815686275f, 0.556862745f, 1);
+		case GROUND:
+			return new Color(1, 1, 1, 1);
+		case NORMAL:
+			return new Color(1, 1, 1, 1);
+		case POISON:
+			return new Color(1, 1, 1, 1);
+		case PSYCHIC:
+			return new Color(1, 0.835294118f, 0.929411765f, 1);
+		case ROCK:
+			return new Color(0.749019608f, 0.749019608f, 0.749019608f, 1);
+		case STEEL:
+			return new Color(1, 1, 1, 1);
+		case WATER:
+			return new Color(0.607843137f, 0.760784314f, 0.901960784f, 1);
+		default:
+			return new Color(1, 1, 1, 1);
+		}
 	}
 }

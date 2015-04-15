@@ -25,6 +25,14 @@ public class Creature {
 		activeSkills = actives;
 		health = getHp();
 	}
+	public Creature(String name, int lvl, ArrayList<Skill> inactives, ArrayList<Skill> actives, int exp, int hp){
+		this.name = name;
+		this.exp = exp;
+		this.lvl = lvl;
+		inactiveSkills = inactives;
+		activeSkills = actives;
+		health = hp;
+	}
 	
 	public void getStartingSkills(){
 		for (int i = 1; i <= 2; i++)
@@ -191,11 +199,10 @@ public class Creature {
 	
 	public boolean levelUp(){
 		boolean up = false;
-		int needExp = (int) Math.pow(lvl * 3, 3);
-		if ((exp >= needExp) && (lvl < maxLvl))
+		if ((exp >= getExpToLvlUp()) && (lvl < maxLvl))
 		{
 			up = true;
-			exp -= needExp;
+			exp -= getExpToLvlUp();
 			raiseLvl();
 		} 
 		return up;
@@ -266,6 +273,22 @@ public class Creature {
 	
 	public void setFullHp(){
 		health = getHp();
+	}
+	
+	public int getHpPercentage(){
+		if (health != 0){
+			return (int) (health * 1.0 / getHp() * 100);
+		}
+		return 0;
+	}
+	public int getExpToLvlUp(){
+		return (int) Math.pow(lvl * 3, 3);
+	}
+	public int getExpPercentage(){
+		if(exp != 0){
+			return (int) (exp * 1.0 / getExpToLvlUp() * 100);
+		}
+		return 0;
 	}
 	
 	private Type convertStringToType(String t){

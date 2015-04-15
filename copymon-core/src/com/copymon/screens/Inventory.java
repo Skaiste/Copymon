@@ -129,9 +129,9 @@ public class Inventory {
 				crName.get(i).draw(batch, creatures().get(currentCreature).getRealName(), creatureBg.get(i).getX() + Gdx.graphics.getWidth() / 133.3333333f,  creatureBg.get(i).getY() + Gdx.graphics.getHeight() / 5.552631578947f);
 				crLv.get(i).draw(batch, creatures().get(currentCreature).getLvl() + " Level", creatureBg.get(i).getX() + Gdx.graphics.getWidth() / 133.3333333f + crBarBg4Hp.get(i).getWidth() - crLv.get(i).getBounds(creatures().get(currentCreature).getLvl() + " Level").width,  creatureBg.get(i).getY() + Gdx.graphics.getHeight() / 5.552631578947f);
 				crHp.get(i).draw(batch, "Health:", creatureBg.get(i).getX() + Gdx.graphics.getWidth() / 80, creatureBg.get(i).getY() + Gdx.graphics.getHeight() / 8.13f);
-				crHpPer.get(i).draw(batch, "100%", crBarBg4Hp.get(i).getX() + crBarBg4Hp.get(i).getWidth()/2 - crHpPer.get(i).getBounds("100%").width/2, creatureBg.get(i).getY() + Gdx.graphics.getHeight() / 8.13f);
+				crHpPer.get(i).draw(batch, creatures().get(currentCreature).getHpPercentage() + "%", crBarBg4Hp.get(i).getX() + crBarBg4Hp.get(i).getWidth()/2 - crHpPer.get(i).getBounds("100%").width/2, creatureBg.get(i).getY() + Gdx.graphics.getHeight() / 8.13f);
 				crExp.get(i).draw(batch, "Exp:", creatureBg.get(i).getX() + Gdx.graphics.getWidth() / 80, creatureBg.get(i).getY() + Gdx.graphics.getHeight() / 17.14f);
-				crExpPer.get(i).draw(batch, "0%", creatureBg.get(i).getX() + crBarBg4Exp.get(i).getWidth()/2 - crExpPer.get(i).getBounds("0%").width/2, creatureBg.get(i).getY() + Gdx.graphics.getHeight() / 17.14f);
+				crExpPer.get(i).draw(batch, creatures().get(currentCreature).getExpPercentage() + "%", creatureBg.get(i).getX() + crBarBg4Exp.get(i).getWidth()/2 - crExpPer.get(i).getBounds("0%").width/2, creatureBg.get(i).getY() + Gdx.graphics.getHeight() / 17.14f);
 			}
 		}
 		
@@ -392,16 +392,12 @@ public class Inventory {
 				// Health Bar
 				crHpBar.add(new Sprite(new Texture("continue/inventory/hpBar.gif")));
 				crHpBar.get(i).setPosition(creatureBg.get(i).getX() + Gdx.graphics.getWidth() / 133.3333333f, creatureBg.get(i).getY() + Gdx.graphics.getHeight() / 12.30769231f);
-				int currentHp = creatures().get(currentCreature).getHealth();
-				int fullHp = creatures().get(currentCreature).getHp();
-				crHpBar.get(i).setSize(Gdx.graphics.getWidth() / 3.827751196f * ((currentHp == 0) ? (0) : (currentHp / fullHp)), Gdx.graphics.getHeight() / 24); 	// currentExp / fullExp
+				crHpBar.get(i).setSize(Gdx.graphics.getWidth() / 3.827751196f * creatures().get(currentCreature).getHpPercentage() / 100, Gdx.graphics.getHeight() / 24); 	// currentExp / fullExp
 				
 				// Experience bar
 				crExpBar.add(new Sprite(new Texture("continue/inventory/ExpBar.gif")));
 				crExpBar.get(i).setPosition(creatureBg.get(i).getX() + Gdx.graphics.getWidth() / 133.3333333f, creatureBg.get(i).getY() + Gdx.graphics.getHeight() / 60);
-				int currentExp = creatures().get(currentCreature).getExp();
-				int fullExp = (int) Math.pow(creatures().get(currentCreature).getLvl() * 3, 3);
-				crExpBar.get(i).setSize(Gdx.graphics.getWidth() / 3.827751196f * ((currentExp == 0) ? (0) : (currentExp / fullExp)), Gdx.graphics.getHeight() / 24);
+				crExpBar.get(i).setSize(Gdx.graphics.getWidth() / 3.827751196f * creatures().get(currentCreature).getExpPercentage() / 100, Gdx.graphics.getHeight() / 24);
 				
 				// BITMAP FONTS
 				

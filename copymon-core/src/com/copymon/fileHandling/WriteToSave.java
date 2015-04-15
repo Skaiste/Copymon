@@ -42,12 +42,13 @@ public class WriteToSave {
 					.attribute("name", playerCreatures.getActiveCreatures().get(j).getName())
 					.attribute("lvl", playerCreatures.getActiveCreatures().get(j).getLvl())
 					.attribute("exp", playerCreatures.getActiveCreatures().get(j).getExp())
+					.attribute("hp", playerCreatures.getActiveCreatures().get(j).getHealth())
 						.element("activeSkills")
 						.attribute("n", playerCreatures.getActiveCreatures().get(j).getActiveSkillN());
 						for(int i = 0; i < playerCreatures.getActiveCreatures().get(j).getActiveSkillN(); i++)
 						{
 							xml.attribute("name" + (i+1), playerCreatures.getActiveCreatures().get(j).getActiveSkillByIndex(i).getName())
-							   .attribute("type" + (i+1), playerCreatures.getActiveCreatures().get(j).getActiveSkillByIndex(i).getType());
+							   .attribute("type" + (i+1), playerCreatures.getActiveCreatures().get(j).getActiveSkillByIndex(i).getTypeInString());
 						}
 						xml.pop()
 						.element("inactiveSkills")
@@ -55,7 +56,7 @@ public class WriteToSave {
 						for(int i = 0; i < playerCreatures.getActiveCreatures().get(j).getInactiveSkillN(); i++)
 						{
 							xml.attribute("name" + (i+1), playerCreatures.getActiveCreatures().get(j).getInactiveSkillByIndex(i).getName())
-							   .attribute("type" + (i+1), playerCreatures.getActiveCreatures().get(j).getInactiveSkillByIndex(i).getType());
+							   .attribute("type" + (i+1), playerCreatures.getActiveCreatures().get(j).getInactiveSkillByIndex(i).getTypeInString());
 						}
 						xml.pop()
 					.pop();
@@ -69,12 +70,13 @@ public class WriteToSave {
 					.attribute("name", playerCreatures.getInactiveCreatures().get(j).getName())
 					.attribute("lvl", playerCreatures.getInactiveCreatures().get(j).getLvl())
 					.attribute("exp", playerCreatures.getInactiveCreatures().get(j).getExp())
+					.attribute("hp", playerCreatures.getInactiveCreatures().get(j).getHealth())
 						.element("activeSkills")
 						.attribute("n", playerCreatures.getInactiveCreatures().get(j).getActiveSkillN());
 						for(int i = 0; i < playerCreatures.getInactiveCreatures().get(j).getActiveSkillN(); i++)
 						{
 							xml.attribute("name" + (i+1), playerCreatures.getInactiveCreatures().get(j).getActiveSkillByIndex(i).getName())
-							   .attribute("type" + (i+1), playerCreatures.getInactiveCreatures().get(j).getActiveSkillByIndex(i).getType());
+							   .attribute("type" + (i+1), playerCreatures.getInactiveCreatures().get(j).getActiveSkillByIndex(i).getTypeInString());
 						}
 						xml.pop()
 						.element("inactiveSkills")
@@ -82,7 +84,7 @@ public class WriteToSave {
 						for(int i = 0; i < playerCreatures.getInactiveCreatures().get(j).getInactiveSkillN(); i++)
 						{
 							xml.attribute("name" + (i+1), playerCreatures.getInactiveCreatures().get(j).getInactiveSkillByIndex(i).getName())
-							   .attribute("type" + (i+1), playerCreatures.getInactiveCreatures().get(j).getInactiveSkillByIndex(i).getType());
+							   .attribute("type" + (i+1), playerCreatures.getInactiveCreatures().get(j).getInactiveSkillByIndex(i).getTypeInString());
 						}
 						xml.pop()
 					.pop();
@@ -148,7 +150,7 @@ public class WriteToSave {
 						for(int i = 0; i < c.getActiveSkillN(); i++)
 						{
 							xml.attribute("name" + (i+1), c.getActiveSkillByIndex(i).getName())
-							   .attribute("type" + (i+1), c.getActiveSkillByIndex(i).getType());
+							   .attribute("type" + (i+1), c.getActiveSkillByIndex(i).getTypeInString());
 						}
 						xml.pop()
 						.element("inactiveSkills")
@@ -156,7 +158,7 @@ public class WriteToSave {
 						for(int i = 0; i < c.getInactiveSkillN(); i++)
 						{
 							xml.attribute("name" + (i+1), c.getInactiveSkillByIndex(i).getName())
-							   .attribute("type" + (i+1), c.getInactiveSkillByIndex(i).getType());
+							   .attribute("type" + (i+1), c.getInactiveSkillByIndex(i).getTypeInString());
 						}
 						xml.pop()
 					.pop()
