@@ -29,7 +29,6 @@ public class Fighting {
 			switch(skillType){
 			case GRASS:
 				return 100;
-
 			case BUG:
 				return 125;
 
