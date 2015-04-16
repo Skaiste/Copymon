@@ -12,7 +12,12 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.copymon.creatures.Creature;
 import com.copymon.creatures.PlayerCreatures;
 import com.copymon.creatures.Type;
+import com.copymon.fighting.Fighting;
 
+/**
+ * @author Skaiste
+ *
+ */
 public class FightingScreen {
 
 	// two screens in fighting that may go one after another:
@@ -20,12 +25,13 @@ public class FightingScreen {
 	//		2. Fighting
 	
 	private static boolean isChoosingScreen = true; 		// states which of the screens should be on
-	
-	// **************  Choosing creature screen  ********************
+	private static boolean againstBot = false;
 	// batch
 	private static SpriteBatch batch;
 	// background
 	private static Sprite bg;
+	
+	// **************  Choosing creature screen  ********************
 	// list of creatures in team
 	private static ArrayList <Sprite> cBg;
 	private static ArrayList <BitmapFont> cNames, cLvls;
@@ -39,7 +45,7 @@ public class FightingScreen {
 	private static PlayerCreatures playerCreatures;
 	
 	// ******************  Fighting screen  **************************
-	
+	private static Fighting fighting;
 	
 	
 	public static void show(){
@@ -272,13 +278,20 @@ public class FightingScreen {
 	}
 	
 	private static void showFighting(){
-		
+		fighting = new Fighting(CreatureHere.getCreature(), getSelectedCreature());
+		// batch
+		batch = new SpriteBatch();
+		// background
+		bg = new Sprite(new Texture("continue/fighting/fightingBg.gif"));
 	}
 	private static void renderFighting(){
-		
+		batch.begin();
+		bg.draw(batch);
+		batch.end();
 	}
 	private static void disposeFighting(){
-		
+		batch.dispose();
+		bg.getTexture().dispose();
 	}
 	
 	private static void updateFightButton(){
@@ -342,5 +355,11 @@ public class FightingScreen {
 		default:
 			return new Color(1, 1, 1, 1);
 		}
+	}
+	public static boolean isAgainstBot() {
+		return againstBot;
+	}
+	public static void setAgainstBot(boolean againstBot) {
+		FightingScreen.againstBot = againstBot;
 	}
 }

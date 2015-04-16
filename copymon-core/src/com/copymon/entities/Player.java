@@ -585,6 +585,7 @@ public class Player extends Sprite implements InputProcessor {
 				FightingScreen.show();
 				Menu.setContinue(false);
 				Menu.setFighting(true);
+				FightingScreen.setAgainstBot(true);
 				/* take creature into inventory
 				if (Continue.getPlayerCreatures().getActiveCreatures().size() < 6)
 					Continue.getPlayerCreatures().addActiveCreature(CreatureHere.getCreature());
