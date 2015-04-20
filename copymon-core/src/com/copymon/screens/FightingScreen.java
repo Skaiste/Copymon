@@ -46,6 +46,21 @@ public class FightingScreen {
 	
 	// ******************  Fighting screen  **************************
 	private static Fighting fighting;
+	// creature status
+	private static Sprite firstPstatusBg, firstPHpBarBg, firstPHpBar, firstPExpBarBg, firstPExpBar;
+	private static BitmapFont firstPName, firstPLevel, firstPType, firstPHpBarLabel, firstPHp, firstPExpBarLabel, firstPExp;
+	private static Sprite secondPstatusBg, secondPHpBarBg, secondPHpBar;
+	private static BitmapFont secondPName, secondPLevel, secondPType, secondPHpBarLabel, secondPHp;
+	// skill panel
+	private static Sprite runInFightButton, changeCreatureButton;
+	private static ArrayList <Sprite> skillBg;
+	private static ArrayList <BitmapFont> skillNames;
+	private static boolean shouldShowSkills = true;
+	private static boolean hasChosenSkill = false;
+	// log
+	private static ArrayList <BitmapFont> log;
+	// creatures
+	private static Sprite creature1image, creature2image;
 	
 	
 	public static void show(){
@@ -162,7 +177,8 @@ public class FightingScreen {
 						cImage.setSize(cImage.getTexture().getWidth(), cImage.getTexture().getHeight());
 						cImage.setCenter(Gdx.graphics.getWidth() / 1.503759398f, Gdx.graphics.getHeight() / 1.849710983f);
 						cBg.get(i).setTexture(new Texture("continue/fighting/selectedCreatureBg.gif"));
-						cBg.get(tmp).setTexture(new Texture("continue/fighting/creatureBg.gif"));
+						if (i != tmp)
+							cBg.get(tmp).setTexture(new Texture("continue/fighting/creatureBg.gif"));
 						cHpBar.setSize(Gdx.graphics.getWidth() / 2.469135802f * getSelectedCreature().getHpPercentage() / 100, Gdx.graphics.getHeight() / 24);
 						cExpBar.setSize(Gdx.graphics.getWidth() / 2.469135802f * getSelectedCreature().getExpPercentage() / 100, Gdx.graphics.getHeight() / 24);
 						cType.setColor(setFontBgColor(getSelectedCreature().getType()));
@@ -187,7 +203,7 @@ public class FightingScreen {
 					(y <= Play.getCamera().getHeight() - fightButton.getY()) &&
 					(getSelectedCreature().getHp() != 0))
 				{
-
+					/*
 					FightingScreen.dispose();
 					Continue.show();
 					Menu.setFighting(false);
@@ -196,8 +212,8 @@ public class FightingScreen {
 					// take creature into inventory
 					if (Continue.getPlayerCreatures().getActiveCreatures().size() < 6)
 						Continue.getPlayerCreatures().addActiveCreature(CreatureHere.getCreature());
-
-					//startFighting();
+*/
+					startFighting();
 				}
 				return true;				
 			}
@@ -246,7 +262,7 @@ public class FightingScreen {
 		// background
 		bg.getTexture().dispose();
 		// creature list
-		for (int i = 0; i < playerCreatures.getActiveCreatureN(); i++){
+		for (int i = 0; i < cBg.size(); i++){
 			cBg.get(i).getTexture().dispose();
 			cNames.get(i).dispose();
 			cLvls.get(i).dispose();
@@ -283,15 +299,278 @@ public class FightingScreen {
 		batch = new SpriteBatch();
 		// background
 		bg = new Sprite(new Texture("continue/fighting/fightingBg.gif"));
+		
+		// first player status 
+		//		background
+		firstPstatusBg = new Sprite(new Texture("continue/fighting/1Pstatus.gif"));
+		firstPstatusBg.setSize(Gdx.graphics.getWidth() / 3.112840467f, Gdx.graphics.getHeight() / 4.173913043f);
+		firstPstatusBg.setPosition(Gdx.graphics.getWidth() / 16.66666667f, Gdx.graphics.getHeight() / 1.375358166f);
+		// 		health bar
+		//			background
+		firstPHpBarBg = new Sprite(new Texture("continue/fighting/barBg.gif"));
+		firstPHpBarBg.setSize(Gdx.graphics.getWidth() / 3.265306122f, Gdx.graphics.getHeight() / 24);
+		firstPHpBarBg.setPosition(Gdx.graphics.getWidth() / 14.81481481f, Gdx.graphics.getHeight() / 1.256544503f);
+		//			bar itself
+		firstPHpBar = new Sprite(new Texture("continue/fighting/hpBar.gif"));
+		firstPHpBar.setSize(Gdx.graphics.getWidth() / 3.265306122f * getSelectedCreature().getHpPercentage() / 100, Gdx.graphics.getHeight() / 24);
+		firstPHpBar.setPosition(Gdx.graphics.getWidth() / 14.81481481f, Gdx.graphics.getHeight() / 1.256544503f);
+		//		exp bar
+		//			background
+		firstPExpBarBg = new Sprite(new Texture("continue/fighting/barBg.gif"));
+		firstPExpBarBg.setSize(Gdx.graphics.getWidth() / 4.255319149f, Gdx.graphics.getHeight() / 36.92307692f);
+		firstPExpBarBg.setPosition(Gdx.graphics.getWidth() / 13.33333333f, Gdx.graphics.getHeight() / 1.355932203f);
+		//			bar itself
+		firstPExpBar = new Sprite(new Texture("continue/fighting/ExpBar.gif"));
+		firstPExpBar.setSize(Gdx.graphics.getWidth() / 4.255319149f * getSelectedCreature().getExpPercentage() / 100, Gdx.graphics.getHeight() / 36.92307692f);
+		firstPExpBar.setPosition(Gdx.graphics.getWidth() / 13.33333333f, Gdx.graphics.getHeight() / 1.355932203f);
+		//		fonts
+		firstPName = new BitmapFont(Gdx.files.internal("terminal.fnt"), Gdx.files.internal("terminal2.png"), false);
+		firstPName.setScale(1.5f);
+		firstPLevel = new BitmapFont(Gdx.files.internal("terminal.fnt"), Gdx.files.internal("terminal2.png"), false);
+		firstPLevel.setScale(1.25f);
+		firstPType = new BitmapFont(Gdx.files.internal("terminal.fnt"), Gdx.files.internal("terminal2 - Copy.png"), false);
+		firstPType.setScale(1.25f);
+		firstPType.setColor(setFontBgColor(getSelectedCreature().getType()));
+		firstPHpBarLabel = new BitmapFont(Gdx.files.internal("terminal.fnt"), Gdx.files.internal("terminal2.png"), false);
+		firstPHp = new BitmapFont(Gdx.files.internal("terminal.fnt"), Gdx.files.internal("terminal2.png"), false);
+		firstPExpBarLabel = new BitmapFont(Gdx.files.internal("terminal.fnt"), Gdx.files.internal("terminal2.png"), false);
+		firstPExp = new BitmapFont(Gdx.files.internal("terminal.fnt"), Gdx.files.internal("terminal2.png"), false);
+		
+		// second player status
+		//		background
+		secondPstatusBg = new Sprite(new Texture("continue/fighting/2Pstatus.gif"));
+		secondPstatusBg.setSize(Gdx.graphics.getWidth() / 3.112840467f, Gdx.graphics.getHeight() / 5.161290323f);
+		secondPstatusBg.setPosition(Gdx.graphics.getWidth() / 1.616161616f, Gdx.graphics.getHeight() / 1.293800539f);
+		// 		health bar
+		//			background
+		secondPHpBarBg = new Sprite(new Texture("continue/fighting/barBg.gif"));
+		secondPHpBarBg.setSize(Gdx.graphics.getWidth() / 3.265306122f, Gdx.graphics.getHeight() / 24);
+		secondPHpBarBg.setPosition(Gdx.graphics.getWidth() / 1.596806387f, Gdx.graphics.getHeight() / 1.256544503f);
+		//			bar itself
+		secondPHpBar = new Sprite(new Texture("continue/fighting/hpBar.gif"));
+		secondPHpBar.setSize(Gdx.graphics.getWidth() / 3.265306122f * getOpponentCreature().getHpPercentage() / 100, Gdx.graphics.getHeight() / 24);
+		secondPHpBar.setPosition(Gdx.graphics.getWidth() / 1.596806387f, Gdx.graphics.getHeight() / 1.256544503f);
+		//		fonts
+		secondPName = new BitmapFont(Gdx.files.internal("terminal.fnt"), Gdx.files.internal("terminal2.png"), false);
+		secondPName.setScale(1.5f);
+		secondPLevel = new BitmapFont(Gdx.files.internal("terminal.fnt"), Gdx.files.internal("terminal2.png"), false);
+		secondPLevel.setScale(1.25f);
+		secondPType = new BitmapFont(Gdx.files.internal("terminal.fnt"), Gdx.files.internal("terminal2 - Copy.png"), false);
+		secondPType.setScale(1.25f);
+		secondPType.setColor(setFontBgColor(getOpponentCreature().getType()));
+		secondPHpBarLabel = new BitmapFont(Gdx.files.internal("terminal.fnt"), Gdx.files.internal("terminal2.png"), false);
+		secondPHp = new BitmapFont(Gdx.files.internal("terminal.fnt"), Gdx.files.internal("terminal2.png"), false);
+				
+		// skill panel
+		//		run button
+		runInFightButton = new Sprite(new Texture("continue/fighting/runFromFight.gif"));
+		runInFightButton.setSize(Gdx.graphics.getWidth() / 9.411764706f, Gdx.graphics.getHeight() / 15.48387097f);
+		runInFightButton.setPosition(Gdx.graphics.getWidth() / 2.631578947f, Gdx.graphics.getHeight() / 9.230769231f);
+		//		change creature button
+		changeCreatureButton = new Sprite(new Texture("continue/fighting/changeCreature.gif"));
+		changeCreatureButton.setSize(Gdx.graphics.getWidth() / 9.411764706f, Gdx.graphics.getHeight() / 10.43478261f);
+		changeCreatureButton.setPosition(Gdx.graphics.getWidth() / 2.631578947f, Gdx.graphics.getHeight() / 160);
+		// skills
+		skillBg = new ArrayList<Sprite>();
+		skillNames = new ArrayList <BitmapFont>();
+		for (int i = 0; i < getSelectedCreature().getActiveSkillN(); i++){
+			skillBg.add(new Sprite(new Texture("continue/fighting/skillBgs/" + getSelectedCreature().getActiveSkillByIndex(i).getTypeInString() + ".gif")));
+			skillBg.get(i).setSize(Gdx.graphics.getWidth() / 4.12371134f, Gdx.graphics.getHeight() / 12.63157895f);
+			// x
+			if ((i + 1) % 2 == 0)
+				skillBg.get(i).setX(Gdx.graphics.getWidth() / 1.342281879f);
+			else
+				skillBg.get(i).setX(Gdx.graphics.getWidth() / 2.010050251f);
+			// y
+			if (i < 2)
+				skillBg.get(i).setY(Gdx.graphics.getHeight() / 10.66666667f);
+			else
+				skillBg.get(i).setY(Gdx.graphics.getHeight() / 160);
+			
+			System.out.println(getSelectedCreature().getActiveSkillByIndex(i).getDisplayName() + ", x:" + skillBg.get(i).getX() + ", y: " + skillBg.get(i).getY());
+			
+			skillNames.add(new BitmapFont(Gdx.files.internal("terminal.fnt"), Gdx.files.internal("terminal2.png"), false));
+			skillNames.get(i).setScale(1.25f);
+		}
+		
+		// creature images
+		creature1image = new Sprite(new Texture("continue/creatures/images/" + getSelectedCreature().getName() + "/inventory.gif"));
+		creature1image.setCenter(Gdx.graphics.getWidth() / 5.992509363f, Gdx.graphics.getHeight() / 1.88976378f);
+		creature2image = new Sprite(new Texture("continue/creatures/images/" + getOpponentCreature().getName() + "/inventory2.gif"));
+		creature2image.setCenter(Gdx.graphics.getWidth() / 1.171303075f, Gdx.graphics.getHeight() / 1.88976378f);
+		
+		// log
+		log = new ArrayList <BitmapFont>();
+		for (int i = 0; i < 4; i++){
+			log.add(new BitmapFont(Gdx.files.internal("terminal.fnt"), Gdx.files.internal("terminal2.png"), false));
+		}
+		
+		Gdx.input.setInputProcessor(new InputAdapter () {
+			public boolean touchDown (int x, int y, int pointer, int button) {
+				if (shouldShowSkills){
+					// skills
+					for (int i = 0; i < getSelectedCreature().getActiveSkillN(); i++){
+						if ((x >= skillBg.get(i).getX()) &&
+							(x <= skillBg.get(i).getX() + skillBg.get(i).getRegionWidth()) &&
+							(y >= Play.getCamera().getHeight() - (skillBg.get(i).getY() + skillBg.get(i).getRegionHeight())) &&
+							(y <= Play.getCamera().getHeight() - skillBg.get(i).getY()))
+						{
+							fighting.choose1PlayerSkill(getSelectedCreature().getActiveSkillByIndex(i));
+							hasChosenSkill = true;
+						}
+					}
+					// run button
+					if ((x >= runInFightButton.getX()) &&
+						(x <= runInFightButton.getX() + runInFightButton.getRegionWidth()) &&
+						(y >= Play.getCamera().getHeight() - (runInFightButton.getY() + runInFightButton.getRegionHeight())) &&
+						(y <= Play.getCamera().getHeight() - runInFightButton.getY()))
+					{
+						isChoosingScreen = true;
+						FightingScreen.dispose();
+						Continue.show();
+						Menu.setFighting(false);
+						Menu.setContinue(true);
+					}
+					// change creature button
+					else if ((x >= changeCreatureButton.getX()) &&
+						(x <= changeCreatureButton.getX() + changeCreatureButton.getRegionWidth()) &&
+						(y >= Play.getCamera().getHeight() - (changeCreatureButton.getY() + changeCreatureButton.getRegionHeight())) &&
+						(y <= Play.getCamera().getHeight() - changeCreatureButton.getY()))
+					{
+						startChoosing();
+					}
+				}
+				return true;
+			}
+		});
 	}
 	private static void renderFighting(){
 		batch.begin();
 		bg.draw(batch);
+		
+		// creature status
+		//		first
+		firstPstatusBg.draw(batch);
+		firstPHpBarBg.draw(batch);
+		firstPHpBar.draw(batch);
+		firstPExpBarBg.draw(batch);
+		firstPExpBar.draw(batch);
+		// 			fonts
+		firstPName.draw(batch, getSelectedCreature().getRealName(), firstPstatusBg.getX() + Gdx.graphics.getWidth() / 72.72727273f, firstPstatusBg.getY() + Gdx.graphics.getHeight() / 5.647058824f);
+		firstPLevel.draw(batch, getSelectedCreature().getLvl() + " Level", firstPstatusBg.getX() + firstPstatusBg.getWidth() - firstPLevel.getBounds(getSelectedCreature().getLvl() + " Level").width - Gdx.graphics.getWidth() / 72.72727273f, firstPstatusBg.getY() + Gdx.graphics.getHeight() / 5.889570552f);
+		firstPType.draw(batch, getSelectedCreature().getTypeInString(), firstPstatusBg.getX() + Gdx.graphics.getWidth() / 5.555555556f + firstPType.getBounds(getSelectedCreature().getTypeInString()).width, firstPstatusBg.getY() + Gdx.graphics.getHeight() / 4.173913043f);
+		firstPHpBarLabel.draw(batch, "Health:", firstPHpBarBg.getX() + Gdx.graphics.getWidth() / 160, firstPHpBarBg.getY() + Gdx.graphics.getHeight() / 25f);
+		firstPHp.draw(batch, getSelectedCreature().getHpPercentage() + "%", firstPHpBarBg.getX() + firstPHpBarBg.getWidth() / 2, firstPHpBarBg.getY() + Gdx.graphics.getHeight() / 25f);
+		firstPExpBarLabel.draw(batch, "Exp:", firstPExpBarBg.getX() + Gdx.graphics.getWidth() / 200, firstPExpBarBg.getY() + Gdx.graphics.getWidth() / 50);
+		firstPExp.draw(batch, getSelectedCreature().getExpPercentage() + "%", firstPExpBarBg.getX()  + firstPExpBarBg.getWidth() / 2, firstPExpBarBg.getY() + Gdx.graphics.getWidth() / 50);
+		//		second
+		secondPstatusBg.draw(batch);
+		secondPHpBarBg.draw(batch);
+		secondPHpBar.draw(batch);
+		// 			fonts
+		secondPName.draw(batch, getOpponentCreature().getRealName(), secondPstatusBg.getX() + Gdx.graphics.getWidth() / 72.72727273f, firstPstatusBg.getY() + Gdx.graphics.getHeight() / 5.647058824f);
+		secondPLevel.draw(batch, getOpponentCreature().getLvl() + " Level", secondPstatusBg.getX() + secondPstatusBg.getWidth() - secondPLevel.getBounds(getOpponentCreature().getLvl() + " Level").width - Gdx.graphics.getWidth() / 72.72727273f, firstPstatusBg.getY() + Gdx.graphics.getHeight() / 5.889570552f);
+		secondPType.draw(batch, getOpponentCreature().getTypeInString(), secondPstatusBg.getX() + Gdx.graphics.getWidth() / 5.555555556f + secondPType.getBounds(getOpponentCreature().getTypeInString()).width, firstPstatusBg.getY() + Gdx.graphics.getHeight() / 4.173913043f);
+		secondPHpBarLabel.draw(batch, "Health:", secondPHpBarBg.getX() + Gdx.graphics.getWidth() / 160, secondPHpBarBg.getY() + Gdx.graphics.getHeight() / 25f);
+		secondPHp.draw(batch, getOpponentCreature().getHpPercentage() + "%", secondPHpBarBg.getX() + secondPHpBarBg.getWidth() / 2, secondPHpBarBg.getY() + Gdx.graphics.getHeight() / 25f);
+		
+		// skill panel
+		if (shouldShowSkills)
+		{
+			runInFightButton.draw(batch);
+			changeCreatureButton.draw(batch);
+			for (int i = 0; i < skillBg.size(); i++){
+				skillBg.get(i).draw(batch);
+				skillNames.get(i).draw(batch, getSelectedCreature().getActiveSkillByIndex(i).getDisplayName(), skillBg.get(i).getX() + Gdx.graphics.getWidth() / 80, skillBg.get(i).getY() + Gdx.graphics.getHeight() / 16f);
+			}
+		}
+		// creature images
+		creature1image.draw(batch);
+		creature2image.draw(batch);
+		
+		// log
+		for (int i = 0; i < log.size(); i++){
+			log.get(i).draw(batch, "", Gdx.graphics.getWidth() / 160, Gdx.graphics.getHeight() / 5.853658537f - i * Gdx.graphics.getHeight() / 25);
+		}
+		
 		batch.end();
+		
+		// attacking part!!!
+		if (shouldShowSkills && hasChosenSkill){
+			shouldShowSkills = false;
+			hasChosenSkill = false;
+			
+			// choosing second player skill
+			if (againstBot){
+				fighting.choose2PlayerSkill(fighting.chooseBotSkill());
+			}
+			else{
+				fighting.choose2PlayerSkill(null);
+			}
+			
+			
+			
+			// action!!
+			fighting.doTheAction();
+			
+			if (fighting.isFirstPAttackingFirst()){
+				System.out.println("damage of first: " + fighting.getDamageForSecondP() + ", damage of second: " + fighting.getDamageForFirstP());
+				
+				// animation
+				
+				// displaying done damage
+				
+				
+				// animation
+				
+				// displaying done damage
+				
+			}
+			else {
+				// animation
+				
+				// displaying done damage
+				
+				
+				// animation
+				
+				// displaying done damage
+				
+			}
+		}
 	}
 	private static void disposeFighting(){
 		batch.dispose();
 		bg.getTexture().dispose();
+		// creature status
+		firstPstatusBg.getTexture().dispose();
+		firstPHpBarBg.getTexture().dispose();
+		firstPHpBar.getTexture().dispose();
+		firstPExpBarBg.getTexture().dispose();
+		firstPExpBar.getTexture().dispose();
+		firstPName.dispose();
+		firstPLevel.dispose();
+		firstPType.dispose();
+		firstPHpBarLabel.dispose();
+		firstPHp.dispose();
+		firstPExpBarLabel.dispose();
+		firstPExp.dispose();
+		secondPstatusBg.getTexture().dispose();
+		secondPHpBarBg.getTexture().dispose();
+		secondPHpBar.getTexture().dispose();
+		secondPName.dispose();
+		secondPLevel.dispose();
+		secondPType.dispose();
+		secondPHpBarLabel.dispose();
+		secondPHp.dispose();
+		// skill panel
+		runInFightButton.getTexture().dispose();
+		changeCreatureButton.getTexture().dispose();
+		for (int i = 0; i < skillBg.size(); i++){
+			skillBg.get(i).getTexture().dispose();
+			skillNames.get(i).dispose();
+		}
+		
 	}
 	
 	private static void updateFightButton(){
@@ -315,6 +594,28 @@ public class FightingScreen {
 		// show fighting screen
 		showFighting();
 	}
+	
+	public static ArrayList <String> splittingForLog(String describtion, BitmapFont font, float maxWidth) {
+		// first split lines
+		String[] splitLines = describtion.split("\\n+");
+		ArrayList <String> lines = new ArrayList<String>();
+		// then split words
+		for (int j = 0; j < splitLines.length; j++){
+			String[] split = splitLines[j].split("\\s+");
+			float length = 0;
+			for (int i = 0; i < split.length; i++)
+			{
+				if ((i == 0) || (length + font.getBounds(split[i]).width > maxWidth + font.getBounds("a").width)) {
+					lines.add("");
+					length = 0;
+				}
+				lines.set(lines.size() - 1, lines.get(lines.size() - 1) + split[i] + " " );
+				length = lines.get(lines.size() - 1).length() * font.getBounds("a").width;
+			}
+		}
+		return lines;
+	}
+	
 	
 	private static Creature getSelectedCreature(){
 		return playerCreatures.getActiveCreature(selected);
@@ -361,5 +662,14 @@ public class FightingScreen {
 	}
 	public static void setAgainstBot(boolean againstBot) {
 		FightingScreen.againstBot = againstBot;
+	}
+	public static Creature getOpponentCreature(){
+		if (againstBot){
+			return CreatureHere.getCreature();
+		}
+		else return null;
+	}
+	public static void showSkills(boolean should){
+		shouldShowSkills = should;
 	}
 }

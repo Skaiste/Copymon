@@ -556,7 +556,7 @@ public class Fighting {
 		int random = rn.nextInt(100 - 1 + 1) + 1;
 		Skill[] skRay = {};
 		Skill change = new Skill("", "");
-		
+				
 		for (int i = 0; i < secondCreature.getActiveSkillN(); i++)
 			skRay[i] = secondCreature.getActiveSkillByIndex(i);
 		
@@ -593,9 +593,11 @@ public class Fighting {
 
 	public void choose1PlayerSkill(Skill s){
 		firstPSkill = s;
+		System.out.println(s.getDisplayName());
 	}
 	public void choose2PlayerSkill(Skill s){
 		secondPSkill = s;
+		System.out.println(s.getDisplayName());
 	}
 
 	public void doTheAction(){
