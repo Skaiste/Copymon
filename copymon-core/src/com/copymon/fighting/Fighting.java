@@ -12,12 +12,12 @@ public class Fighting {
 
 	// creatures that are fighting
 	private Creature firstCreature, secondCreature;
-	
+
 	// skill effectiveness
 	final int NOTEFFECTIVE = 75;
 	final int EFFECTIVE = 100;
 	final int VERYEFFECTIVE = 125;
-	
+
 	// skills that each player chooses, changes at each step
 	private Skill firstPSkill, secondPSkill;
 
@@ -306,7 +306,7 @@ public class Fighting {
 				return NOTEFFECTIVE;
 			}
 			break;
-			
+
 		case GROUND:
 			switch(skillType){
 			case GRASS:
@@ -511,7 +511,7 @@ public class Fighting {
 				return NOTEFFECTIVE;		
 			}
 			break;
-			
+
 		case WATER:
 			switch(skillType){
 			case GRASS:
@@ -550,24 +550,33 @@ public class Fighting {
 		return 0;
 	}
 
+	
+	
 	public Skill chooseBotSkill(){
-		
 		Random rn = new Random();
 		int random = rn.nextInt(100 - 1 + 1) + 1;
 		Skill[] skRay = new Skill[secondCreature.getActiveSkillN()];
 		Skill change = new Skill("", "");
-				
+
+		
 		for (int i = 0; i < secondCreature.getActiveSkillN(); i++)
 			skRay[i] = secondCreature.getActiveSkillByIndex(i);
 		
-		for(int i = 0; i < secondCreature.getActiveSkillN(); i++)
-			for(int j=i+1; i < secondCreature.getActiveSkillN(); j++)
-			if (skRay[i].getPower() < skRay[j % secondCreature.getActiveSkillN()].getPower())
-			{
-				change = skRay[i];
-				skRay[i] = skRay[(i+1) % secondCreature.getActiveSkillN()];
-				skRay[(i+1) % secondCreature.getActiveSkillN()] = change;
-			}		
+		for(int i = 0; i < secondCreature.getActiveSkillN()-1; i++)
+		{
+			for(int j=i+1; j < secondCreature.getActiveSkillN(); j++)
+			{	
+				if (skRay[i].getPower() < skRay[j].getPower())
+				{
+					change = skRay[i];
+					skRay[i] = skRay[i+1];
+					skRay[i+1] = change;
+				}
+				
+			}
+		}
+		
+
 		if(random <= 100)
 		{
 			if(random <= 65)
@@ -584,20 +593,22 @@ public class Fighting {
 			} //end of random <=65
 			return skRay[0];
 		} //end of random<=100
-		
+
 		// program should never reach here
 		Skill fail = new Skill("fail", "fail");
 		return fail;
-		
+
 	}
 
 	public void choose1PlayerSkill(Skill s){
 		firstPSkill = s;
 		System.out.println(s.getDisplayName());
+		System.out.println(firstPSkill.getPower());
 	}
 	public void choose2PlayerSkill(Skill s){
 		secondPSkill = s;
 		System.out.println(s.getDisplayName());
+		System.out.println(secondPSkill.getPower());
 	}
 
 	public void doTheAction(){
@@ -609,13 +620,14 @@ public class Fighting {
 
 	private void whoAttacksFirst(){
 		if(firstCreature.getAgility() < secondCreature.getAgility())
-		isFirstPAttackingFirst = true;
+			isFirstPAttackingFirst = true;
 		else isFirstPAttackingFirst = false;
 	}
 	private void attack(){
 		Random rn = new Random();
-		damageForFirstP = secondPSkill.getPower()*spellEfectivenessByType(secondPSkill.getType(), firstCreature.getType())*((rn.nextInt(120 - 80 + 1) + 80)/100);
-		damageForSecondP = firstPSkill.getPower()*spellEfectivenessByType(firstPSkill.getType(), secondCreature.getType())*((rn.nextInt(120 - 80 + 1) + 80)/100);
+		
+		damageForFirstP = (int)(secondPSkill.getPower()*spellEfectivenessByType(secondPSkill.getType(), firstCreature.getType())*((rn.nextInt(120 - 80 + 1) + 80)/100f));
+		damageForSecondP = (int)(firstPSkill.getPower()*spellEfectivenessByType(firstPSkill.getType(), secondCreature.getType())*((rn.nextInt(120 - 80 + 1) + 80)/100f));
 	}
 
 	public boolean isFirstPAttackingFirst() {
