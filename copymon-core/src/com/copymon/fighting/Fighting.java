@@ -567,8 +567,7 @@ public class Fighting {
 				change = skRay[i];
 				skRay[i] = skRay[(i+1) % firstCreature.getActiveSkillN()];
 				skRay[(i+1) % firstCreature.getActiveSkillN()] = change;
-			}
-		
+			}		
 		if(random <= 100)
 		{
 			if(random <= 65)
