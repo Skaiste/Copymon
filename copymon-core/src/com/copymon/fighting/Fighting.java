@@ -611,8 +611,9 @@ public class Fighting {
 		else isFirstPAttackingFirst = false;
 	}
 	private void attack(){
-		damageForFirstP = secondPSkill.getPower()*spellEfectivenessByType(secondPSkill.getType(), firstCreature.getType());
-		damageForSecondP = firstPSkill.getPower()*spellEfectivenessByType(firstPSkill.getType(), secondCreature.getType());
+		Random rn = new Random();
+		damageForFirstP = secondPSkill.getPower()*spellEfectivenessByType(secondPSkill.getType(), firstCreature.getType())*((rn.nextInt(120 - 80 + 1) + 80)/100);
+		damageForSecondP = firstPSkill.getPower()*spellEfectivenessByType(firstPSkill.getType(), secondCreature.getType())*((rn.nextInt(120 - 80 + 1) + 80)/100);
 	}
 
 	public boolean isFirstPAttackingFirst() {
