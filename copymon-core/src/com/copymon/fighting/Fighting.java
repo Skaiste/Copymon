@@ -554,7 +554,7 @@ public class Fighting {
 		
 		Random rn = new Random();
 		int random = rn.nextInt(100 - 1 + 1) + 1;
-		Skill[] skRay = {};
+		Skill[] skRay = new Skill[secondCreature.getActiveSkillN()];
 		Skill change = new Skill("", "");
 				
 		for (int i = 0; i < secondCreature.getActiveSkillN(); i++)
