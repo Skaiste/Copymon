@@ -619,7 +619,7 @@ public class Fighting {
 	}
 
 	private void whoAttacksFirst(){
-		if(firstCreature.getAgility() < secondCreature.getAgility())
+		if(firstCreature.getAgility() > secondCreature.getAgility())
 			isFirstPAttackingFirst = true;
 		else isFirstPAttackingFirst = false;
 	}
@@ -628,6 +628,23 @@ public class Fighting {
 		
 		damageForFirstP = (int)(secondPSkill.getPower()*(spellEfectivenessByType(secondPSkill.getType(), firstCreature.getType())/100f)*((rn.nextInt(120 - 80 + 1) + 80)/100f));
 		damageForSecondP = (int)(firstPSkill.getPower()*(spellEfectivenessByType(firstPSkill.getType(), secondCreature.getType())/100f)*((rn.nextInt(120 - 80 + 1) + 80)/100f));
+		
+		if(isFirstPAttackingFirst)
+		{
+			secondCreature.getDamagedBy(damageForSecondP);
+			if(secondCreature.getHealth() != 0)
+			{
+				firstCreature.getDamagedBy(damageForFirstP);
+			}
+		} else
+		{
+			firstCreature.getDamagedBy(damageForFirstP);
+			if(firstCreature.getHealth() != 0)
+			{
+				secondCreature.getDamagedBy(damageForSecondP);
+			}
+		}
+		
 	}
 
 	public boolean isFirstPAttackingFirst() {
