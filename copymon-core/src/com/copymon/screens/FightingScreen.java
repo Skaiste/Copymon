@@ -57,10 +57,14 @@ public class FightingScreen {
 	private static ArrayList <BitmapFont> skillNames;
 	private static boolean shouldShowSkills = true;
 	private static boolean hasChosenSkill = false;
+	private static boolean isCurrentlyFighting = false;
 	// log
 	private static ArrayList <BitmapFont> log;
+	private static String logString = "";
 	// creatures
 	private static Sprite creature1image, creature2image;
+	// animations
+	private static boolean firstAnimationDone = false, secondAnimationDone = false;
 	
 	
 	public static void show(){
@@ -294,7 +298,8 @@ public class FightingScreen {
 	}
 	
 	private static void showFighting(){
-		fighting = new Fighting(CreatureHere.getCreature(), getSelectedCreature());
+		fighting = new Fighting(getSelectedCreature(), CreatureHere.getCreature());
+		addToLog("Choose skill!");
 		// batch
 		batch = new SpriteBatch();
 		// background
@@ -387,7 +392,6 @@ public class FightingScreen {
 			else
 				skillBg.get(i).setY(Gdx.graphics.getHeight() / 160);
 			
-			System.out.println(getSelectedCreature().getActiveSkillByIndex(i).getDisplayName() + ", x:" + skillBg.get(i).getX() + ", y: " + skillBg.get(i).getY());
 			
 			skillNames.add(new BitmapFont(Gdx.files.internal("terminal.fnt"), Gdx.files.internal("terminal2.png"), false));
 			skillNames.get(i).setScale(1.25f);
@@ -489,8 +493,9 @@ public class FightingScreen {
 		creature2image.draw(batch);
 		
 		// log
+		ArrayList <String> tmp = splittingForLog(logString, log.get(0), Gdx.graphics.getWidth() / 2.777777778f);
 		for (int i = 0; i < log.size(); i++){
-			log.get(i).draw(batch, "", Gdx.graphics.getWidth() / 160, Gdx.graphics.getHeight() / 5.853658537f - i * Gdx.graphics.getHeight() / 25);
+			log.get(i).draw(batch, (tmp.size() > i) ? tmp.get(i) : "", Gdx.graphics.getWidth() / 160, Gdx.graphics.getHeight() / 5.853658537f - i * Gdx.graphics.getHeight() / 25);
 		}
 		
 		batch.end();
@@ -506,36 +511,49 @@ public class FightingScreen {
 			}
 			else{
 				fighting.choose2PlayerSkill(null);
-			}
-			
-			
+			}			
 			
 			// action!!
 			fighting.doTheAction();
-			
+			isCurrentlyFighting = true;
+		}
+		// animations and logs
+		if (isCurrentlyFighting)
+		{
 			if (fighting.isFirstPAttackingFirst()){
 				System.out.println("damage of first: " + fighting.getDamageForSecondP() + ", damage of second: " + fighting.getDamageForFirstP());
 				
 				// animation
 				
 				// displaying done damage
-				
+				if (firstAnimationDone)
+					addToLog(getOpponentCreature().getRealName() + " gets damaged by " + fighting.getDamageForSecondP() + "\n");
 				
 				// animation
 				
 				// displaying done damage
-				
+				if (secondAnimationDone)
+					addToLog(getSelectedCreature().getRealName() + " gets damaged by " + fighting.getDamageForFirstP() + "\n");
 			}
 			else {
 				// animation
 				
 				// displaying done damage
-				
+				if (firstAnimationDone)
+					addToLog(getSelectedCreature().getRealName() + " gets damaged by " + fighting.getDamageForFirstP() + "\n");				
 				
 				// animation
 				
 				// displaying done damage
-				
+				if (secondAnimationDone)
+					addToLog(getOpponentCreature().getRealName() + " gets damaged by " + fighting.getDamageForSecondP() + "\n");
+			}
+			// after animations
+			if (firstAnimationDone && secondAnimationDone){
+				shouldShowSkills = true;
+				firstAnimationDone = false;
+				secondAnimationDone = false;
+				isCurrentlyFighting = false;
 			}
 		}
 	}
@@ -671,5 +689,11 @@ public class FightingScreen {
 	}
 	public static void showSkills(boolean should){
 		shouldShowSkills = should;
+	}
+	
+	public static void addToLog (String s){
+		StringBuilder lines = new StringBuilder(s);
+		lines.append(logString);
+		logString = lines.toString();
 	}
 }
