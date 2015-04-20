@@ -7,6 +7,8 @@ import com.copymon.creatures.Skill;
 import com.copymon.creatures.Type;
 
 public class Fighting {
+	// first player is the player who is accessing the game directly
+	// second player may be bot, or other player who is accessing the fight indirectly
 
 	// creatures that are fighting
 	private Creature firstCreature, secondCreature;
