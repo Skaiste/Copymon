@@ -557,16 +557,16 @@ public class Fighting {
 		Skill[] skRay = {};
 		Skill change = new Skill("", "");
 		
-		for (int i = 0; i < firstCreature.getActiveSkillN(); i++)
-			skRay[i] = firstCreature.getActiveSkillByIndex(i);
+		for (int i = 0; i < secondCreature.getActiveSkillN(); i++)
+			skRay[i] = secondCreature.getActiveSkillByIndex(i);
 		
-		for(int i = 0; i < firstCreature.getActiveSkillN(); i++)
-			for(int j=i+1; i < firstCreature.getActiveSkillN(); j++)
-			if (skRay[i].getPower() < skRay[j % firstCreature.getActiveSkillN()].getPower())
+		for(int i = 0; i < secondCreature.getActiveSkillN(); i++)
+			for(int j=i+1; i < secondCreature.getActiveSkillN(); j++)
+			if (skRay[i].getPower() < skRay[j % secondCreature.getActiveSkillN()].getPower())
 			{
 				change = skRay[i];
-				skRay[i] = skRay[(i+1) % firstCreature.getActiveSkillN()];
-				skRay[(i+1) % firstCreature.getActiveSkillN()] = change;
+				skRay[i] = skRay[(i+1) % secondCreature.getActiveSkillN()];
+				skRay[(i+1) % secondCreature.getActiveSkillN()] = change;
 			}		
 		if(random <= 100)
 		{
@@ -576,9 +576,9 @@ public class Fighting {
 				{
 					if(random <= 15)
 					{
-						return skRay[3 % firstCreature.getActiveSkillN()];
+						return skRay[3 % secondCreature.getActiveSkillN()];
 					} //end of random <= 15
-					return skRay[2 % firstCreature.getActiveSkillN()];
+					return skRay[2 % secondCreature.getActiveSkillN()];
 				} //end of random <=35
 				return skRay[1];
 			} //end of random <=65
@@ -606,15 +606,13 @@ public class Fighting {
 	}
 
 	private void whoAttacksFirst(){
-
-		// change this value
+		if(firstCreature.getAgility() < secondCreature.getAgility())
 		isFirstPAttackingFirst = true;
+		else isFirstPAttackingFirst = false;
 	}
 	private void attack(){
-
-		// change these values
-		damageForFirstP = 0;
-		damageForSecondP = 0;
+		damageForFirstP = secondPSkill.getPower()*spellEfectivenessByType(secondPSkill.getType(), firstCreature.getType());
+		damageForSecondP = firstPSkill.getPower()*spellEfectivenessByType(firstPSkill.getType(), secondCreature.getType());
 	}
 
 	public boolean isFirstPAttackingFirst() {
