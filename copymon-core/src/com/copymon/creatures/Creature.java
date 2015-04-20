@@ -271,6 +271,13 @@ public class Creature {
 		}
 	}
 	
+	public void getDamagedBy(int i){
+		if (i < health)
+			health -= i;
+		else
+			health = 0;
+	}
+	
 	public void setFullHp(){
 		health = getHp();
 	}

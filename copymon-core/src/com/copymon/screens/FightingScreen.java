@@ -64,7 +64,11 @@ public class FightingScreen {
 	// creatures
 	private static Sprite creature1image, creature2image;
 	// animations
-	private static boolean firstAnimationDone = false, secondAnimationDone = false;
+	private static boolean secondPDamaged = false, firstPDamaged = false;
+	private static Sprite damageWind;
+	private static boolean animationStart = true;
+	private static int blinkerCounter = 0;
+	
 	
 	
 	public static void show(){
@@ -409,6 +413,9 @@ public class FightingScreen {
 			log.add(new BitmapFont(Gdx.files.internal("terminal.fnt"), Gdx.files.internal("terminal2.png"), false));
 		}
 		
+		// animations
+		damageWind = new Sprite(new Texture("continue/fighting/damage.gif"));
+		
 		Gdx.input.setInputProcessor(new InputAdapter () {
 			public boolean touchDown (int x, int y, int pointer, int button) {
 				if (shouldShowSkills){
@@ -498,8 +505,6 @@ public class FightingScreen {
 			log.get(i).draw(batch, (tmp.size() > i) ? tmp.get(i) : "", Gdx.graphics.getWidth() / 160, Gdx.graphics.getHeight() / 5.853658537f - i * Gdx.graphics.getHeight() / 25);
 		}
 		
-		batch.end();
-		
 		// attacking part!!!
 		if (shouldShowSkills && hasChosenSkill){
 			shouldShowSkills = false;
@@ -521,42 +526,97 @@ public class FightingScreen {
 		if (isCurrentlyFighting)
 		{
 			if (fighting.isFirstPAttackingFirst()){
-				System.out.println("damage of first: " + fighting.getDamageForSecondP() + ", damage of second: " + fighting.getDamageForFirstP());
+				//System.out.println("damage of first: " + fighting.getDamageForSecondP() + ", damage of second: " + fighting.getDamageForFirstP());
 				
 				// animation
-				
-				// displaying done damage
-				if (firstAnimationDone)
-					addToLog(getOpponentCreature().getRealName() + " gets damaged by " + fighting.getDamageForSecondP() + "\n");
-				
+				if (!secondPDamaged)
+					doAnimationDamaging2P(batch);
 				// animation
-				
-				// displaying done damage
-				if (secondAnimationDone)
-					addToLog(getSelectedCreature().getRealName() + " gets damaged by " + fighting.getDamageForFirstP() + "\n");
+				if (!firstPDamaged && secondPDamaged)
+					doAnimationDamaging1P(batch);
 			}
 			else {
 				// animation
-				
-				// displaying done damage
-				if (firstAnimationDone)
-					addToLog(getSelectedCreature().getRealName() + " gets damaged by " + fighting.getDamageForFirstP() + "\n");				
-				
+				if (!firstPDamaged)
+					doAnimationDamaging1P(batch);				
 				// animation
-				
-				// displaying done damage
-				if (secondAnimationDone)
-					addToLog(getOpponentCreature().getRealName() + " gets damaged by " + fighting.getDamageForSecondP() + "\n");
+				if (!secondPDamaged && firstPDamaged)
+					doAnimationDamaging2P(batch);	
 			}
 			// after animations
-			if (firstAnimationDone && secondAnimationDone){
+			if (secondPDamaged && firstPDamaged){
 				shouldShowSkills = true;
-				firstAnimationDone = false;
-				secondAnimationDone = false;
+				secondPDamaged = false;
+				firstPDamaged = false;
 				isCurrentlyFighting = false;
 			}
 		}
+		batch.end();
 	}
+	
+	private static void doAnimationDamaging2P(SpriteBatch batch){
+		if (animationStart){
+			damageWind.setPosition(Gdx.graphics.getWidth() / 3.47826087f, Gdx.graphics.getHeight() / 2.191780822f);
+			animationStart = false;
+		}
+		else{
+			if (damageWind.getX() > (Gdx.graphics.getWidth() / 1.809954751f)){
+				if (blinkerCounter < 100){
+					if(blinkerCounter % 20 == 0){
+						creature2image.setAlpha(0);
+					}
+					else{
+						creature2image.setAlpha(1);
+					}
+					blinkerCounter++;
+				}
+				else{
+					secondPDamaged = true;
+					blinkerCounter = 0;
+					animationStart = true;			
+					// displaying done damage
+					addToLog(getOpponentCreature().getRealName() + " gets damaged by " + fighting.getDamageForSecondP() + "\n");
+				}
+			}
+			else{
+				damageWind.setX(damageWind.getX() + 7);
+				damageWind.draw(batch);
+			}
+		}
+	}
+	private static void doAnimationDamaging1P(SpriteBatch batch){
+		if (animationStart){
+			damageWind.setPosition(Gdx.graphics.getWidth() / 1.809954751f, Gdx.graphics.getHeight() / 2.191780822f);
+			animationStart = false;
+		}
+		else{
+			if (damageWind.getX() < (Gdx.graphics.getWidth() / 3.47826087f)){
+				if (blinkerCounter < 100){
+					if(blinkerCounter % 20 == 0){
+						creature1image.setAlpha(0);
+					}
+					else{
+						creature1image.setAlpha(1);
+					}
+					blinkerCounter++;
+				}
+				else{
+					firstPDamaged = true;
+					blinkerCounter = 0;
+					animationStart = true;			
+					// displaying done damage
+					addToLog(getSelectedCreature().getRealName() + " gets damaged by " + fighting.getDamageForFirstP() + "\n");
+				}
+			}
+			else{
+				damageWind.setX(damageWind.getX() - 7);
+				damageWind.draw(batch);
+			}
+		}
+	}
+	
+	
+	
 	private static void disposeFighting(){
 		batch.dispose();
 		bg.getTexture().dispose();
@@ -589,6 +649,16 @@ public class FightingScreen {
 			skillNames.get(i).dispose();
 		}
 		
+		creature1image.getTexture().dispose();
+		creature2image.getTexture().dispose();
+		
+		for (int i = 0; i < log.size(); i++){
+			log.get(i).dispose();
+		}
+		log.clear();
+		
+		damageWind.getTexture().dispose();
+		
 	}
 	
 	private static void updateFightButton(){
@@ -606,6 +676,7 @@ public class FightingScreen {
 		showChoosing();
 	}
 	public static void startFighting(){
+		logString = "";
 		isChoosingScreen = false;
 		// dispose choosing screen	
 		disposeChoosing();
