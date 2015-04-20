@@ -145,6 +145,7 @@ public class WriteToSave {
 					.attribute("name", c.getName())
 					.attribute("lvl", c.getLvl())
 					.attribute("exp", c.getExp())
+					.attribute("hp", c.getHealth())
 						.element("activeSkills")
 						.attribute("n", c.getActiveSkillN());
 						for(int i = 0; i < c.getActiveSkillN(); i++)
