@@ -1,5 +1,7 @@
 package com.copymon.fighting;
 
+import java.util.Random;
+
 import com.copymon.creatures.Creature;
 import com.copymon.creatures.Skill;
 import com.copymon.creatures.Type;
@@ -8,7 +10,12 @@ public class Fighting {
 
 	// creatures that are fighting
 	private Creature firstCreature, secondCreature;
-
+	
+	// skill effectiveness
+	final int NOTEFFECTIVE = 75;
+	final int EFFECTIVE = 100;
+	final int VERYEFFECTIVE = 125;
+	
 	// skills that each player chooses, changes at each step
 	private Skill firstPSkill, secondPSkill;
 
@@ -28,513 +35,513 @@ public class Fighting {
 		case GRASS:
 			switch(skillType){
 			case GRASS:
-				return 100;
+				return EFFECTIVE;
 			case BUG:
-				return 125;
+				return VERYEFFECTIVE;
 			case DARK:
-				return 100;
+				return EFFECTIVE;
 			case ELECTRIC:
-				return 100;
+				return EFFECTIVE;
 			case FIGHTING:
-				return 75;
+				return NOTEFFECTIVE;
 			case FIRE:
-				return 125;
+				return VERYEFFECTIVE;
 			case FLYING:
-				return 75;
+				return NOTEFFECTIVE;
 			case GHOST:
-				return 100;
+				return EFFECTIVE;
 			case GROUND:
-				return 125;
+				return VERYEFFECTIVE;
 			case NORMAL:
-				return 75;
+				return NOTEFFECTIVE;
 			case POISON:
-				return 125;
+				return VERYEFFECTIVE;
 			case PSYCHIC:
-				return 100;
+				return EFFECTIVE;
 			case ROCK:
-				return 125;
+				return VERYEFFECTIVE;
 			case STEEL:
-				return 125;
+				return VERYEFFECTIVE;
 			case WATER:
-				return 75;		
+				return NOTEFFECTIVE;		
 			}
 			break;
 		case BUG:
 			switch(skillType){
 			case GRASS:
-				return 75;
+				return NOTEFFECTIVE;
 			case BUG:
-				return 100;
+				return EFFECTIVE;
 			case DARK:
-				return 75;
+				return NOTEFFECTIVE;
 			case ELECTRIC:
-				return 100;
+				return EFFECTIVE;
 			case FIGHTING:
-				return 125;
+				return VERYEFFECTIVE;
 			case FIRE:
-				return 125;
+				return VERYEFFECTIVE;
 			case FLYING:
-				return 125;
+				return VERYEFFECTIVE;
 			case GHOST:
-				return 75;
+				return NOTEFFECTIVE;
 			case GROUND:
-				return 100;
+				return EFFECTIVE;
 			case NORMAL:
-				return 75;
+				return NOTEFFECTIVE;
 			case POISON:
-				return 75;
+				return NOTEFFECTIVE;
 			case PSYCHIC:
-				return 75;
+				return NOTEFFECTIVE;
 			case ROCK:
-				return 125;
+				return VERYEFFECTIVE;
 			case STEEL:
-				return 100;
+				return EFFECTIVE;
 			case WATER:
-				return 125;		
+				return VERYEFFECTIVE;		
 			}
 			break;
 		case DARK:
 			switch(skillType){
 			case GRASS:
-				return 100;
+				return EFFECTIVE;
 			case BUG:
-				return 100;
+				return EFFECTIVE;
 			case DARK:
-				return 100;
+				return EFFECTIVE;
 			case ELECTRIC:
-				return 125;
+				return VERYEFFECTIVE;
 			case FIGHTING:
-				return 75;
+				return NOTEFFECTIVE;
 			case FIRE:
-				return 125;
+				return VERYEFFECTIVE;
 			case FLYING:
-				return 100;
+				return EFFECTIVE;
 			case GHOST:
-				return 75;
+				return NOTEFFECTIVE;
 			case GROUND:
-				return 100;
+				return EFFECTIVE;
 			case NORMAL:
-				return 100;
+				return EFFECTIVE;
 			case POISON:
-				return 100;
+				return EFFECTIVE;
 			case PSYCHIC:
-				return 125;
+				return VERYEFFECTIVE;
 			case ROCK:
-				return 125;
+				return VERYEFFECTIVE;
 			case STEEL:
-				return 125;
+				return VERYEFFECTIVE;
 			case WATER:
-				return 75;				
+				return NOTEFFECTIVE;				
 			}
 			break;
 		case ELECTRIC:
 			switch(skillType){
 			case GRASS:
-				return 75;
+				return NOTEFFECTIVE;
 			case BUG:
-				return 100;
+				return EFFECTIVE;
 			case DARK:
-				return 100;
+				return EFFECTIVE;
 			case ELECTRIC:
-				return 100;
+				return EFFECTIVE;
 			case FIGHTING:
-				return 75;
+				return NOTEFFECTIVE;
 			case FIRE:
-				return 100;
+				return EFFECTIVE;
 			case FLYING:
-				return 75;
+				return NOTEFFECTIVE;
 			case GHOST:
-				return 125;
+				return VERYEFFECTIVE;
 			case GROUND:
-				return 125;
+				return VERYEFFECTIVE;
 			case NORMAL:
-				return 100;
+				return EFFECTIVE;
 			case POISON:
-				return 100;
+				return EFFECTIVE;
 			case PSYCHIC:
-				return 125;
+				return VERYEFFECTIVE;
 			case ROCK:
-				return 125;
+				return VERYEFFECTIVE;
 			case STEEL:
-				return 100;
+				return EFFECTIVE;
 			case WATER:
-				return 75;		
+				return NOTEFFECTIVE;		
 			}
 			break;
 		case FIGHTING:
 			switch(skillType){
 			case GRASS:
-				return 125;
+				return VERYEFFECTIVE;
 			case BUG:
-				return 75;
+				return NOTEFFECTIVE;
 			case DARK:
-				return 125;
+				return VERYEFFECTIVE;
 			case ELECTRIC:
-				return 125;
+				return VERYEFFECTIVE;
 			case FIGHTING:
-				return 100;
+				return EFFECTIVE;
 			case FIRE:
-				return 100;
+				return EFFECTIVE;
 			case FLYING:
-				return 125;
+				return VERYEFFECTIVE;
 			case GHOST:
-				return 125;
+				return VERYEFFECTIVE;
 			case GROUND:
-				return 100;
+				return EFFECTIVE;
 			case NORMAL:
-				return 75;
+				return NOTEFFECTIVE;
 			case POISON:
-				return 100;
+				return EFFECTIVE;
 			case PSYCHIC:
-				return 125;
+				return VERYEFFECTIVE;
 			case ROCK:
-				return 75;
+				return NOTEFFECTIVE;
 			case STEEL:
-				return 100;
+				return EFFECTIVE;
 			case WATER:
-				return 75;		
+				return NOTEFFECTIVE;		
 			}
 			break;
 		case FIRE:
 			switch(skillType){
 			case GRASS:
-				return 75;
+				return NOTEFFECTIVE;
 			case BUG:
-				return 75;
+				return NOTEFFECTIVE;
 			case DARK:
-				return 100;
+				return EFFECTIVE;
 			case ELECTRIC:
-				return 100;
+				return EFFECTIVE;
 			case FIGHTING:
-				return 100;
+				return EFFECTIVE;
 			case FIRE:
-				return 100;
+				return EFFECTIVE;
 			case FLYING:
-				return 75;
+				return NOTEFFECTIVE;
 			case GHOST:
-				return 125;
+				return VERYEFFECTIVE;
 			case GROUND:
-				return 125;
+				return VERYEFFECTIVE;
 			case NORMAL:
-				return 100;
+				return EFFECTIVE;
 			case POISON:
-				return 75;
+				return NOTEFFECTIVE;
 			case PSYCHIC:
-				return 125;
+				return VERYEFFECTIVE;
 			case ROCK:
-				return 125;
+				return VERYEFFECTIVE;
 			case STEEL:
-				return 100;
+				return EFFECTIVE;
 			case WATER:
-				return 125;		
+				return VERYEFFECTIVE;		
 			}
 			break;
 		case FLYING:
 			switch(skillType){
 			case GRASS:
-				return 125;
+				return VERYEFFECTIVE;
 			case BUG:
-				return 75;
+				return NOTEFFECTIVE;
 			case DARK:
-				return 100;
+				return EFFECTIVE;
 			case ELECTRIC:
-				return 125;
+				return VERYEFFECTIVE;
 			case FIGHTING:
-				return 75;
+				return NOTEFFECTIVE;
 			case FIRE:
-				return 75;
+				return NOTEFFECTIVE;
 			case FLYING:
-				return 100;
+				return EFFECTIVE;
 			case GHOST:
-				return 100;
+				return EFFECTIVE;
 			case GROUND:
-				return 75;
+				return NOTEFFECTIVE;
 			case NORMAL:
-				return 75;
+				return NOTEFFECTIVE;
 			case POISON:
-				return 125;
+				return VERYEFFECTIVE;
 			case PSYCHIC:
-				return 100;
+				return EFFECTIVE;
 			case ROCK:
-				return 125;
+				return VERYEFFECTIVE;
 			case STEEL:
-				return 75;
+				return NOTEFFECTIVE;
 			case WATER:
-				return 125;			
+				return VERYEFFECTIVE;			
 			}
 			break;
 		case GHOST:
 			switch(skillType){
 			case GRASS:
-				return 75;
+				return NOTEFFECTIVE;
 			case BUG:
-				return 75;
+				return NOTEFFECTIVE;
 			case DARK:
-				return 125;
+				return VERYEFFECTIVE;
 			case ELECTRIC:
-				return 100;
+				return EFFECTIVE;
 			case FIGHTING:
-				return 75;
+				return NOTEFFECTIVE;
 			case FIRE:
-				return 125;
+				return VERYEFFECTIVE;
 			case FLYING:
-				return 75;	
+				return NOTEFFECTIVE;	
 			case GHOST:
-				return 125;
+				return VERYEFFECTIVE;
 			case GROUND:
-				return 75;
+				return NOTEFFECTIVE;
 			case NORMAL:
-				return 75;
+				return NOTEFFECTIVE;
 			case POISON:
-				return 75;
+				return NOTEFFECTIVE;
 			case PSYCHIC:
-				return 75;
+				return NOTEFFECTIVE;
 			case ROCK:
-				return 75;
+				return NOTEFFECTIVE;
 			case STEEL:
-				return 100;
+				return EFFECTIVE;
 			case WATER:
-				return 75;
+				return NOTEFFECTIVE;
 			}
 			break;
 			
 		case GROUND:
 			switch(skillType){
 			case GRASS:
-				return 75;
+				return NOTEFFECTIVE;
 			case BUG:
-				return 100;
+				return EFFECTIVE;
 			case DARK:
-				return 75;
+				return NOTEFFECTIVE;
 			case ELECTRIC:
-				return 75;
+				return NOTEFFECTIVE;
 			case FIGHTING:
-				return 100;
+				return EFFECTIVE;
 			case FIRE:
-				return 100;
+				return EFFECTIVE;
 			case FLYING:
-				return 100;
+				return EFFECTIVE;
 			case GHOST:
-				return 100;
+				return EFFECTIVE;
 			case GROUND:
-				return 75;
+				return NOTEFFECTIVE;
 			case NORMAL:
-				return 75;
+				return NOTEFFECTIVE;
 			case POISON:
-				return 100;
+				return EFFECTIVE;
 			case PSYCHIC:
-				return 125;
+				return VERYEFFECTIVE;
 			case ROCK:
-				return 100;
+				return EFFECTIVE;
 			case STEEL:
-				return 125;
+				return VERYEFFECTIVE;
 			case WATER:
-				return 100;
+				return EFFECTIVE;
 			}
 			break;
 		case NORMAL:
 			switch(skillType){
 			case GRASS:
-				return 125;
+				return VERYEFFECTIVE;
 			case BUG:
-				return 125;
+				return VERYEFFECTIVE;
 			case DARK:
-				return 75;
+				return NOTEFFECTIVE;
 			case ELECTRIC:
-				return 100;
+				return EFFECTIVE;
 			case FIGHTING:
-				return 125;
+				return VERYEFFECTIVE;
 			case FIRE:
-				return 125;
+				return VERYEFFECTIVE;
 			case FLYING:
-				return 125;
+				return VERYEFFECTIVE;
 			case GHOST:
-				return 75;
+				return NOTEFFECTIVE;
 			case GROUND:
-				return 125;
+				return VERYEFFECTIVE;
 			case NORMAL:
-				return 100;
+				return EFFECTIVE;
 			case POISON:
-				return 100;
+				return EFFECTIVE;
 			case PSYCHIC:
-				return 100;
+				return EFFECTIVE;
 			case ROCK:
-				return 100;
+				return EFFECTIVE;
 			case STEEL:
-				return 125;
+				return VERYEFFECTIVE;
 			case WATER:
-				return 100;		
+				return EFFECTIVE;		
 			}
 			break;
 		case POISON:
 			switch(skillType){
 			case GRASS:
-				return 75;
+				return NOTEFFECTIVE;
 			case BUG:
-				return 125;
+				return VERYEFFECTIVE;
 			case DARK:
-				return 75;
+				return NOTEFFECTIVE;
 			case ELECTRIC:
-				return 100;
+				return EFFECTIVE;
 			case FIGHTING:
-				return 75;
+				return NOTEFFECTIVE;
 			case FIRE:
-				return 125;
+				return VERYEFFECTIVE;
 			case FLYING:
-				return 75;
+				return NOTEFFECTIVE;
 			case GHOST:
-				return 100;
+				return EFFECTIVE;
 			case GROUND:
-				return 100;
+				return EFFECTIVE;
 			case NORMAL:
-				return 100;
+				return EFFECTIVE;
 			case POISON:
-				return 75;
+				return NOTEFFECTIVE;
 			case PSYCHIC:
-				return 100;
+				return EFFECTIVE;
 			case ROCK:
-				return 125;
+				return VERYEFFECTIVE;
 			case STEEL:
-				return 125;
+				return VERYEFFECTIVE;
 			case WATER:
-				return 100;		
+				return EFFECTIVE;		
 			}
 			break;
 		case PSYCHIC:
 			switch(skillType){
 			case GRASS:
-				return 100;
+				return EFFECTIVE;
 			case BUG:
-				return 125;
+				return VERYEFFECTIVE;
 			case DARK:
-				return 75;
+				return NOTEFFECTIVE;
 			case ELECTRIC:
-				return 100;
+				return EFFECTIVE;
 			case FIGHTING:
-				return 75;
+				return NOTEFFECTIVE;
 			case FIRE:
-				return 100;
+				return EFFECTIVE;
 			case FLYING:
-				return 75;
+				return NOTEFFECTIVE;
 			case GHOST:
-				return 125;
+				return VERYEFFECTIVE;
 			case GROUND:
-				return 100;
+				return EFFECTIVE;
 			case NORMAL:
-				return 100;
+				return EFFECTIVE;
 			case POISON:
-				return 125;
+				return VERYEFFECTIVE;
 			case PSYCHIC:
-				return 75;
+				return NOTEFFECTIVE;
 			case ROCK:
-				return 125;
+				return VERYEFFECTIVE;
 			case STEEL:
-				return 125;
+				return VERYEFFECTIVE;
 			case WATER:
-				return 100;		
+				return EFFECTIVE;		
 			}
 			break;
 		case ROCK:
 			switch(skillType){
 			case GRASS:
-				return 100;
+				return EFFECTIVE;
 			case BUG:
-				return 75;
+				return NOTEFFECTIVE;
 			case DARK:
-				return 100;
+				return EFFECTIVE;
 			case ELECTRIC:
-				return 75;
+				return NOTEFFECTIVE;
 			case FIGHTING:
-				return 100;
+				return EFFECTIVE;
 			case FIRE:
-				return 100;
+				return EFFECTIVE;
 			case FLYING:
-				return 75;
+				return NOTEFFECTIVE;
 			case GHOST:
-				return 100;
+				return EFFECTIVE;
 			case GROUND:
-				return 75;
+				return NOTEFFECTIVE;
 			case NORMAL:
-				return 75;
+				return NOTEFFECTIVE;
 			case POISON:
-				return 75;
+				return NOTEFFECTIVE;
 			case PSYCHIC:
-				return 125;
+				return VERYEFFECTIVE;
 			case ROCK:
-				return 100;
+				return EFFECTIVE;
 			case STEEL:
-				return 125;
+				return VERYEFFECTIVE;
 			case WATER:
-				return 125;		
+				return VERYEFFECTIVE;		
 			}
 			break;
 		case STEEL:
 			switch(skillType){
 			case GRASS:
-				return 75;
+				return NOTEFFECTIVE;
 			case BUG:
-				return 75;
+				return NOTEFFECTIVE;
 			case DARK:
-				return 100;
+				return EFFECTIVE;
 			case ELECTRIC:
-				return 125;
+				return VERYEFFECTIVE;
 			case FIGHTING:
-				return 75;
+				return NOTEFFECTIVE;
 			case FIRE:
-				return 100;
+				return EFFECTIVE;
 			case FLYING:
-				return 75;
+				return NOTEFFECTIVE;
 			case GHOST:
-				return 125;
+				return VERYEFFECTIVE;
 			case GROUND:
-				return 75;
+				return NOTEFFECTIVE;
 			case NORMAL:
-				return 75;
+				return NOTEFFECTIVE;
 			case POISON:
-				return 75;
+				return NOTEFFECTIVE;
 			case PSYCHIC:
-				return 125;
+				return VERYEFFECTIVE;
 			case ROCK:
-				return 100;
+				return EFFECTIVE;
 			case STEEL:
-				return 125;
+				return VERYEFFECTIVE;
 			case WATER:
-				return 75;		
+				return NOTEFFECTIVE;		
 			}
 			break;
 			
 		case WATER:
 			switch(skillType){
 			case GRASS:
-				return 100;
+				return EFFECTIVE;
 			case BUG:
-				return 75;
+				return NOTEFFECTIVE;
 			case DARK:
-				return 100;
+				return EFFECTIVE;
 			case ELECTRIC:
-				return 125;
+				return VERYEFFECTIVE;
 			case FIGHTING:
-				return 100;
+				return EFFECTIVE;
 			case FIRE:
-				return 75;
+				return NOTEFFECTIVE;
 			case FLYING:
-				return 100;
+				return EFFECTIVE;
 			case GHOST:
-				return 125;
+				return VERYEFFECTIVE;
 			case GROUND:
-				return 100;
+				return EFFECTIVE;
 			case NORMAL:
-				return 100;
+				return EFFECTIVE;
 			case POISON:
-				return 125;
+				return VERYEFFECTIVE;
 			case PSYCHIC:
-				return 100;
+				return EFFECTIVE;
 			case ROCK:
-				return 100;
+				return EFFECTIVE;
 			case STEEL:
-				return 125;
+				return VERYEFFECTIVE;
 			case WATER:
-				return 75;		
+				return NOTEFFECTIVE;		
 			}
 			break;				
 		}
@@ -542,11 +549,45 @@ public class Fighting {
 	}
 
 	public Skill chooseBotSkill(){
-		for (int i = 1; i < firstCreature.getActiveSkillN(); i++){
-			firstCreature.getActiveSkillByIndex(i).getPower();
-		}
-		// change return variable
-		return firstCreature.getActiveSkillByIndex(0);
+		
+		Random rn = new Random();
+		int random = rn.nextInt(100 - 1 + 1) + 1;
+		Skill[] skRay = {};
+		Skill change = new Skill("", "");
+		
+		for (int i = 0; i < firstCreature.getActiveSkillN(); i++)
+			skRay[i] = firstCreature.getActiveSkillByIndex(i);
+		
+		for(int i = 0; i < firstCreature.getActiveSkillN(); i++)
+			for(int j=i+1; i < firstCreature.getActiveSkillN(); j++)
+			if (skRay[i].getPower() < skRay[j % firstCreature.getActiveSkillN()].getPower())
+			{
+				change = skRay[i];
+				skRay[i] = skRay[(i+1) % firstCreature.getActiveSkillN()];
+				skRay[(i+1) % firstCreature.getActiveSkillN()] = change;
+			}
+		
+		if(random <= 100)
+		{
+			if(random <= 65)
+			{
+				if(random <= 35)
+				{
+					if(random <= 15)
+					{
+						return skRay[3 % firstCreature.getActiveSkillN()];
+					} //end of random <= 15
+					return skRay[2 % firstCreature.getActiveSkillN()];
+				} //end of random <=35
+				return skRay[1];
+			} //end of random <=65
+			return skRay[0];
+		} //end of random<=100
+		
+		// program should never reach here
+		Skill fail = new Skill("fail", "fail");
+		return fail;
+		
 	}
 
 	public void choose1PlayerSkill(Skill s){
