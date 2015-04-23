@@ -124,4 +124,8 @@ public class Continue {
 	public static PlayerCreatures getPlayerCreatures(){
 		return playerCreatures;
 	}
+	public static void setPlayerCreatures(PlayerCreatures playerCreatures) {
+		Continue.playerCreatures = playerCreatures;
+	}
+	
 }

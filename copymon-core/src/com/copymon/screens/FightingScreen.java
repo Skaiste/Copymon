@@ -13,6 +13,7 @@ import com.copymon.creatures.Creature;
 import com.copymon.creatures.PlayerCreatures;
 import com.copymon.creatures.Type;
 import com.copymon.fighting.Fighting;
+import com.copymon.fileHandling.WriteToSave;
 
 /**
  * @author Skaiste
@@ -58,6 +59,7 @@ public class FightingScreen {
 	private static boolean shouldShowSkills = true;
 	private static boolean hasChosenSkill = false;
 	private static boolean isCurrentlyFighting = false;
+	private static boolean damagefor1Adone = false, damagefor2Adone = false;
 	// log
 	private static ArrayList <BitmapFont> log;
 	private static String logString = "";
@@ -69,7 +71,21 @@ public class FightingScreen {
 	private static boolean animationStart = true;
 	private static int blinkerCounter = 0;
 	
-	
+	// ******************** Ending fight ****************************
+	private static Sprite transparentBg;
+	// when player loses and has no creatures left to play with
+	private static Sprite totalLossBg;
+	private static Sprite totalLossButton;
+	private static boolean totallyLost = false;
+	// when players creature is too weak and player has more creatures that can play
+	private static Sprite canChangeCreatureBg;
+	private static Sprite canChangeButRunsButton, canChangeAndDoesButton;
+	private static boolean canChangeCreature = false;
+	// when player wins
+	private static Sprite wonFightBg;
+	private static Sprite wonFightTakesMoneyButton, wonFightTakesCreatureButton;
+	private static BitmapFont wonFightMoney;
+	private static boolean wonFight = false;
 	
 	public static void show(){
 		if (isChoosingScreen)
@@ -211,16 +227,6 @@ public class FightingScreen {
 					(y <= Play.getCamera().getHeight() - fightButton.getY()) &&
 					(getSelectedCreature().getHp() != 0))
 				{
-					/*
-					FightingScreen.dispose();
-					Continue.show();
-					Menu.setFighting(false);
-					Menu.setContinue(true);
-					
-					// take creature into inventory
-					if (Continue.getPlayerCreatures().getActiveCreatures().size() < 6)
-						Continue.getPlayerCreatures().addActiveCreature(CreatureHere.getCreature());
-*/
 					startFighting();
 				}
 				return true;				
@@ -416,6 +422,32 @@ public class FightingScreen {
 		// animations
 		damageWind = new Sprite(new Texture("continue/fighting/damage.gif"));
 		
+		// after fight
+		transparentBg = new Sprite(new Texture("continue/fighting/transparent.gif"));
+		transparentBg.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+		transparentBg.setPosition(0, 0);
+		transparentBg.setAlpha(0.5f);
+		// when player loses and has no creatures left to play with
+		totalLossBg = new Sprite(new Texture("continue/fighting/loseFight.gif"));
+		totalLossBg.setCenter(Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 2);		
+		totalLossButton = new Sprite(new Texture("continue/fighting/getMeOuty.gif"));
+		totalLossButton.setPosition(totalLossBg.getX() + Gdx.graphics.getWidth() / 13.1147541f, totalLossBg.getY() + Gdx.graphics.getHeight() / 30);		
+		// when players creature is too weak and player has more creatures that can play
+		canChangeCreatureBg = new Sprite(new Texture("continue/fighting/chooseOrRun.gif"));
+		canChangeCreatureBg.setCenter(Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 2);
+		canChangeButRunsButton = new Sprite(new Texture("continue/fighting/runFromFight.gif"));
+		canChangeButRunsButton.setPosition(canChangeCreatureBg.getX() + Gdx.graphics.getWidth() / 16.32653061f, canChangeCreatureBg.getY() + Gdx.graphics.getHeight() / 12.63157895f);	
+		canChangeAndDoesButton = new Sprite(new Texture("continue/fighting/changeCreature.gif"));
+		canChangeAndDoesButton.setPosition(canChangeCreatureBg.getX() + Gdx.graphics.getWidth() / 3.112840467f, canChangeCreatureBg.getY() + Gdx.graphics.getHeight() / 16);		
+		// when player wins
+		wonFightBg = new Sprite(new Texture("continue/fighting/takeMoneyOrCreature.gif"));
+		wonFightBg.setCenter(Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 2);
+		wonFightTakesMoneyButton = new Sprite(new Texture("continue/fighting/leaveWithMoney.gif"));
+		wonFightTakesMoneyButton.setPosition(wonFightBg.getX() + Gdx.graphics.getWidth() / 40, wonFightBg.getY() + Gdx.graphics.getHeight() / 15.48387097f);	
+		wonFightTakesCreatureButton = new Sprite(new Texture("continue/fighting/leaveWithCreature.gif"));
+		wonFightTakesCreatureButton.setPosition(wonFightBg.getX() + Gdx.graphics.getWidth() / 3.619909502f, wonFightBg.getY() + Gdx.graphics.getHeight() / 20);	
+		wonFightMoney = new BitmapFont(Gdx.files.internal("terminal.fnt"), Gdx.files.internal("terminal2.png"), false);
+		
 		Gdx.input.setInputProcessor(new InputAdapter () {
 			public boolean touchDown (int x, int y, int pointer, int button) {
 				if (shouldShowSkills){
@@ -436,11 +468,7 @@ public class FightingScreen {
 						(y >= Play.getCamera().getHeight() - (runInFightButton.getY() + runInFightButton.getRegionHeight())) &&
 						(y <= Play.getCamera().getHeight() - runInFightButton.getY()))
 					{
-						isChoosingScreen = true;
-						FightingScreen.dispose();
-						Continue.show();
-						Menu.setFighting(false);
-						Menu.setContinue(true);
+						exitFighting();
 					}
 					// change creature button
 					else if ((x >= changeCreatureButton.getX()) &&
@@ -449,6 +477,62 @@ public class FightingScreen {
 						(y <= Play.getCamera().getHeight() - changeCreatureButton.getY()))
 					{
 						startChoosing();
+					}
+				}
+				
+				if (totallyLost){
+					if ((x >= totalLossButton.getX()) &&
+						(x <= totalLossButton.getX() + totalLossButton.getRegionWidth()) &&
+						(y >= Play.getCamera().getHeight() - (totalLossButton.getY() + totalLossButton.getRegionHeight())) &&
+						(y <= Play.getCamera().getHeight() - totalLossButton.getY()))
+					{
+						exitFighting();
+					}
+				}
+				else if (canChangeCreature){
+					if ((x >= canChangeButRunsButton.getX()) &&
+						(x <= canChangeButRunsButton.getX() + canChangeButRunsButton.getRegionWidth()) &&
+						(y >= Play.getCamera().getHeight() - (canChangeButRunsButton.getY() + canChangeButRunsButton.getRegionHeight())) &&
+						(y <= Play.getCamera().getHeight() - canChangeButRunsButton.getY()))
+					{
+						exitFighting();
+					}
+					else if ((x >= canChangeAndDoesButton.getX()) &&
+							 (x <= canChangeAndDoesButton.getX() + canChangeAndDoesButton.getRegionWidth()) &&
+							 (y >= Play.getCamera().getHeight() - (canChangeAndDoesButton.getY() + canChangeAndDoesButton.getRegionHeight())) &&
+							 (y <= Play.getCamera().getHeight() - canChangeAndDoesButton.getY()))
+					{
+						startChoosing();
+						canChangeCreature = false;
+					}
+				}
+				else if (wonFight){
+					if ((x >= wonFightTakesMoneyButton.getX()) &&
+						(x <= wonFightTakesMoneyButton.getX() + wonFightTakesMoneyButton.getRegionWidth()) &&
+						(y >= Play.getCamera().getHeight() - (wonFightTakesMoneyButton.getY() + wonFightTakesMoneyButton.getRegionHeight())) &&
+						(y <= Play.getCamera().getHeight() - wonFightTakesMoneyButton.getY()))
+					{
+						// money is added
+						
+						// exiting
+						exitFighting();
+					}
+					else if ((x >= wonFightTakesCreatureButton.getX()) &&
+							 (x <= wonFightTakesCreatureButton.getX() + wonFightTakesCreatureButton.getRegionWidth()) &&
+							 (y >= Play.getCamera().getHeight() - (wonFightTakesCreatureButton.getY() + wonFightTakesCreatureButton.getRegionHeight())) &&
+							 (y <= Play.getCamera().getHeight() - wonFightTakesCreatureButton.getY()))
+					{	
+						
+						// take creature into inventory
+						if (playerCreatures.getActiveCreatureN() < 6){
+							System.out.println("gets a creature");
+							playerCreatures.addActiveCreature(getOpponentCreature());
+						}
+						else
+							playerCreatures.addInactiveCreature(getOpponentCreature());
+						
+						// exiting
+						exitFighting();
 					}
 				}
 				return true;
@@ -463,8 +547,10 @@ public class FightingScreen {
 		//		first
 		firstPstatusBg.draw(batch);
 		firstPHpBarBg.draw(batch);
+		firstPHpBar.setSize(Gdx.graphics.getWidth() / 3.265306122f * getSelectedCreature().getHpPercentage() / 100, Gdx.graphics.getHeight() / 24);
 		firstPHpBar.draw(batch);
 		firstPExpBarBg.draw(batch);
+		firstPExpBar.setSize(Gdx.graphics.getWidth() / 4.255319149f * getSelectedCreature().getExpPercentage() / 100, Gdx.graphics.getHeight() / 36.92307692f);
 		firstPExpBar.draw(batch);
 		// 			fonts
 		firstPName.draw(batch, getSelectedCreature().getRealName(), firstPstatusBg.getX() + Gdx.graphics.getWidth() / 72.72727273f, firstPstatusBg.getY() + Gdx.graphics.getHeight() / 5.647058824f);
@@ -477,6 +563,7 @@ public class FightingScreen {
 		//		second
 		secondPstatusBg.draw(batch);
 		secondPHpBarBg.draw(batch);
+		secondPHpBar.setSize(Gdx.graphics.getWidth() / 3.265306122f * getOpponentCreature().getHpPercentage() / 100, Gdx.graphics.getHeight() / 24);
 		secondPHpBar.draw(batch);
 		// 			fonts
 		secondPName.draw(batch, getOpponentCreature().getRealName(), secondPstatusBg.getX() + Gdx.graphics.getWidth() / 72.72727273f, firstPstatusBg.getY() + Gdx.graphics.getHeight() / 5.647058824f);
@@ -519,36 +606,101 @@ public class FightingScreen {
 			}			
 			
 			// action!!
-			fighting.doTheAction();
+			fighting.whoAttacksFirst();
 			isCurrentlyFighting = true;
+			damagefor1Adone = false;
+			damagefor2Adone = false;
 		}
 		// animations and logs
 		if (isCurrentlyFighting)
 		{
 			if (fighting.isFirstPAttackingFirst()){
 				//System.out.println("damage of first: " + fighting.getDamageForSecondP() + ", damage of second: " + fighting.getDamageForFirstP());
-				
+				// first creature attacks
 				// animation
-				if (!secondPDamaged)
+				if (!secondPDamaged){
+					if (!damagefor1Adone){
+						fighting.doTheAction(true);
+						damagefor1Adone = true;
+					}
 					doAnimationDamaging2P(batch);
+				}
+				// second creature attacks if it isn't weak
 				// animation
-				if (!firstPDamaged && secondPDamaged)
-					doAnimationDamaging1P(batch);
+				if (!firstPDamaged && secondPDamaged){
+					if (!damagefor2Adone){
+						fighting.doTheAction(false);
+						damagefor2Adone = true;
+					}
+					if (fighting.canSecondPAttack())
+						doAnimationDamaging1P(batch);
+					else
+						firstPDamaged = true;
+				}
 			}
 			else {
+				// second creature attacks
 				// animation
-				if (!firstPDamaged)
-					doAnimationDamaging1P(batch);				
+				if (!firstPDamaged){
+					if (!damagefor1Adone){
+						fighting.doTheAction(true);
+						damagefor1Adone = true;
+					}
+					doAnimationDamaging1P(batch);	
+				}
+				// first creature attacks if it isn't weak
 				// animation
-				if (!secondPDamaged && firstPDamaged)
-					doAnimationDamaging2P(batch);	
+				if (!secondPDamaged && firstPDamaged){
+					if (!damagefor2Adone){
+						fighting.doTheAction(false);
+						damagefor2Adone = true;
+					}
+					if (getSelectedCreature().getHealth() != 0)
+						doAnimationDamaging2P(batch);
+					else
+						secondPDamaged = true;
+				}
 			}
 			// after animations
 			if (secondPDamaged && firstPDamaged){
-				shouldShowSkills = true;
-				secondPDamaged = false;
-				firstPDamaged = false;
-				isCurrentlyFighting = false;
+				transparentBg.draw(batch);
+				// if players creature is too weak to play,
+				// let the player choose other creature (if he has one of course)
+				// or run
+				if (getSelectedCreature().getHealth() <= 0){
+					// checking if there are any player creatures that are not too weak
+					if (!playerCreatures.areAllActiveCreaturesWeak()){
+						// let player choose to choose a creature or run
+						canChangeCreature = true;
+						canChangeCreatureBg.draw(batch);
+						canChangeButRunsButton.draw(batch);
+						canChangeAndDoesButton.draw(batch);
+					}
+					else{
+						// let player know he lost and let him/her press a button that exits the fighting
+						totallyLost = true;
+						totalLossBg.draw(batch);
+						totalLossButton.draw(batch);
+					}
+				}
+				// if opponent creature is too weak to play and it is a wild creature
+				// let player keep the creature
+				else if (getOpponentCreature().getHealth() <= 0){
+					wonFight = true;
+					wonFightBg.draw(batch);
+					wonFightTakesMoneyButton.draw(batch);
+					wonFightMoney.draw(batch, "25", wonFightTakesMoneyButton.getX(), wonFightTakesMoneyButton.getY());
+					wonFightTakesCreatureButton.draw(batch);
+				}
+				else{
+					shouldShowSkills = true;
+					secondPDamaged = false;
+					firstPDamaged = false;
+					isCurrentlyFighting = false;
+				}
+				
+				// FIXME: if the health of some creature ends the game would react to it
+				// split fighting do action into two methods
 			}
 		}
 		batch.end();
@@ -605,7 +757,7 @@ public class FightingScreen {
 					blinkerCounter = 0;
 					animationStart = true;			
 					// displaying done damage
-					addToLog(getSelectedCreature().getRealName() + " gets damaged by " + fighting.getDamageForFirstP() + "\n");
+					addToLog("Your " + getSelectedCreature().getRealName() + " gets damaged by " + fighting.getDamageForFirstP() + "\n");
 				}
 			}
 			else{
@@ -659,6 +811,15 @@ public class FightingScreen {
 		
 		damageWind.getTexture().dispose();
 		
+		totalLossBg.getTexture().dispose();
+		totalLossButton.getTexture().dispose();
+		canChangeCreatureBg.getTexture().dispose();
+		canChangeButRunsButton.getTexture().dispose();
+		canChangeAndDoesButton.getTexture().dispose();
+		wonFightBg.getTexture().dispose();
+		wonFightTakesMoneyButton.getTexture().dispose();
+		wonFightTakesCreatureButton.getTexture().dispose();
+		wonFightMoney.dispose();
 	}
 	
 	private static void updateFightButton(){
@@ -704,7 +865,19 @@ public class FightingScreen {
 		}
 		return lines;
 	}
-	
+	private static void exitFighting(){
+		new WriteToSave(Continue.getPlayer().getGender(), Continue.getPlayer().getX(), Continue.getPlayer().getY(), Play.getCamera().getX(), Play.getCamera().getY(), playerCreatures);
+		FightingScreen.dispose();
+		Continue.show();
+		Menu.setFighting(false);
+		Menu.setContinue(true);
+		wonFight = false;
+		shouldShowSkills = true;
+		secondPDamaged = false;
+		firstPDamaged = false;
+		isCurrentlyFighting = false;
+		isChoosingScreen = true;
+	}
 	
 	private static Creature getSelectedCreature(){
 		return playerCreatures.getActiveCreature(selected);

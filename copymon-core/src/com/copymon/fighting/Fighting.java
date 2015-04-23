@@ -30,6 +30,154 @@ public class Fighting {
 	public Fighting(Creature firstCreature, Creature secondCreature){
 		this.firstCreature = firstCreature;
 		this.secondCreature = secondCreature;
+	}	
+	
+	public Skill chooseBotSkill(){
+		Random rn = new Random();
+		int random = rn.nextInt(100 - 1 + 1) + 1;
+		Skill[] skRay = new Skill[secondCreature.getActiveSkillN()];
+		Skill change = new Skill("", "");
+
+		
+		for (int i = 0; i < secondCreature.getActiveSkillN(); i++)
+			skRay[i] = secondCreature.getActiveSkillByIndex(i);
+		
+		for(int i = 0; i < secondCreature.getActiveSkillN()-1; i++)
+		{
+			for(int j=i+1; j < secondCreature.getActiveSkillN(); j++)
+			{	
+				if (skRay[i].getPower() < skRay[j].getPower())
+				{
+					change = skRay[i];
+					skRay[i] = skRay[i+1];
+					skRay[i+1] = change;
+				}
+				
+			}
+		}
+		
+
+		if(random <= 100)
+		{
+			if(random <= 65)
+			{
+				if(random <= 35)
+				{
+					if(random <= 15)
+					{
+						return skRay[3 % secondCreature.getActiveSkillN()];
+					} //end of random <= 15
+					return skRay[2 % secondCreature.getActiveSkillN()];
+				} //end of random <=35
+				return skRay[1];
+			} //end of random <=65
+			return skRay[0];
+		} //end of random<=100
+
+		// program should never reach here
+		Skill fail = new Skill("fail", "fail");
+		return fail;
+
+	}
+
+	public void choose1PlayerSkill(Skill s){
+		firstPSkill = s;
+	}
+	public void choose2PlayerSkill(Skill s){
+		secondPSkill = s;
+	}
+
+	public void doTheAction(boolean firstAttack){
+		if (firstAttack){
+			if (isFirstPAttackingFirst)
+				firstPAttacks();
+			else
+				secondPAttacks();
+		}
+		else{
+			if (!isFirstPAttackingFirst)
+				firstPAttacks();
+			else
+				secondPAttacks();
+		}
+	}
+
+	public void whoAttacksFirst(){
+		if(firstCreature.getAgility() > secondCreature.getAgility())
+			isFirstPAttackingFirst = true;
+		else isFirstPAttackingFirst = false;
+	}
+	/*
+	private void attack(){
+		Random rn = new Random();
+		
+		damageForFirstP = (int)(secondPSkill.getPower()*(spellEfectivenessByType(secondPSkill.getType(), firstCreature.getType())/100f)*((rn.nextInt(120 - 80 + 1) + 80)/100f));
+		damageForSecondP = (int)(firstPSkill.getPower()*(spellEfectivenessByType(firstPSkill.getType(), secondCreature.getType())/100f)*((rn.nextInt(120 - 80 + 1) + 80)/100f));
+		
+		if(isFirstPAttackingFirst)
+		{
+			secondCreature.getDamagedBy(damageForSecondP);
+			if(secondCreature.getHealth() != 0)
+			{
+				firstCreature.getDamagedBy(damageForFirstP);
+			}
+		} else
+		{
+			firstCreature.getDamagedBy(damageForFirstP);
+			if(firstCreature.getHealth() != 0)
+			{
+				secondCreature.getDamagedBy(damageForSecondP);
+			}
+		}
+	}
+	*/
+	private void firstPAttacks(){
+		if(canFirstPAttack()){
+			Random rn = new Random();
+			damageForSecondP = (int)(firstPSkill.getPower()*(spellEfectivenessByType(firstPSkill.getType(), secondCreature.getType())/100f)*((rn.nextInt(120 - 80 + 1) + 80)/100f));
+			secondCreature.getDamagedBy(damageForSecondP);
+			
+		}
+	}
+	private void secondPAttacks(){
+		if (canSecondPAttack()){
+			Random rn = new Random();
+			damageForFirstP = (int)(secondPSkill.getPower()*(spellEfectivenessByType(secondPSkill.getType(), firstCreature.getType())/100f)*((rn.nextInt(120 - 80 + 1) + 80)/100f));
+			firstCreature.getDamagedBy(damageForFirstP);
+		}
+	}
+	
+	public boolean canFirstPAttack(){
+		if (firstCreature.getHealth() > 0)
+			return true;
+		else
+			return false;
+	}
+	public boolean canSecondPAttack(){
+		if (secondCreature.getHealth() > 0)
+			return true;
+		else
+			return false;
+	}
+
+	public boolean isFirstPAttackingFirst() {
+		return isFirstPAttackingFirst;
+	}
+
+	public int getDamageForFirstP() {
+		return damageForFirstP;
+	}
+
+	public int getDamageForSecondP() {
+		return damageForSecondP;
+	}
+
+	public void setFirstCreature(Creature firstCreature) {
+		this.firstCreature = firstCreature;
+	}
+
+	public void setSecondCreature(Creature secondCreature) {
+		this.secondCreature = secondCreature;
 	}
 
 	public int spellEfectivenessByType(Type skillType,Type oponentType){
@@ -548,123 +696,6 @@ public class Fighting {
 			break;				
 		}
 		return 0;
-	}
-
-	
-	
-	public Skill chooseBotSkill(){
-		Random rn = new Random();
-		int random = rn.nextInt(100 - 1 + 1) + 1;
-		Skill[] skRay = new Skill[secondCreature.getActiveSkillN()];
-		Skill change = new Skill("", "");
-
-		
-		for (int i = 0; i < secondCreature.getActiveSkillN(); i++)
-			skRay[i] = secondCreature.getActiveSkillByIndex(i);
-		
-		for(int i = 0; i < secondCreature.getActiveSkillN()-1; i++)
-		{
-			for(int j=i+1; j < secondCreature.getActiveSkillN(); j++)
-			{	
-				if (skRay[i].getPower() < skRay[j].getPower())
-				{
-					change = skRay[i];
-					skRay[i] = skRay[i+1];
-					skRay[i+1] = change;
-				}
-				
-			}
-		}
-		
-
-		if(random <= 100)
-		{
-			if(random <= 65)
-			{
-				if(random <= 35)
-				{
-					if(random <= 15)
-					{
-						return skRay[3 % secondCreature.getActiveSkillN()];
-					} //end of random <= 15
-					return skRay[2 % secondCreature.getActiveSkillN()];
-				} //end of random <=35
-				return skRay[1];
-			} //end of random <=65
-			return skRay[0];
-		} //end of random<=100
-
-		// program should never reach here
-		Skill fail = new Skill("fail", "fail");
-		return fail;
-
-	}
-
-	public void choose1PlayerSkill(Skill s){
-		firstPSkill = s;
-		System.out.println(s.getDisplayName());
-		System.out.println(firstPSkill.getPower());
-	}
-	public void choose2PlayerSkill(Skill s){
-		secondPSkill = s;
-		System.out.println(s.getDisplayName());
-		System.out.println(secondPSkill.getPower());
-	}
-
-	public void doTheAction(){
-		// choose who attacks first
-		whoAttacksFirst();
-		// attack
-		attack();
-	}
-
-	private void whoAttacksFirst(){
-		if(firstCreature.getAgility() > secondCreature.getAgility())
-			isFirstPAttackingFirst = true;
-		else isFirstPAttackingFirst = false;
-	}
-	private void attack(){
-		Random rn = new Random();
-		
-		damageForFirstP = (int)(secondPSkill.getPower()*(spellEfectivenessByType(secondPSkill.getType(), firstCreature.getType())/100f)*((rn.nextInt(120 - 80 + 1) + 80)/100f));
-		damageForSecondP = (int)(firstPSkill.getPower()*(spellEfectivenessByType(firstPSkill.getType(), secondCreature.getType())/100f)*((rn.nextInt(120 - 80 + 1) + 80)/100f));
-		
-		if(isFirstPAttackingFirst)
-		{
-			secondCreature.getDamagedBy(damageForSecondP);
-			if(secondCreature.getHealth() != 0)
-			{
-				firstCreature.getDamagedBy(damageForFirstP);
-			}
-		} else
-		{
-			firstCreature.getDamagedBy(damageForFirstP);
-			if(firstCreature.getHealth() != 0)
-			{
-				secondCreature.getDamagedBy(damageForSecondP);
-			}
-		}
-		
-	}
-
-	public boolean isFirstPAttackingFirst() {
-		return isFirstPAttackingFirst;
-	}
-
-	public int getDamageForFirstP() {
-		return damageForFirstP;
-	}
-
-	public int getDamageForSecondP() {
-		return damageForSecondP;
-	}
-
-	public void setFirstCreature(Creature firstCreature) {
-		this.firstCreature = firstCreature;
-	}
-
-	public void setSecondCreature(Creature secondCreature) {
-		this.secondCreature = secondCreature;
 	}
 
 }

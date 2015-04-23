@@ -99,4 +99,14 @@ public class PlayerCreatures {
 		return inactiveCreatures;
 	}
 
+	public boolean areAllActiveCreaturesWeak(){
+		boolean allweak = true;
+		for (int i = 0; i < activeCreatures.size(); i++){
+			if(activeCreatures.get(i).getHealth() > 0){
+				allweak = false;
+				break;
+			}
+		}
+		return allweak;
+	}
 }

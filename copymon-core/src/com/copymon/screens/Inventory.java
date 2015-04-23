@@ -111,8 +111,7 @@ public class Inventory {
 		if (isSkillDownVisible())
 			skillDown.draw(batch);
 		
-		// 				CREATURE PART
-		
+		// 				CREATURE PART		
 		for (int i = 0; i < nDisplayedCreatures; i++)
 		{
 			int currentCreature = i + creatureLayer * nDisplayedCreatures;
@@ -122,7 +121,9 @@ public class Inventory {
 				creatureBg.get(i).draw(batch);
 				crBarBg4Hp.get(i).draw(batch);
 				crBarBg4Exp.get(i).draw(batch);
+				crHpBar.get(i).setSize(Gdx.graphics.getWidth() / 3.827751196f * creatures().get(currentCreature).getHpPercentage() / 100, Gdx.graphics.getHeight() / 24); 	// currentExp / fullExp
 				crHpBar.get(i).draw(batch);
+				crExpBar.get(i).setSize(Gdx.graphics.getWidth() / 3.827751196f * creatures().get(currentCreature).getExpPercentage() / 100, Gdx.graphics.getHeight() / 24);
 				crExpBar.get(i).draw(batch);
 				
 				// bitmap font

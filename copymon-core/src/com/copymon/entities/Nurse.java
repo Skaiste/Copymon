@@ -84,7 +84,7 @@ public class Nurse {
 			}
 			// if reached right corner
 			else if (lookingRight){
-				walking = false;
+				endWalking();
 			}
 			// if walking to the left
 			else if (nurse.getX() != posLeftX - Play.getCamera().getRealX()){
