@@ -1,6 +1,6 @@
 <Player>
-	<activeCreatures n="2">
-		<1 name="Drizzle" lvl="1" exp="0" hp="52">
+	<activeCreatures n="3">
+		<1 name="Drizzle" lvl="1" exp="0" hp="0">
 			<activeSkills n="2" name1="Tackle" type1="Normal" name2="WaterGun" type2="Water"/>
 			<inactiveSkills n="0"/>
 		</1>
@@ -8,6 +8,10 @@
 			<activeSkills n="2" name1="FellStinger" type1="Bug" name2="Tackle" type2="Normal"/>
 			<inactiveSkills n="0"/>
 		</2>
+		<3 name="Weediesaur" lvl="3" exp="0" hp="49">
+			<activeSkills n="2" name1="VineWhip" type1="Grass" name2="Tackle" type2="Normal"/>
+			<inactiveSkills n="0"/>
+		</3>
 	</activeCreatures>
 	<inactiveCreatures n="0"/>
 </Player>

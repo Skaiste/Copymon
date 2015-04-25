@@ -447,6 +447,7 @@ public class FightingScreen {
 		wonFightTakesCreatureButton = new Sprite(new Texture("continue/fighting/leaveWithCreature.gif"));
 		wonFightTakesCreatureButton.setPosition(wonFightBg.getX() + Gdx.graphics.getWidth() / 3.619909502f, wonFightBg.getY() + Gdx.graphics.getHeight() / 20);	
 		wonFightMoney = new BitmapFont(Gdx.files.internal("terminal.fnt"), Gdx.files.internal("terminal2.png"), false);
+		wonFightMoney.setScale(1.5f);
 		
 		Gdx.input.setInputProcessor(new InputAdapter () {
 			public boolean touchDown (int x, int y, int pointer, int button) {
@@ -477,6 +478,7 @@ public class FightingScreen {
 						(y <= Play.getCamera().getHeight() - changeCreatureButton.getY()))
 					{
 						startChoosing();
+						shouldShowSkills = false;
 					}
 				}
 				
@@ -503,6 +505,7 @@ public class FightingScreen {
 							 (y <= Play.getCamera().getHeight() - canChangeAndDoesButton.getY()))
 					{
 						startChoosing();
+						shouldShowSkills = false;
 						canChangeCreature = false;
 					}
 				}
@@ -689,7 +692,7 @@ public class FightingScreen {
 					wonFight = true;
 					wonFightBg.draw(batch);
 					wonFightTakesMoneyButton.draw(batch);
-					wonFightMoney.draw(batch, "25", wonFightTakesMoneyButton.getX(), wonFightTakesMoneyButton.getY());
+					wonFightMoney.draw(batch, "25", wonFightTakesMoneyButton.getX() + wonFightTakesMoneyButton.getWidth() / 3 * 2 - wonFightMoney.getBounds("25").width, wonFightTakesMoneyButton.getY() + Gdx.graphics.getHeight() / 13);
 					wonFightTakesCreatureButton.draw(batch);
 				}
 				else{
@@ -698,9 +701,6 @@ public class FightingScreen {
 					firstPDamaged = false;
 					isCurrentlyFighting = false;
 				}
-				
-				// FIXME: if the health of some creature ends the game would react to it
-				// split fighting do action into two methods
 			}
 		}
 		batch.end();
@@ -708,6 +708,7 @@ public class FightingScreen {
 	
 	private static void doAnimationDamaging2P(SpriteBatch batch){
 		if (animationStart){
+			addToLog(getSelectedCreature().getRealName() + " attackes with " + fighting.getFirstPSkill().getDisplayName() + "\n");
 			damageWind.setPosition(Gdx.graphics.getWidth() / 3.47826087f, Gdx.graphics.getHeight() / 2.191780822f);
 			animationStart = false;
 		}
@@ -738,6 +739,7 @@ public class FightingScreen {
 	}
 	private static void doAnimationDamaging1P(SpriteBatch batch){
 		if (animationStart){
+			addToLog(getOpponentCreature().getRealName() + " attackes with " + fighting.getSecondPSkill().getDisplayName() + "\n");
 			damageWind.setPosition(Gdx.graphics.getWidth() / 1.809954751f, Gdx.graphics.getHeight() / 2.191780822f);
 			animationStart = false;
 		}

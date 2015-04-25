@@ -180,6 +180,14 @@ public class Fighting {
 		this.secondCreature = secondCreature;
 	}
 
+	public Skill getFirstPSkill() {
+		return firstPSkill;
+	}
+
+	public Skill getSecondPSkill() {
+		return secondPSkill;
+	}
+
 	public int spellEfectivenessByType(Type skillType,Type oponentType){
 		switch(oponentType){
 		case GRASS:
