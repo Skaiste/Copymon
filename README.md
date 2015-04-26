@@ -1,7 +1,7 @@
 # Copymon
 An awesome android game-to-be in near future developed using LibGDX library and Java.
 
-The demo can be downloaded [here](https://drive.google.com/file/d/0B65kpqnvXRSiQkdtSkMzbWZUUFU/view?usp=sharing).
+The demo can be downloaded [here](https://drive.google.com/file/d/0B65kpqnvXRSiWXpncHVIb1p1ZVU/view?usp=sharing).
 
 If there are people so awesome that would pull this project, then [here](https://drive.google.com/file/d/0B65kpqnvXRSiVmZjaHJzVExtNjQ/view?usp=sharing) are the libraries that you may need. If you have troubles try to contact somebody who's in charge here.
 
