@@ -19,6 +19,7 @@ Green - Done, Yellow - Almost done, Orange - In progress, Red - To do in future
 > * Computer functionality
 > * Player movement
 > * Creature template
+> * Fighting
 
 > In New Game
 > * Gender choice
@@ -46,7 +47,6 @@ Green - Done, Yellow - Almost done, Orange - In progress, Red - To do in future
 > * Maps
 > * NPC (in all buildings and somewhere else, depending on quests)
 > * Storyline
-> * Fighting
 
 > In New Game
 > * Name input
