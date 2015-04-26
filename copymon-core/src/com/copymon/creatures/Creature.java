@@ -194,15 +194,16 @@ public class Creature {
 		lvl++;
 	}
 	public void raiseExp(int n){
-		exp += n;
+		if(n > 0)
+			exp += n;
 	}
 	
 	public boolean levelUp(){
 		boolean up = false;
-		if ((exp >= getExpToLvlUp()) && (lvl < maxLvl))
+		if ((exp >= needExp(lvl)) && (lvl < maxLvl))
 		{
 			up = true;
-			exp -= getExpToLvlUp();
+			exp -= needExp(lvl);
 			raiseLvl();
 		} 
 		return up;
@@ -288,14 +289,34 @@ public class Creature {
 		}
 		return 0;
 	}
-	public int getExpToLvlUp(){
-		return (int) Math.pow(lvl * 3, 3);
-	}
+
 	public int getExpPercentage(){
 		if(exp != 0){
-			return (int) (exp * 1.0 / getExpToLvlUp() * 100);
+			int percent = (int) (exp * 1.0 / needExp(lvl) * 100);
+			if (percent >= 100){
+				percent -= 100;
+				lvl++;
+			}
+			return percent;
 		}
 		return 0;
+	}
+	
+	private int needExpTill10Lvl(int lv){
+		if (lv == 1){
+			return 5;
+		}
+		else {
+			return needExpTill10Lvl(lv - 1) + lv * 4;
+		}
+	}
+	public int needExp(int lv){
+		if (lv <= 10){
+			return needExpTill10Lvl(lv);
+		}
+		else {
+			return (int) (needExp(lv - 1) * 1.2);
+		}
 	}
 	
 	private Type convertStringToType(String t){

@@ -54,8 +54,7 @@ public class Fighting {
 				}
 				
 			}
-		}
-		
+		}		
 
 		if(random <= 100)
 		{
@@ -107,30 +106,7 @@ public class Fighting {
 			isFirstPAttackingFirst = true;
 		else isFirstPAttackingFirst = false;
 	}
-	/*
-	private void attack(){
-		Random rn = new Random();
-		
-		damageForFirstP = (int)(secondPSkill.getPower()*(spellEfectivenessByType(secondPSkill.getType(), firstCreature.getType())/100f)*((rn.nextInt(120 - 80 + 1) + 80)/100f));
-		damageForSecondP = (int)(firstPSkill.getPower()*(spellEfectivenessByType(firstPSkill.getType(), secondCreature.getType())/100f)*((rn.nextInt(120 - 80 + 1) + 80)/100f));
-		
-		if(isFirstPAttackingFirst)
-		{
-			secondCreature.getDamagedBy(damageForSecondP);
-			if(secondCreature.getHealth() != 0)
-			{
-				firstCreature.getDamagedBy(damageForFirstP);
-			}
-		} else
-		{
-			firstCreature.getDamagedBy(damageForFirstP);
-			if(firstCreature.getHealth() != 0)
-			{
-				secondCreature.getDamagedBy(damageForSecondP);
-			}
-		}
-	}
-	*/
+	
 	private void firstPAttacks(){
 		if(canFirstPAttack()){
 			Random rn = new Random();
@@ -147,6 +123,24 @@ public class Fighting {
 		}
 	}
 	
+	public int getExp(){
+		float exp = 0;
+		float expFor1dmg = 1.0f * firstCreature.needExp(firstCreature.getLvl()) / firstCreature.getLvl() / secondCreature.getHp();
+		//System.out.println(expFor1dmg);
+		if (spellEfectivenessByType(firstCreature.getType(), secondCreature.getType()) == NOTEFFECTIVE){
+			exp = expFor1dmg * 1.2f;
+		}
+		else if (spellEfectivenessByType(firstCreature.getType(), secondCreature.getType()) == EFFECTIVE){
+			exp = expFor1dmg;
+		}
+		else{
+			exp = expFor1dmg * 0.9f;
+		}
+		return (int) (exp * secondCreature.getHp());
+	}
+	public int getMoney(){		
+		return getExp() / 2;
+	}
 	public boolean canFirstPAttack(){
 		if (firstCreature.getHealth() > 0)
 			return true;

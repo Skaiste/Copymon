@@ -225,7 +225,7 @@ public class FightingScreen {
 					(x <= fightButton.getX() + fightButton.getRegionWidth()) &&
 					(y >= Play.getCamera().getHeight() - (fightButton.getY() + fightButton.getRegionHeight())) &&
 					(y <= Play.getCamera().getHeight() - fightButton.getY()) &&
-					(getSelectedCreature().getHp() != 0))
+					(getSelectedCreature().getHealth() > 0))
 				{
 					startFighting();
 				}
@@ -266,6 +266,7 @@ public class FightingScreen {
 		
 		// action button
 		runButton.draw(batch);
+		updateFightButton();
 		fightButton.draw(batch);
 		
 		batch.end();
@@ -516,7 +517,7 @@ public class FightingScreen {
 						(y <= Play.getCamera().getHeight() - wonFightTakesMoneyButton.getY()))
 					{
 						// money is added
-						
+						playerCreatures.addMoney(fighting.getMoney());
 						// exiting
 						exitFighting();
 					}
@@ -689,10 +690,12 @@ public class FightingScreen {
 				// if opponent creature is too weak to play and it is a wild creature
 				// let player keep the creature
 				else if (getOpponentCreature().getHealth() <= 0){
+					if (!wonFight)
+						getSelectedCreature().raiseExp(fighting.getExp());
 					wonFight = true;
 					wonFightBg.draw(batch);
 					wonFightTakesMoneyButton.draw(batch);
-					wonFightMoney.draw(batch, "25", wonFightTakesMoneyButton.getX() + wonFightTakesMoneyButton.getWidth() / 3 * 2 - wonFightMoney.getBounds("25").width, wonFightTakesMoneyButton.getY() + Gdx.graphics.getHeight() / 13);
+					wonFightMoney.draw(batch, fighting.getMoney() + "", wonFightTakesMoneyButton.getX() + wonFightTakesMoneyButton.getWidth() / 3 * 2 - wonFightMoney.getBounds(fighting.getMoney() + "").width, wonFightTakesMoneyButton.getY() + Gdx.graphics.getHeight() / 13);
 					wonFightTakesCreatureButton.draw(batch);
 				}
 				else{
@@ -825,8 +828,8 @@ public class FightingScreen {
 	}
 	
 	private static void updateFightButton(){
-		if (getSelectedCreature().getHp() == 0)
-			fightButton.setTexture(new Texture("continue/fighting/disbledFightButton.gif"));
+		if (getSelectedCreature().getHealth() <= 0)
+			fightButton.setTexture(new Texture("continue/fighting/disabledFightButton.gif"));
 		else
 			fightButton.setTexture(new Texture("continue/fighting/fightButton.gif"));			
 	}

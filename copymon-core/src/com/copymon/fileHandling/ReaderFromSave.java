@@ -36,14 +36,16 @@ public class ReaderFromSave {
 	// ******************************************************
 	
 	public ReaderFromSave() {
+		playerCreatures = new PlayerCreatures();
+		
 		Preferences prefs = Gdx.app.getPreferences("Copymon Preferences");
 		//prefs.putString(name, name);
 		gender = prefs.getString("gender");
 		//prefs.putInteger("missions", missionsCompleted);
+		playerCreatures.addMoney(prefs.getInteger("money"));
 		mapN = prefs.getInteger("map");
 		place = prefs.getString("place");
 		
-		playerCreatures = new PlayerCreatures();
 		
 		FileHandle file = Gdx.files.local("save.xml");
 		try {

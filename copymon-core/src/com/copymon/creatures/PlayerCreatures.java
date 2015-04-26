@@ -5,6 +5,8 @@ import java.util.ArrayList;
 public class PlayerCreatures {
 
 	private ArrayList<Creature> activeCreatures, inactiveCreatures;
+	private int money = 0;
+	
 	
 	public PlayerCreatures(){
 		activeCreatures = new ArrayList<Creature>();
@@ -108,5 +110,19 @@ public class PlayerCreatures {
 			}
 		}
 		return allweak;
+	}
+	
+	public int getMoney(){
+		return money;
+	}
+	public void addMoney(int m){
+		if (m > 0){
+			money += m;
+		}
+	}
+	public void takeMoney(int m){
+		if (m > 0){
+			money -= m;
+		}
 	}
 }

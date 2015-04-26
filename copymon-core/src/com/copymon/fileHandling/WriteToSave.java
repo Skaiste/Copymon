@@ -22,6 +22,7 @@ public class WriteToSave {
 		//prefs.putString(name, name);
 		prefs.putString("gender", gender);
 		//prefs.putInteger("missions", missionsCompleted);
+		prefs.putInteger("money", playerCreatures.getMoney());
 		prefs.putInteger("map", Continue.getMap().mapN);
 		prefs.putString("place", Continue.getMap().place);
 		prefs.putFloat("playerX", playerX);
@@ -126,6 +127,7 @@ public class WriteToSave {
 		//prefs.putString(name, name);
 		prefs.putString("gender", gender);
 		//prefs.putInteger("missions", missionsCompleted);
+		prefs.putInteger("money", 0);
 		prefs.putInteger("map", 1);
 		prefs.putString("place", "map");
 		prefs.putFloat("playerX", 40);
