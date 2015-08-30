@@ -7,7 +7,7 @@ If there are people so awesome that would pull this project, then [here](https:/
 
 ##Game plan:
 Green - Done, Yellow - Almost done, Orange - In progress, Red - To do in future
-![a plan](http://s13.postimg.org/eu8cxxa3r/copyyy_New_Page_3.png)
+![a plan](http://s24.postimg.org/l8e66nv51/copyyy_New_Page_4.png)
 
 
 
@@ -22,6 +22,7 @@ Green - Done, Yellow - Almost done, Orange - In progress, Red - To do in future
 > * Fighting
 
 > In New Game
+> * Name input
 > * Gender choice
 > * Creature choice
 
@@ -47,9 +48,6 @@ Green - Done, Yellow - Almost done, Orange - In progress, Red - To do in future
 > * Maps
 > * NPC (in all buildings and somewhere else, depending on quests)
 > * Storyline
-
-> In New Game
-> * Name input
 
 > In Play With Friend
 > * Everything.

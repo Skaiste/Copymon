@@ -39,7 +39,7 @@ public class ReaderFromSave {
 		playerCreatures = new PlayerCreatures();
 		
 		Preferences prefs = Gdx.app.getPreferences("Copymon Preferences");
-		//prefs.putString(name, name);
+		name = prefs.getString("name");
 		gender = prefs.getString("gender");
 		//prefs.putInteger("missions", missionsCompleted);
 		playerCreatures.addMoney(prefs.getInteger("money"));

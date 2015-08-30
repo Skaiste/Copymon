@@ -16,10 +16,10 @@ public class WriteToSave {
 
 	public WriteToSave() {}
 	
-	public WriteToSave(String gender, float playerX, float playerY, float cameraX, float cameraY, PlayerCreatures playerCreatures){
+	public WriteToSave(String gender, String name, float playerX, float playerY, float cameraX, float cameraY, PlayerCreatures playerCreatures){
 		
 		Preferences prefs = Gdx.app.getPreferences("Copymon Preferences");
-		//prefs.putString(name, name);
+		prefs.putString("name", name);
 		prefs.putString("gender", gender);
 		//prefs.putInteger("missions", missionsCompleted);
 		prefs.putInteger("money", playerCreatures.getMoney());
@@ -112,7 +112,7 @@ public class WriteToSave {
 		}
 	}
 	
-	public void WriteToSaveNew(String gender, Creature c){
+	public void WriteToSaveNew(String gender, Creature c, String name){
 		if (!Gdx.app.getPreferences("Copymon Options").contains("sound")) {
 			Preferences prefsOptions = Gdx.app.getPreferences("Copymon Options");
 			prefsOptions.putBoolean("sound", true);
@@ -124,7 +124,7 @@ public class WriteToSave {
 		}
 		
 		Preferences prefs = Gdx.app.getPreferences("Copymon Preferences");
-		//prefs.putString(name, name);
+		prefs.putString("name", name);
 		prefs.putString("gender", gender);
 		//prefs.putInteger("missions", missionsCompleted);
 		prefs.putInteger("money", 0);

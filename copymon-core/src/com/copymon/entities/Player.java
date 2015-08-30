@@ -55,8 +55,8 @@ public class Player extends Sprite implements InputProcessor {
 	private int playerAnimation = animationSpeed;
 	// is player going to left
 	private boolean isLeft = false;
-	// player gender
-	private static String gender;
+	// player gender and name
+	private static String gender, name;
 	// was the back button pressed
 	public boolean goBack = false;
 	// has the game began
@@ -74,9 +74,10 @@ public class Player extends Sprite implements InputProcessor {
 	
 	// ************************************************************ //
 	
-	public Player(TiledMapTileLayer colLayer, TiledMapTileLayer compLayer, float x, float y, String genderr) {
+	public Player(TiledMapTileLayer colLayer, TiledMapTileLayer compLayer, float x, float y, String genderr, String namee) {
 		super(new Texture(genderr + "right/1.gif"));
 		gender = genderr;
+		name = namee;
 		collisionLayer = colLayer;
 		computerLayer = compLayer;
 		tileHeight = collisionLayer.getTileHeight();
@@ -835,6 +836,10 @@ public class Player extends Sprite implements InputProcessor {
 
 	public String getGender() {
 		return gender;
+	}
+
+	public String getName() {
+		return name;
 	}
 
 	public void setGender(String gender) {

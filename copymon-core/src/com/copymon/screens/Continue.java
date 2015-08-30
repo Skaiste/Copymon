@@ -90,7 +90,7 @@ public class Continue {
 		
 		// setting up the player
 		reader.readPositions();
-		player = new Player(map.getCollisionLayer(), map.getComputerLayer(), reader.getPlayerX(), reader.getPlayerY(), reader.getGender());		
+		player = new Player(map.getCollisionLayer(), map.getComputerLayer(), reader.getPlayerX(), reader.getPlayerY(), reader.getGender(), reader.getName());		
 		
 		// setting up the background
 		bg = new Sprite(new Texture("continue/background.gif"));
@@ -107,7 +107,7 @@ public class Continue {
 	}
 	public static void dispose()
 	{
-		new WriteToSave(player.getGender(), player.getX(), player.getY(), camera.getX(), camera.getY(), playerCreatures);
+		new WriteToSave(player.getGender(), player.getName(), player.getX(), player.getY(), camera.getX(), camera.getY(), playerCreatures);
 		map.dispose();
 		renderer.dispose();
 		bg.getTexture().dispose();

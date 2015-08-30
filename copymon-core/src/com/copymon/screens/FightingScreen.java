@@ -871,7 +871,7 @@ public class FightingScreen {
 		return lines;
 	}
 	private static void exitFighting(){
-		new WriteToSave(Continue.getPlayer().getGender(), Continue.getPlayer().getX(), Continue.getPlayer().getY(), Play.getCamera().getX(), Play.getCamera().getY(), playerCreatures);
+		new WriteToSave(Continue.getPlayer().getGender(), Continue.getPlayer().getName(), Continue.getPlayer().getX(), Continue.getPlayer().getY(), Play.getCamera().getX(), Play.getCamera().getY(), playerCreatures);
 		FightingScreen.dispose();
 		Continue.show();
 		Menu.setFighting(false);
